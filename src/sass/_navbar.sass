@@ -1,0 +1,51 @@
+.navbar
+  &-container
+    position: fixed
+    width: 100%
+    top: 0
+    left: 0
+    z-index: 1030
+    background-color: rgba(0,0,0,0.5)
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
+    backdrop-filter: blur(6px)
+  &-dark
+    padding: 0 1rem
+    .navbar-nav
+      .nav-item
+        .nav-link
+          position: relative
+          padding: 1rem 2rem
+          background-color: #222222
+          font-family: 'Behrens Antiqua', serif
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
+          clip-path: polygon(1rem 0%, 100% 0%, calc(100% - 1rem) 100%, 0% 100%)
+          margin-left: -1.1rem
+          &:before, &:after
+            content: ''
+            position: absolute
+            width: 2px
+            height: 4rem
+            top: -0.2rem
+            background-color: #aaaaaa
+            transform: rotate(16deg)
+          &:before
+            left: 7px
+          &:after
+            right: 7.5px
+          &.active
+            background-color: #000000
+            z-index: 1
+            &:before, &:after
+              background-color: #ffffff
+          &:first-child
+            .nav-link
+              margin-left: 0
+  &-margin
+    margin-top: 56px
+    flex: 1 0 auto
+  &-brand
+    img
+      display: block
+      width: 320px
+      height: auto
+      margin-right: 1.5rem
