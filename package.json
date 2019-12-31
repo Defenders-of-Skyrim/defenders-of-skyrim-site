@@ -12,6 +12,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.4.4",
+    "nprogress": "^0.2.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-meta": "^2.3.1",

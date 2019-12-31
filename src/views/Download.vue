@@ -4,13 +4,13 @@
       title="Загрузить мод"
       image="http://placeimg.com/640/480/any"
     />
-    <b-container>
+    <b-container v-if="$store.state.isLoaded === true">
       <b-row>
         <b-col
           hg="3"
           lg="4"
           md="6"
-          v-for="mod in mods"
+          v-for="mod in $store.state.data.mods"
           :key="mod._id"
         >
           <b-card
@@ -44,7 +44,7 @@
           <div class="my-4">
             <h3 class="d-block mb-4">Defenders of Skyrim</h3>
             <card-changelog
-              v-for="log in main"
+              v-for="log in $store.state.data.logs.main"
               :key="log._id"
               :version="log.version"
               :description="log.description"
@@ -53,7 +53,7 @@
           <div class="my-4">
             <h3 class="d-block mb-4">Defenders of Skyrim - Оружейная</h3>
             <card-changelog
-              v-for="log in armory"
+              v-for="log in $store.state.data.logs.armory"
               :key="log._id"
               :version="log.version"
               :description="log.description"
@@ -67,10 +67,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import NProgress from 'nprogress';
 import Component from 'vue-class-component';
 import PageHeader from '@/components/PageHeader.vue';
 import CardChangelog from '@/components/Download/CardChangelog.vue';
-import { IChangelog, IMod } from '../plugins/api/interfaces';
+import store from '@/store/index';
 
 @Component({
   components: {
@@ -80,32 +81,13 @@ import { IChangelog, IMod } from '../plugins/api/interfaces';
   metaInfo: {
     title: 'Загрузить мод',
   },
+  beforeRouteEnter(to: any, from: any, next: any) {
+    store.dispatch('getChangelog').then(() => {
+      NProgress.done();
+      store.commit('setLoadStatus', true);
+      next();
+    });
+  },
 })
-export default class Download extends Vue {
-  mods: IMod[] = []
-
-  main: IChangelog[] = []
-
-  armory: IChangelog[] = []
-
-  mounted(): void {
-    this.$getChangelog().then((response: any) => {
-      const logs = response.data.entries;
-
-      logs.forEach((element: IChangelog) => {
-        if (element.mod_name === 'Defenders of Skyrim - Оружейная') {
-          this.armory.push(element);
-        } else if (element.mod_name === 'Defenders of Skyrim') {
-          this.main.push(element);
-        }
-      });
-      console.log(response.data.entries);
-    });
-
-    this.$getMods().then((response: any) => {
-      console.log(response.data.entries);
-      this.mods = response.data.entries;
-    });
-  }
-}
+export default class Download extends Vue {}
 </script>

@@ -17,4 +17,16 @@ export default class APIFetch {
       url: 'collections/get/mods',
     });
   }
+
+  static getPage(name: string) {
+    return authInstance({
+      method: 'post',
+      url: 'collections/get/pages',
+      data: {
+        filter: {
+          title: name,
+        },
+      },
+    });
+  }
 }

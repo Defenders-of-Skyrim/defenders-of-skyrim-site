@@ -8,14 +8,24 @@
             type="dark"
           >
             <b-navbar-brand to="/">
-              <b-img-lazy
-                src="@/assets/images/logo.svg"
-              />
+              <b-img-lazy src="@/assets/images/logo.svg" />
             </b-navbar-brand>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav>
-                <b-nav-item to="/about">Персонажи</b-nav-item>
+                <b-nav-item-dropdown
+                  text="Персонажи"
+                  lazy
+                  no-caret
+                >
+                  <b-dropdown-group id="characters" header="Типы персонажей">
+                    <b-dropdown-item to="/about">Напарники</b-dropdown-item>
+                    <b-dropdown-item to="/about">Учителя навыков</b-dropdown-item>
+                    <b-dropdown-item to="/about">Торговцы</b-dropdown-item>
+                    <b-dropdown-item to="/about">Питомцы</b-dropdown-item>
+                    <b-dropdown-item to="/about">Прочие персонажи</b-dropdown-item>
+                  </b-dropdown-group>
+                </b-nav-item-dropdown>
                 <b-nav-item-dropdown
                   class="columns"
                   text="Предметы"
@@ -33,11 +43,47 @@
                     <b-dropdown-item to="/about">Тяжелые</b-dropdown-item>
                     <b-dropdown-item to="/about">Одежда</b-dropdown-item>
                   </b-dropdown-group>
+                  <b-dropdown-item to="/about">Артефакты</b-dropdown-item>
                   <b-dropdown-item to="/about">Аксессуары</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item to="/about">Магия</b-nav-item>
-                <b-nav-item to="/about">Локации</b-nav-item>
-                <b-nav-item to="/about">Квесты</b-nav-item>
+                <b-nav-item-dropdown
+                  text="Магия"
+                  lazy
+                  no-caret
+                >
+                  <b-dropdown-group id="apparel-magic" header="Школы магии">
+                    <b-dropdown-item to="/about">Восстановление</b-dropdown-item>
+                    <b-dropdown-item to="/about">Иллюзия</b-dropdown-item>
+                    <b-dropdown-item to="/about">Изменение</b-dropdown-item>
+                    <b-dropdown-item to="/about">Колдовство</b-dropdown-item>
+                    <b-dropdown-item to="/about">Разрушение</b-dropdown-item>
+                  </b-dropdown-group>
+                  <b-dropdown-item to="/about">Активные эффекты</b-dropdown-item>
+                </b-nav-item-dropdown>
+                <b-nav-item-dropdown
+                  text="Локации"
+                  lazy
+                  no-caret
+                >
+                  <b-dropdown-group id="locations" header="Страны / миры">
+                    <b-dropdown-item to="/about">Греция</b-dropdown-item>
+                    <b-dropdown-item to="/about">Египет</b-dropdown-item>
+                    <b-dropdown-item to="/about">Преисподняя</b-dropdown-item>
+                    <b-dropdown-item to="/about">Штаб Защитников Скайрима</b-dropdown-item>
+                  </b-dropdown-group>
+                </b-nav-item-dropdown>
+                <b-nav-item-dropdown
+                  text="Квесты"
+                  lazy
+                  no-caret
+                >
+                  <b-dropdown-group id="quests" header="Типы заданий">
+                    <b-dropdown-item to="/about">Главные</b-dropdown-item>
+                    <b-dropdown-item to="/about">Побочные</b-dropdown-item>
+                    <b-dropdown-item to="/about">Задания напарников</b-dropdown-item>
+                    <b-dropdown-item to="/about">Задания Штаба Защитников Скайрима</b-dropdown-item>
+                  </b-dropdown-group>
+                </b-nav-item-dropdown>
                 <b-nav-item to="/download">Скачать мод</b-nav-item>
               </b-navbar-nav>
             </b-collapse>

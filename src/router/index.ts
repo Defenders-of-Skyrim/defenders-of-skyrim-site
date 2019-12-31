@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import NProgress from 'nprogress';
+import store from '../store/index';
 
 Vue.use(VueRouter);
 
@@ -26,6 +28,22 @@ const router = new VueRouter({
   linkExactActiveClass: 'active',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeResolve((to: any, from: any, next: any) => {
+  if (to.name) {
+    NProgress.start();
+  }
+  next();
+});
+
+router.beforeEach((to: any, from: any, next: any) => {
+  store.commit('setLoadStatus', false);
+  next();
+});
+
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;
