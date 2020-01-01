@@ -33,10 +33,10 @@
                   no-caret
                 >
                   <b-dropdown-group id="apparel-weapons" header="Оружие">
-                    <b-dropdown-item to="/about">Одноручное</b-dropdown-item>
-                    <b-dropdown-item to="/about">Двуручное</b-dropdown-item>
-                    <b-dropdown-item to="/about">Стрелковое</b-dropdown-item>
-                    <b-dropdown-item to="/about">Посохи</b-dropdown-item>
+                    <b-dropdown-item to="/weapons/onehanded">Одноручное</b-dropdown-item>
+                    <b-dropdown-item to="/weapons/twohanded">Двуручное</b-dropdown-item>
+                    <b-dropdown-item to="/weapons/ranged">Стрелковое</b-dropdown-item>
+                    <b-dropdown-item to="/weapons/staves">Посохи</b-dropdown-item>
                   </b-dropdown-group>
                   <b-dropdown-group id="apparel-armor" header="Доспехи">
                     <b-dropdown-item to="/about">Легкие</b-dropdown-item>
@@ -85,6 +85,27 @@
                   </b-dropdown-group>
                 </b-nav-item-dropdown>
                 <b-nav-item to="/download">Скачать мод</b-nav-item>
+              </b-navbar-nav>
+
+              <b-navbar-nav class="ml-auto">
+                <b-nav-item
+                  href="https://github.com"
+                  class="icon"
+                >
+                  <b-img
+                    src="@/assets/icons/github.svg"
+                    alt="Github"
+                  />
+                </b-nav-item>
+                <b-nav-item
+                  href="https://www.donationalerts.com/r/longsightedfilms"
+                  class="icon"
+                >
+                  <b-img
+                    src="@/assets/icons/donate.svg"
+                    alt="Поддержать проект"
+                  />
+                </b-nav-item>
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>

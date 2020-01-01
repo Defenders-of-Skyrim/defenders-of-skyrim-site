@@ -17,6 +17,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
   },
   {
+    path: '/weapons/:type',
+    name: 'weapons_list',
+    component: () => import(/* webpackChunkName: "weapons_list" */ '@/views/Weapons.vue'),
+  },
+  {
+    path: '/weapons/:type/:subtype/:slug',
+    name: 'weapons_single',
+    component: () => import(/* webpackChunkName: "weapons_single" */ '@/views/Weapons.vue'),
+  },
+  {
     path: '/download',
     name: 'download',
     component: () => import(/* webpackChunkName: "download" */ '@/views/Download.vue'),
@@ -30,15 +40,9 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeResolve((to: any, from: any, next: any) => {
-  if (to.name) {
-    NProgress.start();
-  }
-  next();
-});
-
 router.beforeEach((to: any, from: any, next: any) => {
   store.commit('setLoadStatus', false);
+  NProgress.start();
   next();
 });
 

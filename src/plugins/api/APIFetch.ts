@@ -29,4 +29,16 @@ export default class APIFetch {
       },
     });
   }
+
+  static getWeapons(type: string) {
+    return authInstance({
+      method: 'post',
+      url: 'collections/get/weapons',
+      data: {
+        filter: { type },
+        sort: { title: 1 },
+        lang: 'default',
+      },
+    });
+  }
 }

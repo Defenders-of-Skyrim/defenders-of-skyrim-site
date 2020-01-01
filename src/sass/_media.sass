@@ -17,8 +17,44 @@
               left: 6px
             &:after
               right: 9px
+          &.icon
+            .nav-link
+              img
+                width: 30px
+                height: 30px
+    &-brand
+      img
+        width: 320px
+        height: 32px
   .dropdown
     &-header
       font-size: 1rem
     &-menu
       font-size: 1.25rem
+  .card
+    &-deck
+      .card
+        &.bg-skyrim
+          flex: 0 1 calc(25% - 15px)
+@media (min-width: 992px) and (max-width: 1199px)
+  body
+    font-size: 1rem
+  .navbar
+    &-dark
+      .navbar-nav
+        .nav-item
+          .nav-link
+            padding: 1rem 1.5rem
+          &.icon
+            .nav-link
+              img
+                width: 24px
+                height: 24px
+    &-brand
+      img
+        margin-right: 0.5rem
+  .card
+    &-deck
+      .card
+        &.bg-skyrim
+          flex: 0 1 calc(33.3333% - 15px)

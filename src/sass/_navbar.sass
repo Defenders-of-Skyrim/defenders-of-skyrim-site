@@ -40,12 +40,56 @@
           &:first-child
             .nav-link
               margin-left: 0
+        &.icon
+          .nav-link
+            padding: 1rem 1.25rem
+            img
+              display: block
+              width: 26px
+              height: 26px
+              object-fit: cover
+              object-position: 50%
+              filter: invert(1)
   &-margin
     margin-top: 56px
     flex: 1 0 auto
   &-brand
     img
       display: block
-      width: 320px
-      height: auto
+      width: 200px
+      height: 20px
+      object-fit: contain
       margin-right: 1.5rem
+.nav-tabs
+  background-color: rgba(0,0,0,0.8)
+  border: 2px solid #cccccc
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+  .nav-item
+    .nav-link
+      display: flex
+      align-items: center
+      justify-content: center
+      color: $white
+      text-decoration: none
+      border: none
+      border-radius: 0
+      font-family: 'Behrens Antiqua', serif
+      font-size: 1.5rem
+      &:before, &:after
+        content: ''
+        display: inline-block
+        background: url("./assets/images/list_item.svg") no-repeat center center / contain
+        width: 2rem
+        height: 2rem
+        opacity: 0
+      &:before
+        transform: rotate(180deg)
+        margin-right: 0.5rem
+      &:after
+        margin-left: 0.5rem
+      &.active, &:hover
+        background: none
+        border: none
+        color: $white
+        &:before, &:after
+          opacity: 1

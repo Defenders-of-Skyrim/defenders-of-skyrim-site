@@ -20,6 +20,7 @@ module.exports = {
         return options;
       });
   },
+
   devServer: {
     watchOptions: {
       ignored: /node_modules/,
@@ -29,6 +30,15 @@ module.exports = {
         target: 'localhost:10000/api',
         changeOrigin: false,
       },
+    },
+  },
+
+  pluginOptions: {
+    i18n: {
+      locale: 'ru',
+      fallbackLocale: 'ru',
+      localeDir: 'locales',
+      enableInSFC: true,
     },
   },
 };
