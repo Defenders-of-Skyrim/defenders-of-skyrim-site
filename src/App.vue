@@ -2,9 +2,7 @@
   <div id="app">
     <navbar />
     <div class="navbar-margin">
-      <keep-alive>
-        <router-view />
-      </keep-alive>
+      <router-view />
     </div>
     <app-footer />
   </div>

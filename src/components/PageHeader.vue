@@ -7,6 +7,7 @@
       <b-row>
         <b-col cols="12">
           <h1>{{ title }}</h1>
+          <slot />
         </b-col>
       </b-row>
     </b-container>

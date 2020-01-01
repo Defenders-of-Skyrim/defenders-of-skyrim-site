@@ -5,6 +5,24 @@
       "twohanded": "Двуручное оружие",
       "ranged": "Стрелковое оружие",
       "staves": "Посохи"
+    },
+    "subtypes": {
+      "singular": {
+        "dagger": "Кинжал",
+        "sword": "Меч",
+        "greatsword": "Клеймора",
+        "waraxe": "Топор",
+        "battleaxe": "Секира",
+        "mace": "Булава",
+        "warhammer": "Молот",
+        "bow": "Лук",
+        "crossbow": "Арбалет",
+        "staff": "Посох"
+      }
     }
+  },
+  "booleans": {
+    "true": "Да",
+    "false": "Нет"
   }
 }

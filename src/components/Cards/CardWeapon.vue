@@ -5,7 +5,10 @@
     text-variant="white"
     no-body
   >
-    <router-link :to="link">
+    <router-link
+      :to="link"
+      class="aspect-ratio_1-1"
+    >
       <b-card-img-lazy
         :src="weapon.thumbnail.path"
         v-if="weapon.thumbnail !== ''"
@@ -14,8 +17,6 @@
       <b-img
         class="card-img img-fluid"
         blank-color="#333333"
-        width="64"
-        height="64"
         blank
         v-else
       />

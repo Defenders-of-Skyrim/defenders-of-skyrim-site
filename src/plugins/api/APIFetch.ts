@@ -41,4 +41,15 @@ export default class APIFetch {
       },
     });
   }
+
+  static getSingleWeapon(slug: string) {
+    return authInstance({
+      method: 'post',
+      url: '/collections/get/weapons',
+      data: {
+        filter: { slug },
+        lang: 'default',
+      },
+    });
+  }
 }

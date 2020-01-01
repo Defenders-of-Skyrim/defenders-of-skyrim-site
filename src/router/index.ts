@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/weapons/:type/:subtype/:slug',
     name: 'weapons_single',
-    component: () => import(/* webpackChunkName: "weapons_single" */ '@/views/Weapons.vue'),
+    component: () => import(/* webpackChunkName: "weapons_single" */ '@/views/SinglePage/SingleWeapon.vue'),
   },
   {
     path: '/download',

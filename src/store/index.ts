@@ -103,5 +103,10 @@ export default new Vuex.Store({
         }
       });
     },
+    getSingleWeapon({ commit }, slug: string): Promise<any> {
+      return APIFetch.getSingleWeapon(slug).then((response: any) => {
+        commit('setPageData', response.data.entries[0]);
+      });
+    },
   },
 });

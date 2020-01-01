@@ -10,7 +10,7 @@
           hg="3"
           lg="4"
           md="6"
-          v-for="mod in $store.state.data.mods"
+          v-for="mod in mods"
           :key="mod._id"
         >
           <b-card
@@ -44,7 +44,7 @@
           <div class="my-4">
             <h3 class="d-block mb-4">Defenders of Skyrim</h3>
             <card-changelog
-              v-for="log in $store.state.data.logs.main"
+              v-for="log in logs.main"
               :key="log._id"
               :version="log.version"
               :description="log.description"
@@ -53,7 +53,7 @@
           <div class="my-4">
             <h3 class="d-block mb-4">Defenders of Skyrim - Оружейная</h3>
             <card-changelog
-              v-for="log in $store.state.data.logs.armory"
+              v-for="log in logs.armory"
               :key="log._id"
               :version="log.version"
               :description="log.description"
@@ -66,6 +66,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import NProgress from 'nprogress';
 import Component from 'vue-class-component';
@@ -84,10 +85,25 @@ import store from '@/store/index';
   beforeRouteEnter(to: any, from: any, next: any) {
     store.dispatch('getChangelog').then(() => {
       NProgress.done();
-      store.commit('setLoadStatus', true);
+      next((vm: any) => {
+        vm.logs = vm.$store.state.data.logs;
+        vm.mods = vm.$store.state.data.mods;
+        vm.$store.commit('setLoadStatus', true);
+      });
+    });
+  },
+  beforeRouteUpdate(to: any, from: any, next: any) {
+    store.dispatch('getChangelog').then(() => {
+      NProgress.done();
+      this.logs = this.$store.state.data.logs;
+      this.mods = this.$store.state.data.mods;
       next();
     });
   },
 })
-export default class Download extends Vue {}
+export default class Download extends Vue {
+  logs: any = {}
+
+  mods: any[] = []
+}
 </script>
