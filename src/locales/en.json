@@ -22,17 +22,17 @@
     }
   },
   "booleans": {
-    "true": "Да",
-    "false": "Нет"
+    "true": "Yes",
+    "false": "No"
   },
   "pages": {
-    "download": "Загрузить мод"
+    "download": "Download mod"
   },
   "buttons": {
-    "download": "Загрузить мод (версия {version})"
+    "download": "Download mod (version {version})"
   },
   "mods": {
-    "dos": "Защитники Скайрима",
-    "dosArmory": "Защитники Скайрима - Оружейная"
+    "dos": "Defenders of Skyrim",
+    "dosArmory": "Defenders of Skyrim - Armory"
   }
 }

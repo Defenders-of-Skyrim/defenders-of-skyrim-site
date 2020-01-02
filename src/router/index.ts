@@ -41,7 +41,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to: any, from: any, next: any) => {
-  store.commit('setLoadStatus', false);
   NProgress.start();
   next();
 });

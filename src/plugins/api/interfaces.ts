@@ -28,6 +28,7 @@ export interface IWeapon {
   _mby: string,
   _modified: number,
   background: string | Object,
+  description: string,
   slug: string,
   stats: {
     character: string,

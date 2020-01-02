@@ -8,3 +8,29 @@
     &:hover
       color: $white
       background-color: #222222
+  &-scroll
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 50%
+    background-color: rgba(0,0,0,0.4)
+    border: 2px solid #cccccc
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.8)
+    width: 64px
+    height: 64px
+    position: fixed
+    bottom: 2rem
+    right: 2rem
+    transition: opacity 0.3s ease
+    opacity: 0
+    pointer-events: none
+    img
+      display: block
+      width: 32px
+      height: 32px
+      object-fit: cover
+      object-position: 50%
+      transform: rotate(90deg)
+    &.show
+      pointer-events: all
+      opacity: 1

@@ -1,8 +1,8 @@
 <template>
-  <div v-if="$store.state.isLoaded === true">
+  <div>
     <page-header
-      :title="$t('weapons.types.' + $route.params.type)"
-      image="http://placeimg.com/640/480/any"
+      :title="$t(`weapons.types.${$route.params.type}`)"
+      :image="require(`@/assets/images/backgrounds/${$route.params.type}.jpg`)"
     />
     <b-container>
       <b-row>
@@ -19,7 +19,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.daggers"
+                    v-for="weapon in weapons.daggers"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -32,7 +32,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.swords"
+                    v-for="weapon in weapons.swords"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -45,7 +45,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.warAxes"
+                    v-for="weapon in weapons.warAxes"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -58,7 +58,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.maces"
+                    v-for="weapon in weapons.maces"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -73,7 +73,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.greatswords"
+                    v-for="weapon in weapons.greatswords"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -86,7 +86,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.battleAxes"
+                    v-for="weapon in weapons.battleAxes"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -99,7 +99,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.warhammers"
+                    v-for="weapon in weapons.warhammers"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -114,7 +114,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.bows"
+                    v-for="weapon in weapons.bows"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -127,7 +127,7 @@
               >
                 <b-card-group deck>
                   <card-weapon
-                    v-for="weapon in data.crossbows"
+                    v-for="weapon in weapons.crossbows"
                     :key="weapon._id"
                     :weapon="weapon"
                     :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -139,7 +139,7 @@
           <fragment v-else>
             <b-card-group deck>
               <card-weapon
-                v-for="weapon in data"
+                v-for="weapon in weapons"
                 :key="weapon._id"
                 :weapon="weapon"
                 :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
@@ -153,13 +153,13 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import NProgress from 'nprogress';
 import Component from 'vue-class-component';
 import CardWeapon from '@/components/Cards/CardWeapon.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import store from '@/store/index';
+import { IWeapon } from '@/plugins/api/interfaces';
 
 @Component({
   components: {
@@ -174,23 +174,20 @@ import store from '@/store/index';
   beforeRouteEnter(to: any, from: any, next: any) {
     store.dispatch('getWeapons', to.params.type).then(() => {
       NProgress.done();
-      store.commit('setLoadStatus', true);
       next((vm: any) => {
-        vm.data = vm.$store.state.data;
-        vm.$store.commit('setLoadStatus', true);
+        vm.weapons = vm.$store.state.data;
       });
     });
   },
   beforeRouteUpdate(to: any, from: any, next: any) {
     store.dispatch('getWeapons', to.params.type).then(() => {
       NProgress.done();
-      this.data = this.$store.state.data;
-      store.commit('setLoadStatus', true);
+      (this as Weapons).weapons = this.$store.state.data;
       next();
     });
   },
 })
 export default class Weapons extends Vue {
-  data: any = {}
+  weapons: IWeapon[] = []
 }
 </script>

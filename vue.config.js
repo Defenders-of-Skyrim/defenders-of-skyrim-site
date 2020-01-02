@@ -1,4 +1,5 @@
-/* eslint-disable no-param-reassign */
+const path = require('path');
+
 module.exports = {
   chainWebpack: (config) => {
     config.module
@@ -16,6 +17,16 @@ module.exports = {
           'b-card-img-lazy': ['src', 'blank-src'],
           'b-carousel-slide': 'img-src',
           'b-embed': 'src',
+        };
+        return options;
+      });
+    config.module
+      .rule('eslint')
+      .use('eslint-loader')
+      .tap((options) => {
+        options.eslint = {
+          configFile: path.resolve(__dirname, './.eslintrc'),
+          cache: false,
         };
         return options;
       });

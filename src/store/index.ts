@@ -10,14 +10,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     data: {},
-    isLoaded: false,
   },
   mutations: {
     setPageData(state, data): void {
       state.data = data;
-    },
-    setLoadStatus(state, data): void {
-      state.isLoaded = data;
     },
   },
   actions: {
