@@ -1,11 +1,11 @@
 <template>
   <div
-    class="page-header"
+    :class="getHeaderClass"
     :style="{ backgroundImage: 'url(' + image + ')' }"
   >
     <b-container class="page-header__content">
       <b-row>
-        <b-col cols="12">
+        <b-col>
           <h1>{{ title }}</h1>
           <slot />
         </b-col>
@@ -32,7 +32,22 @@ import Component from 'vue-class-component';
       required: true,
       default: '',
     },
+    tall: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 })
-export default class PageHeader extends Vue {}
+export default class PageHeader extends Vue {
+  get getHeaderClass(): string {
+    let header = 'page-header';
+
+    if (this.$props.tall === true) {
+      header += ' tall';
+    }
+
+    return header;
+  }
+}
 </script>

@@ -1,4 +1,32 @@
 {
+  "navbar": {
+    "characters": {
+      "index": "Characters",
+      "subitems": {
+        "header": "Character types",
+        "followers": "Followers",
+        "trainers": "Trainers",
+        "traders": "Traders",
+        "pets": "Pets",
+        "other": "Other characters"
+      }
+    },
+    "apparel": {
+      "index": "Apparel",
+      "subitems": {
+        "headerWeapons": "Weapons",
+        "headerArmor": "Armor",
+        "onehanded": "One-handed",
+        "twohanded": "Two-handed",
+        "ranged": "Ranged",
+        "staves": "Staves",
+        "lightArmor": "Light",
+        "heavyArmor": "Heavy",
+        "clothes": "Clothes"
+      }
+    },
+    "download": "Download mod"
+  },
   "weapons": {
     "types": {
       "onehanded": "Одноручное оружие",
@@ -34,5 +62,6 @@
   "mods": {
     "dos": "Defenders of Skyrim",
     "dosArmory": "Defenders of Skyrim - Armory"
-  }
+  },
+  "changelog": "Changelog"
 }

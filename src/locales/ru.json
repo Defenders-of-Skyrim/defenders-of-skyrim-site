@@ -1,4 +1,41 @@
 {
+  "navbar": {
+    "characters": {
+      "index": "Персонажи",
+      "subitems": {
+        "header": "Типы персонажей",
+        "followers": "Напарники",
+        "trainers": "Учителя навыков",
+        "traders": "Торговцы",
+        "pets": "Питомцы",
+        "other": "Прочие персонажи"
+      }
+    },
+    "apparel": {
+      "index": "Предметы",
+      "subitems": {
+        "headerWeapons": "Оружие",
+        "headerArmor": "Доспехи",
+        "onehanded": "Одноручное",
+        "twohanded": "Двуручное",
+        "ranged": "Стрелковое",
+        "staves": "Посохи",
+        "lightArmor": "Легкие",
+        "heavyArmor": "Тяжелые",
+        "clothes": "Одежда"
+      }
+    },
+    "download": "Скачать мод"
+  },
+  "skills": {
+    "levels": {
+      "novice": "Новичок",
+      "apprentice": "Ученик",
+      "adept": "Адепт",
+      "expert": "Эксперт",
+      "master": "Мастер"
+    }
+  },
   "weapons": {
     "types": {
       "onehanded": "Одноручное оружие",
@@ -34,5 +71,6 @@
   "mods": {
     "dos": "Защитники Скайрима",
     "dosArmory": "Защитники Скайрима - Оружейная"
-  }
+  },
+  "changelog": "Список изменений"
 }

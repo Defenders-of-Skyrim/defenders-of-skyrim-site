@@ -6,7 +6,7 @@
     />
     <b-container>
       <b-row>
-        <b-col cols="12">
+        <b-col cols="24">
           <b-tabs
             v-if="$route.params.type !== 'staves'"
             content-class="mt-3"
@@ -154,7 +154,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import NProgress from 'nprogress';
 import Component from 'vue-class-component';
 import CardWeapon from '@/components/Cards/CardWeapon.vue';
 import PageHeader from '@/components/PageHeader.vue';
@@ -173,7 +172,6 @@ import { IWeapon } from '@/plugins/api/interfaces';
   },
   beforeRouteEnter(to: any, from: any, next: any) {
     store.dispatch('getWeapons', to.params.type).then(() => {
-      NProgress.done();
       next((vm: any) => {
         vm.weapons = vm.$store.state.data;
       });
@@ -181,7 +179,6 @@ import { IWeapon } from '@/plugins/api/interfaces';
   },
   beforeRouteUpdate(to: any, from: any, next: any) {
     store.dispatch('getWeapons', to.params.type).then(() => {
-      NProgress.done();
       (this as Weapons).weapons = this.$store.state.data;
       next();
     });

@@ -17,6 +17,7 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'import/extensions': 'off',
     'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
     'global-require': 'off'
   },

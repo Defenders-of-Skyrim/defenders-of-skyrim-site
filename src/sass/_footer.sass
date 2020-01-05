@@ -1,5 +1,47 @@
 .footer
   flex-shrink: 0
+  margin: 1.5rem 0 0
   padding: 1rem 0
-  background-color: $dark
+  background-color: rgba(0,0,0,0.8)
+  border-top: 2px solid #cccccc
   color: $light
+  position: relative
+  &:before, &:after
+    content: ''
+    width: 1.5rem
+    height: 100%
+    position: absolute
+    background: url("./assets/images/celtic_knot.svg") repeat-y center top / contain
+    top: 0
+  &:before
+    left: 0
+  &:after
+    right: 0
+  .navbar
+    &-brand
+      color: $white
+      width: 100%
+      margin: 0 0 1rem
+      img
+        width: 100% !important
+        height: auto !important
+      p
+        width: 100%
+  &__nav
+    list-style: none
+    margin: 0
+    padding: 0
+    li
+      a
+        color: $white
+  li.form-inline
+    margin-left: 0 !important
+  form.form-inline
+    width: 100%
+    .custom-select
+      background: rgba(0,0,0,0.8) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23ffffff' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
+      border-radius: 0
+      border: 2px solid #cccccc
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+      color: $light
+      width: 100%

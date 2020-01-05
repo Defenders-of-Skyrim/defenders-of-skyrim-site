@@ -50,16 +50,30 @@
               object-fit: cover
               object-position: 50%
               filter: invert(1)
+      form.form-inline
+        .custom-select
+          background: rgba(0,0,0,0.8) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23ffffff' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
+          border-radius: 0
+          border: 2px solid #cccccc
+          box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+          color: $light
   &-margin
     margin-top: 56px
     flex: 1 0 auto
   &-brand
+    margin-right: 1.5rem
     img
       display: block
       width: 200px
       height: 20px
       object-fit: contain
-      margin-right: 1.5rem
+    p
+      margin: 0 0 -0.25rem 0
+      font-size: 0.54rem
+      letter-spacing: 1px
+      text-transform: uppercase
+      text-align: center
+      width: 200px
 .nav-tabs
   background-color: rgba(0,0,0,0.8)
   border: 2px solid #cccccc

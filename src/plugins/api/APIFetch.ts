@@ -1,4 +1,5 @@
 import authInstance from './axiosInstances';
+import i18n from '@/i18n';
 
 export default class APIFetch {
   static getChangelog() {
@@ -49,6 +50,38 @@ export default class APIFetch {
       data: {
         filter: { slug },
         lang: 'default',
+      },
+    });
+  }
+
+  static getSingleCharacter(universe: string, slug: string) {
+    return authInstance({
+      method: 'post',
+      url: '/collections/get/characters',
+      data: {
+        filter: {
+          slug,
+          universe_slug: universe,
+        },
+        lang: i18n.locale,
+      },
+    });
+  }
+
+  static getCharactersList(universe: string) {
+    return authInstance({
+      method: 'post',
+      url: '/collections/get/characters',
+      data: {
+        filter: {
+          universe_slug: universe,
+        },
+        fields: {
+          _id: 1,
+          title: 1,
+          slug: 1,
+        },
+        lang: i18n.locale,
       },
     });
   }

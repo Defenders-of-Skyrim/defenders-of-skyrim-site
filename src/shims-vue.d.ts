@@ -6,4 +6,5 @@ declare module '*.vue' {
 
 declare module 'nprogress'
 declare module 'vuebar'
+declare module 'vue-loading-overlay'
 declare module 'vue-fragment'

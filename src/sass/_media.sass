@@ -1,3 +1,11 @@
+@media (min-width: 1900px)
+  .navbar
+    &-dark
+      .navbar-nav
+        .nav-item
+          .nav-link
+            font-size: 1.25rem
+            padding: 1rem 2rem
 @media (min-width: 1600px)
   body
     font-size: 1.25rem
@@ -8,7 +16,8 @@
       .navbar-nav
         .nav-item
           .nav-link
-            font-size: 1.25rem
+            font-size: 1.1rem
+            padding: 1.1rem 1.5rem
             &:before, &:after
               width: 2px
               height: 5rem
@@ -24,8 +33,11 @@
                 height: 30px
     &-brand
       img
-        width: 320px
+        width: 300px
         height: 32px
+      p
+        width: 300px
+        font-size: 0.85rem
   .dropdown
     &-header
       font-size: 1rem
@@ -51,8 +63,6 @@
                 width: 24px
                 height: 24px
     &-brand
-      img
-        margin-right: 0.5rem
   .card
     &-deck
       .card

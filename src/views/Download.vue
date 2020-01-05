@@ -1,16 +1,16 @@
 <template>
   <div>
     <page-header
-      title="Загрузить мод"
+      :title="$t('pages.download')"
       :image="require('@/assets/images/backgrounds/download_mod.jpg')"
     />
     <b-container>
       <b-row>
         <fragment v-if="mods.length !== 0">
           <b-col
-            hg="3"
-            lg="4"
-            md="6"
+            hg="6"
+            lg="8"
+            md="12"
             v-for="mod in mods"
             :key="mod._id"
           >
@@ -41,13 +41,13 @@
             </b-card>
           </b-col>
         </fragment>
-        <b-col cols="12">
-          <h2>Список изменений</h2>
+        <b-col cols="24">
+          <h2 v-t="'changelog'"></h2>
           <div
             class="my-4"
             v-if="logs.hasOwnProperty('main')"
           >
-            <h3 class="d-block mb-4">Defenders of Skyrim</h3>
+            <h3 class="d-block mb-4" v-t="'mods.dos'"></h3>
             <card-changelog
               v-for="log in logs.main"
               :key="log._id"
@@ -59,7 +59,7 @@
             class="my-4"
             v-if="logs.hasOwnProperty('armory')"
           >
-            <h3 class="d-block mb-4">Defenders of Skyrim - Оружейная</h3>
+            <h3 class="d-block mb-4" v-t="'mods.dosArmory'"></h3>
             <card-changelog
               v-for="log in logs.armory"
               :key="log._id"
@@ -75,7 +75,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import NProgress from 'nprogress';
 import Component from 'vue-class-component';
 import PageHeader from '@/components/PageHeader.vue';
 import CardChangelog from '@/components/Download/CardChangelog.vue';
@@ -92,18 +91,16 @@ import { IMod } from '@/plugins/api/interfaces';
       title: (this.$t('pages.download') as string),
     };
   },
-  beforeRouteEnter(to: any, from: any, next: any) {
+  beforeRouteEnter(to, from, next) {
     store.dispatch('getChangelog').then(() => {
-      NProgress.done();
       next((vm: any) => {
         vm.logs = vm.$store.state.data.logs;
         vm.mods = vm.$store.state.data.mods;
       });
     });
   },
-  beforeRouteUpdate(to: any, from: any, next: any) {
+  beforeRouteUpdate(to, from, next) {
     store.dispatch('getChangelog').then(() => {
-      NProgress.done();
       (this as Download).logs = this.$store.state.data.logs;
       (this as Download).mods = this.$store.state.data.mods;
       next();

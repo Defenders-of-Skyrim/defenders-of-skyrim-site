@@ -3,6 +3,7 @@
     <page-header
       :title="weapon.title"
       :image="weapon.background.path"
+      tall
     >
       <p>
         {{ $t('weapons.types.' + $route.params.type) }} -
@@ -56,18 +57,24 @@
     <b-container>
       <b-row>
         <b-col
-          xxh="9"
-          xl="8"
-          lg="7"
-          md="6"
+          xxh="17"
+          xl="16"
+          lg="14"
+          md="14"
         >
-          <div v-html="weapon.description"></div>
+          <b-card
+            bg-variant="skyrim"
+            text-variant="white"
+            no-body
+          >
+            <b-card-body v-html="weapon.description" />
+          </b-card>
         </b-col>
         <b-col
-          xxh="3"
-          xl="4"
-          lg="5"
-          md="6"
+          xxh="7"
+          xl="8"
+          lg="10"
+          md="10"
         >
           <b-table-simple dark class="skyrim">
             <b-tbody>
@@ -97,7 +104,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import NProgress from 'nprogress';
 import Component from 'vue-class-component';
 import PageHeader from '@/components/PageHeader.vue';
 import store from '@/store/index';
@@ -114,7 +120,6 @@ import { IWeapon } from '@/plugins/api/interfaces';
   },
   beforeRouteEnter(to: any, from: any, next: any) {
     store.dispatch('getSingleWeapon', to.params.slug).then(() => {
-      NProgress.done();
       next((vm: SingleWeapon) => {
         vm.weapon = vm.$store.state.data;
       });
@@ -122,7 +127,6 @@ import { IWeapon } from '@/plugins/api/interfaces';
   },
   beforeRouteUpdate(to: any, from: any, next: any) {
     store.dispatch('getSingleWeapon', to.params.slug).then(() => {
-      NProgress.done();
       (this as SingleWeapon).weapon = this.$store.state.data;
       next();
     });

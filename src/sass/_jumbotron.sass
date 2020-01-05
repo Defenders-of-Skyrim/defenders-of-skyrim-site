@@ -1,5 +1,8 @@
+$headerHeight: 400px
+$characterHeaderHeight: 900px
+
 .page-header
-  height: 400px
+  height: $headerHeight
   margin: -56px 0 3rem
   padding: 56px 0 3rem
   display: flex
@@ -21,14 +24,25 @@
   &__content
     position: relative
     z-index: 1
+    h1, p.stroke
+      filter: drop-shadow(0px 0px 5px $black)
     h1
       font-size: 3rem
+  &.tall
+    height: $characterHeaderHeight
+    margin: -56px 0 calc(-#{$characterHeaderHeight} + #{$headerHeight} - 1.5rem)
+    padding: 56px 0 calc(#{$characterHeaderHeight} - #{$headerHeight} + 3rem)
   &__details
     list-style: none
+    width: 100%
     margin: 0
-    padding: 0
+    padding: 1rem
     display: flex
+    flex-wrap: wrap
     align-items: center
+    background-color: rgba(0,0,0,0.8)
+    border: 2px solid #cccccc
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
     li
       display: flex
       align-items: center

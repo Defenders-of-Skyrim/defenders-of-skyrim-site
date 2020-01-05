@@ -26,6 +26,25 @@
             width: 2rem
             height: 2rem
             margin-right: 0.5rem
+        &.list-accordion
+          padding: 0
+          display: flex
+          flex-wrap: wrap
+          li
+            margin-bottom: 0
+            a
+              color: $white
+              text-decoration: underline
+            &:before
+              background: none
+              width: 8px
+              height: 8px
+              background: $white
+              border-radius: 50%
+              margin: 0 1rem
+            &:first-child
+              &:before
+                margin-left: 0
       p
         &:last-child
           margin-bottom: 0
@@ -47,3 +66,13 @@
       &.bg-skyrim
         margin: 0 7.5px 0
         flex: 0 1 calc(25% - 15px)
+  &.accordion
+    .card-header
+      border-bottom: 0
+      padding: 0
+      .btn-skyrim
+        font-size: 1.25rem
+        border: none
+        box-shadow: none
+        &:focus
+          outline: 0

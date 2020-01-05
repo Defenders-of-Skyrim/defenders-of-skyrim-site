@@ -2,9 +2,11 @@ $grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, hg: 1400
 
 $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px, hg: 1340px, xh: 1540px, xxh: 1840px)
 
+$grid-columns: 24
+
 @import 'node_modules/bootstrap/scss/bootstrap'
 @import 'node_modules/bootstrap-vue/src/index'
-@import 'node_modules/nprogress/nprogress'
+@import 'node_modules/vue-loading-overlay/dist/vue-loading'
 
 @font-face
   font-family: 'Behrens Antiqua'
@@ -38,8 +40,9 @@ body
   display: flex !important
   flex-direction: column
 
-@import 'nprogress'
 @import 'vuebar'
+
+@import 'transition'
 
 @import 'navbar'
 @import 'dropdown'

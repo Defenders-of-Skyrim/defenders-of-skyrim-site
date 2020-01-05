@@ -1,11 +1,10 @@
 .aspect-ratio
-  &_1-1
+  &_1-1, &_9-16, &_3-4
     position: relative
     &:before
       display: block
       content: ""
       width: 100%
-      padding-top: (1 / 1) * 100%
     > img
       position: absolute
       top: 0
@@ -16,3 +15,12 @@
       height: 100%
       object-fit: cover
       object-position: 50%
+  &_1-1
+    &:before
+      padding-top: (1 / 1) * 100%
+  &_9-16
+    &:before
+      padding-top: (16 / 9) * 100%
+  &_3-4
+    &:before
+      padding-top: (4 / 3) * 100%

@@ -10,10 +10,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     data: {},
+    isLoading: false,
   },
   mutations: {
     setPageData(state, data): void {
       state.data = data;
+    },
+    setLoadingStatus(state, loading): void {
+      state.isLoading = loading;
     },
   },
   actions: {
@@ -103,6 +107,13 @@ export default new Vuex.Store({
       return APIFetch.getSingleWeapon(slug).then((response: any) => {
         commit('setPageData', response.data.entries[0]);
       });
+    },
+    getSingleCharacter({ commit }, params: any): Promise<any> {
+      return APIFetch.getSingleCharacter(params.universe, params.slug)
+        .then((response: any) => {
+          console.log(response.data.entries[0]);
+          commit('setPageData', response.data.entries[0]);
+        });
     },
   },
 });

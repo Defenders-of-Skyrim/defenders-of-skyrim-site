@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import NProgress from 'nprogress';
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -27,6 +26,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "weapons_single" */ '@/views/SinglePage/SingleWeapon.vue'),
   },
   {
+    path: '/characters/:universe/:slug',
+    name: 'characters_single',
+    component: () => import(/* webpackChunkName: "characters_single" */ '@/views/SinglePage/SingleCharacter.vue'),
+  },
+  {
     path: '/download',
     name: 'download',
     component: () => import(/* webpackChunkName: "download" */ '@/views/Download.vue'),
@@ -40,13 +44,13 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to: any, from: any, next: any) => {
-  NProgress.start();
+router.beforeEach((to, from, next) => {
+  store.commit('setLoadingStatus', true);
   next();
 });
 
 router.afterEach(() => {
-  NProgress.done();
+  store.commit('setLoadingStatus', false);
 });
 
 export default router;
