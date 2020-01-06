@@ -6,6 +6,11 @@
     box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
     &.equal
       height: calc(100% - 1.5rem)
+      .card-body
+        display: flex
+        flex-direction: column
+        .btn
+          margin-top: auto
     .card-header
       background-color: rgba(30,30,30,1)
       border-bottom: 2px solid #cccccc
@@ -21,7 +26,7 @@
           &:before
             content: ''
             display: inline-block
-            background: url("./assets/images/list_item.svg") no-repeat center center / contain
+            background: $listItem no-repeat center center / contain
             transform: rotate(180deg)
             width: 2rem
             height: 2rem
@@ -55,7 +60,7 @@
           tr
             td
               border: none
-              img
+              img, svg
                 display: block
                 filter: invert(1)
                 width: 24px

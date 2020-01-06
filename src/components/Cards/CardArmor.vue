@@ -10,8 +10,8 @@
       class="aspect-ratio_1-1"
     >
       <b-card-img-lazy
-        :src="weapon.thumbnail.path"
-        v-if="weapon.thumbnail !== ''"
+        :src="armor.thumbnail.path"
+        v-if="armor.thumbnail !== ''"
         top
       />
       <b-img
@@ -23,7 +23,13 @@
     </router-link>
 
     <b-card-body>
-      <b-card-title>{{ weapon.title }}</b-card-title>
+      <b-card-title>{{ armor.title }}</b-card-title>
+      <p
+        v-if="armor.stats.setSlug !== null"
+        class="text-success"
+      >
+        {{ armor.stats.setSlug.display }}
+      </p>
       <b-table-simple
         dark
         small
@@ -35,9 +41,9 @@
                 <img
                   svg-inline
                   class="mr-3"
-                  src="@/assets/icons/sword.svg"
+                  src="@/assets/icons/armor.svg"
                 />
-                {{ weapon.stats.damage }}
+                {{ armor.stats.resist }}
               </div>
             </b-td>
             <b-td>
@@ -47,7 +53,7 @@
                   class="mr-3"
                   src="@/assets/icons/coin.svg"
                 />
-                {{ weapon.stats.cost }}
+                {{ armor.stats.cost }}
               </div>
             </b-td>
             <b-td>
@@ -57,7 +63,7 @@
                   class="mr-3"
                   src="@/assets/icons/weight.svg"
                 />
-                {{ weapon.stats.weight }}
+                {{ armor.stats.weight }}
               </div>
             </b-td>
           </b-tr>
@@ -73,7 +79,7 @@ import Component from 'vue-class-component';
 
 @Component({
   props: {
-    weapon: {
+    armor: {
       type: Object,
       required: true,
     },
@@ -83,5 +89,5 @@ import Component from 'vue-class-component';
     },
   },
 })
-export default class CardWeapon extends Vue {}
+export default class CardArmor extends Vue {}
 </script>

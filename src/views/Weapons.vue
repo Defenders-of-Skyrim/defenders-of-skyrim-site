@@ -1,8 +1,8 @@
 <template>
   <div>
     <page-header
-      :title="$t(`weapons.types.${$route.params.type}`)"
-      :image="require(`@/assets/images/backgrounds/${$route.params.type}.jpg`)"
+      :title="$t(`weapons.types.${type}`)"
+      :image="require(`@/assets/images/backgrounds/${type}.jpg`)"
     />
     <b-container>
       <b-row>
@@ -12,140 +12,144 @@
             content-class="mt-3"
             fill
           >
-            <fragment v-if="$route.params.type === 'onehanded'">
-              <b-tab
-                title="Кинжалы"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.daggers"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-              <b-tab
-                title="Мечи"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.swords"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-              <b-tab
-                title="Топоры"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.warAxes"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-              <b-tab
-                title="Булавы"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.maces"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-            </fragment>
-            <fragment v-if="$route.params.type === 'twohanded'">
-              <b-tab
-                title="Клейморы"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.greatswords"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-              <b-tab
-                title="Секиры"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.battleAxes"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-              <b-tab
-                title="Молоты"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.warhammers"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-            </fragment>
-            <fragment v-if="$route.params.type === 'ranged'">
-              <b-tab
-                title="Луки"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.bows"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-              <b-tab
-                title="Арбалеты"
-                lazy
-              >
-                <b-card-group deck>
-                  <card-weapon
-                    v-for="weapon in weapons.crossbows"
-                    :key="weapon._id"
-                    :weapon="weapon"
-                    :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-                  />
-                </b-card-group>
-              </b-tab>
-            </fragment>
+            <b-tab
+              title="Кинжалы"
+              v-if="$route.params.type === 'onehanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.daggers"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Мечи"
+              v-if="$route.params.type === 'onehanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.swords"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Топоры"
+              v-if="$route.params.type === 'onehanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.warAxes"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Булавы"
+              v-if="$route.params.type === 'onehanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.maces"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Клейморы"
+              v-if="$route.params.type === 'twohanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.greatswords"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Секиры"
+              v-if="$route.params.type === 'twohanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.battleAxes"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Молоты"
+              v-if="$route.params.type === 'twohanded'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.warhammers"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Луки"
+              v-if="$route.params.type === 'ranged'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.bows"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
+            <b-tab
+              title="Арбалеты"
+              v-if="$route.params.type === 'ranged'"
+              lazy
+            >
+              <b-card-group deck>
+                <card-weapon
+                  v-for="weapon in weapons.crossbows"
+                  :key="weapon._id"
+                  :weapon="weapon"
+                  :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+                />
+              </b-card-group>
+            </b-tab>
           </b-tabs>
-          <fragment v-else>
-            <b-card-group deck>
-              <card-weapon
-                v-for="weapon in weapons"
-                :key="weapon._id"
-                :weapon="weapon"
-                :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
-              />
-            </b-card-group>
-          </fragment>
+          <b-card-group
+            deck
+            v-else
+          >
+            <card-weapon
+              v-for="weapon in weapons"
+              :key="weapon._id"
+              :weapon="weapon"
+              :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
+            />
+          </b-card-group>
         </b-col>
       </b-row>
     </b-container>
@@ -157,8 +161,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import CardWeapon from '@/components/Cards/CardWeapon.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import store from '@/store/index';
-import { IWeapon } from '@/plugins/api/interfaces';
+import { IWeaponData, IWeapon } from '@/plugins/api/interfaces';
+import APIFetch from '@/plugins/api/APIFetch';
 
 @Component({
   components: {
@@ -167,24 +171,33 @@ import { IWeapon } from '@/plugins/api/interfaces';
   },
   metaInfo() {
     return {
-      title: (this.$t(`weapons.types.${this.$route.params.type}`) as string),
+      title: (this.$t(`weapons.types.${(this as Weapons).type}`) as string),
+      meta: [
+        {
+          property: 'og:title',
+          content: `${this.$t(`weapons.types.${(this as Weapons).type}`)} - Defenders of Skyrim`,
+          vmid: 'og:title',
+        },
+      ],
     };
   },
-  beforeRouteEnter(to: any, from: any, next: any) {
-    store.dispatch('getWeapons', to.params.type).then(() => {
-      next((vm: any) => {
-        vm.weapons = vm.$store.state.data;
-      });
+  async beforeRouteEnter(to: any, from: any, next: any) {
+    const weapons = await APIFetch.getWeapons(to.params.type);
+    next((vm: any) => {
+      vm.weapons = weapons;
+      vm.type = to.params.type;
     });
   },
-  beforeRouteUpdate(to: any, from: any, next: any) {
-    store.dispatch('getWeapons', to.params.type).then(() => {
-      (this as Weapons).weapons = this.$store.state.data;
-      next();
-    });
+  async beforeRouteUpdate(to: any, from: any, next: any) {
+    const weapons = await APIFetch.getWeapons(to.params.type);
+    (this as Weapons).weapons = weapons;
+    (this as Weapons).type = to.params.type;
+    next();
   },
 })
 export default class Weapons extends Vue {
-  weapons: IWeapon[] = []
+  weapons: IWeaponData | IWeapon[] = {}
+
+  type = 'onehanded';
 }
 </script>

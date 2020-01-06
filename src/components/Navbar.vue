@@ -8,7 +8,10 @@
             type="dark"
           >
             <b-navbar-brand to="/">
-              <b-img-lazy src="@/assets/images/logo.svg" />
+              <img
+                svg-inline
+                src="@/assets/images/logo.svg"
+              />
               <p>Глобальная модификация для Skyrim</p>
             </b-navbar-brand>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -126,7 +129,8 @@
                   href="https://github.com/longsightedfilms/defenders-of-skyrim-site"
                   class="icon"
                 >
-                  <b-img
+                  <img
+                    svg-inline
                     src="@/assets/icons/github.svg"
                     alt="Github"
                   />
@@ -135,7 +139,8 @@
                   href="https://www.donationalerts.com/r/longsightedfilms"
                   class="icon"
                 >
-                  <b-img
+                  <img
+                    svg-inline
                     src="@/assets/icons/donate.svg"
                     alt="Поддержать проект"
                   />

@@ -9,50 +9,7 @@
         {{ $t('weapons.types.' + $route.params.type) }} -
         {{ $t(`weapons.subtypes.singular.${weapon.subtype}`) }}
       </p>
-      <ul class="page-header__details">
-        <li>
-          <div>
-            <b-img src="@/assets/icons/sword.svg" />
-            <p>Базовый урон</p>
-          </div>
-          {{ weapon.stats.damage }}
-        </li>
-        <li>
-          <div>
-            <b-img src="@/assets/icons/coin.svg" />
-            <p>Стоимость</p>
-          </div>
-          {{ weapon.stats.cost }}
-        </li>
-        <li>
-          <div>
-            <b-img src="@/assets/icons/weight.svg" />
-            <p>Вес</p>
-          </div>
-          {{ weapon.stats.weight }}
-        </li>
-        <li>
-          <div>
-            <b-img src="@/assets/icons/speed.svg" />
-            <p>Скорость атаки</p>
-          </div>
-          {{ weapon.stats.speed }}
-        </li>
-        <li>
-          <div>
-            <b-img src="@/assets/icons/reach.svg" />
-            <p>Дистанция атаки</p>
-          </div>
-          {{ weapon.stats.reach }}
-        </li>
-        <li>
-          <div>
-            <b-img src="@/assets/icons/anvil.svg" />
-            <p>Улучшаемое</p>
-          </div>
-          {{ $t(`booleans.${weapon.stats.temperable}`) }}
-        </li>
-      </ul>
+      <single-weapon-details :weapon="weapon" />
     </page-header>
     <b-container>
       <b-row>
@@ -105,31 +62,41 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import SingleWeaponDetails from '@/components/Single/SingleWeaponDetails.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import store from '@/store/index';
 import { IWeapon } from '@/plugins/api/interfaces';
+import APIFetch from '@/plugins/api/APIFetch';
+import * as functions from '@/plugins/api/functions';
 
 @Component({
   components: {
+    SingleWeaponDetails,
     PageHeader,
   },
   metaInfo() {
     return {
-      title: (this.$store.state.data.title as string),
+      title: ((this as SingleWeapon).weapon.title as string),
+      meta: [
+        {
+          property: 'og:title',
+          content: `${(this as SingleWeapon).weapon.title} - Defenders of Skyrim`,
+          vmid: 'og:title',
+        },
+        { name: 'description', content: (this as SingleWeapon).description },
+        { property: 'og:description', content: (this as SingleWeapon).description },
+      ],
     };
   },
-  beforeRouteEnter(to: any, from: any, next: any) {
-    store.dispatch('getSingleWeapon', to.params.slug).then(() => {
-      next((vm: SingleWeapon) => {
-        vm.weapon = vm.$store.state.data;
-      });
+  async beforeRouteEnter(to: any, from: any, next: any) {
+    const weapon = await APIFetch.getSingleWeapon(to.params.slug);
+    next((vm: SingleWeapon) => {
+      vm.weapon = weapon;
     });
   },
-  beforeRouteUpdate(to: any, from: any, next: any) {
-    store.dispatch('getSingleWeapon', to.params.slug).then(() => {
-      (this as SingleWeapon).weapon = this.$store.state.data;
-      next();
-    });
+  async beforeRouteUpdate(to: any, from: any, next: any) {
+    const weapon = await APIFetch.getSingleWeapon(to.params.slug);
+    (this as SingleWeapon).weapon = weapon;
+    next();
   },
 })
 export default class SingleWeapon extends Vue {
@@ -157,6 +124,11 @@ export default class SingleWeapon extends Vue {
     thumbnail: '',
     title: '',
     type: '',
+  }
+
+  get description(): string {
+    return this.weapon.description !== ''
+      ? functions.generateMetaDescription(this.weapon.description, true) : '';
   }
 }
 </script>

@@ -3,8 +3,13 @@
     variant="scroll"
     :class="{ show: visible }"
     @click="scrollTo"
+    aria-label="Scroll to top"
   >
-    <img src="@/assets/images/list_item.svg"/>
+    <img
+      svg-inline
+      src="@/assets/images/list_item.svg"
+      aria-hidden="true"
+    />
   </b-button>
 </template>
 
@@ -26,7 +31,7 @@ export default class ScrollTo extends Vue {
   visible = false;
 
   scrollTo(): void {
-    (this as any).$parent.$refs.inner.scroll({
+    (this as any).$root.$children[0].$refs.inner.scroll({
       top: 0,
       behavior: 'smooth',
     });
@@ -37,14 +42,14 @@ export default class ScrollTo extends Vue {
   }
 
   mounted(): void {
-    const element = (this as any).$parent.$refs.inner;
+    const element = (this as any).$root.$children[0].$refs.inner;
     element.addEventListener('scroll', () => {
       this.checkVisibility(element);
     }, { passive: true });
   }
 
   beforeDestroy(): void {
-    const element = (this as any).$parent.$refs.inner;
+    const element = (this as any).$root.$children[0].$refs.inner;
     element.removeEventListener('scroll', () => {
       this.checkVisibility(element);
     }, { passive: true });

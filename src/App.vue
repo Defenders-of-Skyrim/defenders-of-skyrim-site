@@ -5,12 +5,17 @@
   }">
     <div class="inner" ref="inner">
       <navbar />
-      <div class="navbar-margin">
-        <router-view />
-      </div>
-      <app-footer />
+      <transition
+        name="fade-in-up"
+        mode="out-in"
+      >
+        <keep-alive>
+          <router-view class="navbar-margin" />
+        </keep-alive>
+      </transition>
+      <app-footer v-show="isLoading === false" />
       <loading
-        :active.sync="$store.state.isLoading"
+        :active="isLoading"
         color="#cccccc"
         :height="128"
         :width="128"
@@ -34,6 +39,7 @@ import Navbar from '@/components/Navbar.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import ScrollTo from '@/components/ScrollTo.vue';
 import { setLanguage } from '@/plugins/api/functions';
+import { store } from '@/store/';
 
 @Component({
   components: {
@@ -42,9 +48,14 @@ import { setLanguage } from '@/plugins/api/functions';
     AppFooter,
     ScrollTo,
   },
-  metaInfo: {
-    title: 'Defenders of Skyrim',
-    titleTemplate: '%s - Defenders of Skyrim',
+  metaInfo() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+      title: undefined,
+      titleTemplate: chunk => (chunk ? `${chunk} - Defenders of Skyrim` : 'Defenders of Skyrim'),
+    };
   },
 })
 export default class App extends Vue {
@@ -55,6 +66,10 @@ export default class App extends Vue {
     } else {
       setLanguage(this.$i18n.locale);
     }
+  }
+
+  get isLoading(): boolean {
+    return store.isLoading;
   }
 }
 </script>

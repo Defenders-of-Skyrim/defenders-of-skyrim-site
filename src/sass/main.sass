@@ -4,7 +4,7 @@ $container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px, hg: 1340px,
 
 $grid-columns: 24
 
-@import 'node_modules/bootstrap/scss/bootstrap'
+@import 'bootstrap'
 @import 'node_modules/bootstrap-vue/src/index'
 @import 'node_modules/vue-loading-overlay/dist/vue-loading'
 
@@ -13,6 +13,7 @@ $grid-columns: 24
   src: url('./assets/fonts/behrens_antiqua.woff2') format('woff2'), url('./assets/fonts/behrens_antiqua.woff') format('woff')
   font-weight: normal
   font-style: normal
+  font-display: swap
 
 @font-face
   font-family: 'Futura PT Book'
@@ -22,6 +23,7 @@ $grid-columns: 24
   url('./assets/fonts/FuturaPT-Book.ttf') format('truetype')
   font-weight: normal
   font-style: normal
+  font-display: swap
 
 h1,h2,h3,h4,h5,h6
   font-family: 'Behrens Antiqua', serif
@@ -43,6 +45,7 @@ body
 @import 'vuebar'
 
 @import 'transition'
+@import 'icons'
 
 @import 'navbar'
 @import 'dropdown'

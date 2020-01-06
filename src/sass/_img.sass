@@ -1,5 +1,5 @@
 .aspect-ratio
-  &_1-1, &_9-16, &_3-4
+  &_1-1, &_9-16, &_16-9, &_3-4
     position: relative
     &:before
       display: block
@@ -21,6 +21,9 @@
   &_9-16
     &:before
       padding-top: (16 / 9) * 100%
+  &_16-9
+    &:before
+      padding-top: (9 / 16) * 100%
   &_3-4
     &:before
       padding-top: (4 / 3) * 100%

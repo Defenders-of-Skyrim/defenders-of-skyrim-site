@@ -9,7 +9,10 @@
           md="8"
         >
           <b-navbar-brand to="/">
-            <b-img-lazy src="@/assets/images/logo.svg" />
+            <img
+              svg-inline
+              src="@/assets/images/logo.svg"
+            />
             <p>Глобальная модификация для Skyrim</p>
           </b-navbar-brand>
           <language-selector />

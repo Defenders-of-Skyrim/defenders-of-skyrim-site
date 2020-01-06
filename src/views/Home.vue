@@ -2,12 +2,12 @@
   <div>
     <page-header
       title=""
-      image="http://placeimg.com/640/480/any"
+      image="https://picsum.photos/1920/1080"
     />
     <b-container>
       <b-row>
         <b-col>
-          <div v-html="$store.state.data"></div>
+          <div v-html="content"></div>
         </b-col>
       </b-row>
     </b-container>
@@ -18,21 +18,39 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import PageHeader from '@/components/PageHeader.vue';
-import store from '@/store/index';
+import APIFetch from '@/plugins/api/APIFetch';
+import * as functions from '@/plugins/api/functions';
 
 @Component({
   components: {
     PageHeader,
   },
-  metaInfo: {
-    title: 'Defenders of Skyrim',
-    titleTemplate: undefined,
+  metaInfo() {
+    return {
+      meta: [
+        {
+          property: 'og:title',
+          content: 'Defenders of Skyrim',
+          vmid: 'og:title',
+        },
+        { name: 'description', content: (this as Home).description },
+        { property: 'og:description', content: (this as Home).description },
+      ],
+    };
   },
-  beforeRouteEnter(to: any, from: any, next: any) {
-    store.dispatch('getPage', 'Главная страница').then(() => {
-      next();
+  async beforeRouteEnter(to: any, from: any, next: any) {
+    const content = await APIFetch.getPage('Главная страница');
+    next((vm: any) => {
+      vm.content = content;
     });
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  content: string = ''
+
+  get description(): string {
+    return this.content !== ''
+      ? functions.generateMetaDescription(this.content, false) : '';
+  }
+}
 </script>

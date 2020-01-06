@@ -14,40 +14,15 @@
             v-for="mod in mods"
             :key="mod._id"
           >
-            <b-card
-              class="mb-4 equal"
-              bg-variant="skyrim"
-              text-variant="white"
-              no-body
-            >
-              <b-card-img-lazy
-                :src="mod.thumbnail.path"
-                v-if="mod.thumbnail !== ''"
-                top
-              />
-
-              <b-card-body>
-                <b-card-title>{{ mod.title }}</b-card-title>
-                <b-button
-                  class="mt-2"
-                  :href="mod.link"
-                  :disabled="mod.link === ''"
-                  variant="skyrim"
-                  block
-                >
-                  {{ $t('buttons.download', { version: mod.version }) }}
-                </b-button>
-              </b-card-body>
-            </b-card>
+            <card-mod :mod="mod" />
           </b-col>
         </fragment>
         <b-col cols="24">
-          <h2 v-t="'changelog'"></h2>
-          <div
-            class="my-4"
-            v-if="logs.hasOwnProperty('main')"
-          >
-            <h3 class="d-block mb-4" v-t="'mods.dos'"></h3>
+          <h2>{{ $t('changelog') }}</h2>
+          <div class="my-4">
+            <h3 class="d-block mb-4">
+              {{ $t('mods.dos')}}
+            </h3>
             <card-changelog
               v-for="log in logs.main"
               :key="log._id"
@@ -55,11 +30,10 @@
               :description="log.description"
             />
           </div>
-          <div
-            class="my-4"
-            v-if="logs.hasOwnProperty('armory')"
-          >
-            <h3 class="d-block mb-4" v-t="'mods.dosArmory'"></h3>
+          <div class="my-4">
+            <h3 class="d-block mb-4">
+              {{ $t('mods.dosArmory') }}
+            </h3>
             <card-changelog
               v-for="log in logs.armory"
               :key="log._id"
@@ -76,35 +50,42 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import CardMod from '@/components/Cards/CardMod.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import CardChangelog from '@/components/Download/CardChangelog.vue';
-import store from '@/store/index';
+import CardChangelog from '@/components/Cards/CardChangelog.vue';
+import APIFetch from '@/plugins/api/APIFetch';
 import { IMod } from '@/plugins/api/interfaces';
 
 @Component({
   components: {
+    CardMod,
     PageHeader,
     CardChangelog,
   },
   metaInfo() {
     return {
       title: (this.$t('pages.download') as string),
+      meta: [
+        {
+          property: 'og:title',
+          content: `${this.$t('pages.download')} - Defenders of Skyrim`,
+          vmid: 'og:title',
+        },
+      ],
     };
   },
-  beforeRouteEnter(to, from, next) {
-    store.dispatch('getChangelog').then(() => {
-      next((vm: any) => {
-        vm.logs = vm.$store.state.data.logs;
-        vm.mods = vm.$store.state.data.mods;
-      });
+  async beforeRouteEnter(to, from, next) {
+    const data = await APIFetch.getDownloadPage();
+    next((vm: any) => {
+      vm.logs = Object.freeze(data.logs);
+      vm.mods = Object.freeze(data.mods);
     });
   },
-  beforeRouteUpdate(to, from, next) {
-    store.dispatch('getChangelog').then(() => {
-      (this as Download).logs = this.$store.state.data.logs;
-      (this as Download).mods = this.$store.state.data.mods;
-      next();
-    });
+  async beforeRouteUpdate(to, from, next) {
+    const data = await APIFetch.getDownloadPage();
+    (this as Download).logs = Object.freeze(data.logs);
+    (this as Download).mods = Object.freeze(data.mods);
+    next();
   },
 })
 export default class Download extends Vue {

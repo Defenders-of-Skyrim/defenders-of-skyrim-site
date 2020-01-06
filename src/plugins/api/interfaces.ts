@@ -81,3 +81,43 @@ export interface ICharacter {
   universe: string,
   universe_slug: string,
 }
+
+export interface IListAccordionData {
+  _id: string,
+  title: string,
+  link: string,
+}
+
+export interface IArmor {
+  _by: string,
+  _created: number,
+  _id: string,
+  _mby: string,
+  _modified: number,
+  background: string | Object,
+  description: string,
+  slug: string,
+  stats: {
+    character: string,
+    cost: string,
+    enchantment: string,
+    obtain: string,
+    resist: string,
+    set: boolean,
+    setSlug: {
+      _id: string,
+      link: string,
+      display: string,
+    } | null,
+    temperable: boolean,
+    weight: string,
+  },
+  subtype: string,
+  thumbnail: string | Object,
+  title: string,
+  type: string,
+}
+
+export interface IArmorData {
+  [propName: string]: IArmor[],
+}

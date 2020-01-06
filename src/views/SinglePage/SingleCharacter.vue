@@ -55,15 +55,9 @@ import PageHeader from '@/components/PageHeader.vue';
 import ListAccordion from '@/components/ListAccordion.vue';
 import SingleCharacterDetails from '@/components/Single/SingleCharacterDetails.vue';
 import SingleCharacterTable from '@/components/Single/SingleCharacterTable.vue';
-import store from '@/store/index';
-import { ICharacter } from '@/plugins/api/interfaces';
+import { ICharacter, IListAccordionData } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
-
-type ListAccordionData = {
-  _id: string,
-  title: string,
-  link: string,
-}
+import * as functions from '@/plugins/api/functions';
 
 @Component({
   components: {
@@ -74,31 +68,38 @@ type ListAccordionData = {
   },
   metaInfo() {
     return {
-      title: (this as SingleCharacter).character.title,
+      title: (this as SingleCharacter).getCharacterName,
+      meta: [
+        {
+          property: 'og:title',
+          content: `${(this as SingleCharacter).getCharacterName} - Defenders of Skyrim`,
+          vmid: 'og:title',
+        },
+        { name: 'description', content: (this as SingleCharacter).description },
+        { property: 'og:description', content: (this as SingleCharacter).description },
+      ],
     };
   },
-  beforeRouteEnter(to: any, from: any, next: any) {
-    const params = {
-      universe: to.params.universe,
-      slug: to.params.slug,
-    };
+  async beforeRouteEnter(to: any, from: any, next: any) {
+    const { universe, slug } = to.params;
 
-    store.dispatch('getSingleCharacter', params).then(() => {
-      next((vm: SingleCharacter) => {
-        vm.character = vm.$store.state.data;
-      });
+    const character = await APIFetch.getSingleCharacter(universe, slug);
+    const accordion = await APIFetch.getCharactersList(universe);
+
+    next((vm: SingleCharacter) => {
+      vm.character = character;
+      vm.data = accordion;
     });
   },
-  beforeRouteUpdate(to: any, from: any, next: any) {
-    const params = {
-      universe: to.params.universe,
-      slug: to.params.slug,
-    };
+  async beforeRouteUpdate(to: any, from: any, next: any) {
+    const { universe, slug } = to.params;
 
-    store.dispatch('getSingleCharacter', params).then(() => {
-      (this as SingleCharacter).character = this.$store.state.data;
-      next();
-    });
+    const character = await APIFetch.getSingleCharacter(universe, slug);
+    const accordion = await APIFetch.getCharactersList(universe);
+
+    (this as SingleCharacter).character = character;
+    (this as SingleCharacter).data = accordion;
+    next();
   },
 })
 export default class SingleCharacter extends Vue {
@@ -133,7 +134,7 @@ export default class SingleCharacter extends Vue {
     universe_slug: '',
   }
 
-  data: ListAccordionData[] = []
+  data: IListAccordionData[] = []
 
   get getCharacterName(): string {
     let { title } = this.character;
@@ -143,24 +144,9 @@ export default class SingleCharacter extends Vue {
     return title;
   }
 
-  fillAccordion(): void {
-    APIFetch.getCharactersList(this.$route.params.universe)
-      .then((response: any) => {
-        const { entries } = response.data;
-
-        entries.forEach((element: any) => {
-          const entry = {
-            _id: element._id,
-            title: element.title,
-            link: `/characters/${this.$route.params.universe}/${element.slug}`,
-          };
-          this.data.push(entry);
-        });
-      });
-  }
-
-  mounted(): void {
-    this.fillAccordion();
+  get description(): string {
+    return this.character.description !== ''
+      ? functions.generateMetaDescription(this.character.description, true) : '';
   }
 }
 </script>
