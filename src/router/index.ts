@@ -17,6 +17,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
   },
   {
+    path: '/characters/:type',
+    name: 'characters_list',
+    component: () => import(/* webpackChunkName: "characters_list" */ '@/views/Characters.vue'),
+  },
+  {
     path: '/characters/:universe/:slug',
     name: 'characters_single',
     component: () => import(/* webpackChunkName: "characters_single" */ '@/views/SinglePage/SingleCharacter.vue'),

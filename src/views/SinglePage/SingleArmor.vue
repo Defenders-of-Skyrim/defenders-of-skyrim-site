@@ -6,7 +6,7 @@
       tall
     >
       <p>
-        {{ $t('armor.types.' + $route.params.type) }} -
+        {{ $t('armor.types.' + armor.type) }} -
         {{ $t(`armor.subtypes.singular.${armor.subtype}`) }}
       </p>
       <single-armor-details :armor="armor" />
@@ -43,10 +43,15 @@
                   />
                 </b-td>
               </b-tr>
-              <b-tr v-if="armor.stats.character !== '' && characterTitle !== ''">
+              <b-tr v-if="armor.stats.character !== null">
                 <b-th>Предназначено для персонажа</b-th>
                 <b-td>
-                  {{ characterTitle }}
+                  <b-link
+                    class="text-light"
+                    :to="getCharacterLink"
+                  >
+                    {{ getCharacterName }}
+                  </b-link>
                 </b-td>
               </b-tr>
               <b-tr>
@@ -73,9 +78,9 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import SingleArmorDetails from '@/components/Single/SingleArmorDetails.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import { IArmor } from '@/plugins/api/interfaces';
+import { IArmor, ICharacter } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
-import * as functions from '@/plugins/api/functions';
+import { getCharacterName, generateMetaDescription } from '@/plugins/api/functions';
 
 @Component({
   components: {
@@ -98,18 +103,20 @@ import * as functions from '@/plugins/api/functions';
   },
   async beforeRouteEnter(to: any, from: any, next: any) {
     const armor = await APIFetch.getSingleArmor(to.params.slug);
-    const title = await APIFetch.getCharacterTitle(armor.stats.character);
-    next(async (vm: SingleArmor) => {
-      vm.armor = armor;
-      vm.characterTitle = title;
+    next((vm: SingleArmor) => {
+      vm.armor = Object.freeze(armor);
     });
   },
   async beforeRouteUpdate(to: any, from: any, next: any) {
     const armor = await APIFetch.getSingleArmor(to.params.slug);
-    const title = await APIFetch.getCharacterTitle(armor.stats.character);
-    (this as SingleArmor).armor = armor;
-    (this as SingleArmor).characterTitle = title;
+    (this as SingleArmor).armor = Object.freeze(armor);
     next();
+  },
+  watch: {
+    '$i18n.locale': async function () {
+      const armor = await APIFetch.getSingleArmor(this.$route.params.slug);
+      (this as SingleArmor).armor = armor;
+    },
   },
 })
 export default class SingleArmor extends Vue {
@@ -123,31 +130,33 @@ export default class SingleArmor extends Vue {
     description: '',
     slug: '',
     stats: {
-      character: '',
+      character: null,
       cost: '',
       enchantment: '',
       obtain: '',
       resist: '',
-      set: false,
-      setSlug: {
-        _id: '',
-        link: '',
-        display: '',
-      },
+      set: null,
       temperable: false,
       weight: '',
     },
     subtype: 'helmet',
     thumbnail: '',
     title: '',
-    type: '',
+    type: 'light',
   }
 
-  characterTitle = ''
+  get getCharacterName(): string {
+    return getCharacterName(this.armor.stats.character);
+  }
+
+  get getCharacterLink(): string {
+    const char = (this.armor.stats.character as ICharacter);
+    return `/characters/${char.universe_slug}/${char.slug}`;
+  }
 
   get description(): string {
     return this.armor.description !== ''
-      ? functions.generateMetaDescription(this.armor.description, true) : '';
+      ? generateMetaDescription(this.armor.description, true) : '';
   }
 }
 </script>

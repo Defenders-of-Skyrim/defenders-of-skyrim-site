@@ -8,6 +8,7 @@ import {
   IWeapon,
   IArmor,
   IArmorData,
+  ICharacter,
 } from './interfaces';
 import { getAbsoluteImageURL } from './functions';
 
@@ -18,6 +19,7 @@ export default class APIFetch {
       url: 'collections/get/changelog',
       data: {
         sort: { _created: -1 },
+        lang: i18n.locale,
       },
     });
   }
@@ -26,6 +28,9 @@ export default class APIFetch {
     return authInstance({
       method: 'get',
       url: 'collections/get/mods',
+      data: {
+        lang: i18n.locale,
+      },
     });
   }
 
@@ -58,6 +63,7 @@ export default class APIFetch {
         filter: {
           title: name,
         },
+        lang: i18n.locale,
       },
     }).then((response: AxiosResponse) => response.data.entries[0].text);
   }
@@ -69,7 +75,7 @@ export default class APIFetch {
       data: {
         filter: { type },
         sort: { title: 1 },
-        lang: 'default',
+        lang: i18n.locale,
       },
     })
       .then((response: AxiosResponse) => {
@@ -125,12 +131,11 @@ export default class APIFetch {
       data: {
         filter: { type },
         sort: { title: 1 },
-        lang: 'default',
+        lang: i18n.locale,
       },
     })
       .then((response: AxiosResponse) => {
         const elements: IArmor[] = response.data.entries;
-        console.log(elements);
         const data: IArmorData = {
           helmet: [],
           cuirass: [],
@@ -154,13 +159,24 @@ export default class APIFetch {
       });
   }
 
+  static getCharacters(type: string) {
+    return authInstance({
+      method: 'post',
+      url: '/collections/get/characters',
+      data: {
+        filter: { metaType: type },
+        lang: i18n.locale,
+      },
+    }).then((response: AxiosResponse) => response.data.entries);
+  }
+
   static getSingleWeapon(slug: string) {
     return authInstance({
       method: 'post',
       url: '/collections/get/weapons',
       data: {
         filter: { slug },
-        lang: 'default',
+        lang: i18n.locale,
       },
     }).then((response: AxiosResponse) => response.data.entries[0]);
   }
@@ -186,6 +202,7 @@ export default class APIFetch {
       data: {
         filter: { slug },
         lang: i18n.locale,
+        populate: 1,
       },
     }).then((response: AxiosResponse) => {
       const armor = response.data.entries[0];
@@ -229,36 +246,6 @@ export default class APIFetch {
         data.push(entry);
       });
       return data;
-    });
-  }
-
-  static getCharacterTitle(url: string) {
-    const path = url.split('/');
-    return authInstance({
-      method: 'post',
-      url: '/collections/get/characters',
-      data: {
-        filter: {
-          universe_slug: path[0],
-          slug: path[1],
-        },
-        fields: {
-          title: 1,
-          alias: 1,
-        },
-        lang: i18n.locale,
-      },
-    }).then((response: AxiosResponse) => {
-      const character = response.data.entries[0];
-
-      if (response.data.entries.length !== 0) {
-        let { title } = character;
-        if (character.alias !== '') {
-          title += ` (${character.alias})`;
-        }
-        return title;
-      }
-      return '';
     });
   }
 }

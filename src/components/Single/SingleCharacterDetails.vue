@@ -6,7 +6,7 @@
           svg-inline
           src="@/assets/icons/race.svg"
         />
-        <p>Раса</p>
+        <p>{{ $t('characters.details.race') }}</p>
       </div>
       {{ character.stats.race }}
     </li>
@@ -16,7 +16,7 @@
           svg-inline
           src="@/assets/icons/level.svg"
         />
-        <p>Уровень</p>
+        <p>{{ $t('characters.details.level') }}</p>
       </div>
       {{ character.stats.level }}
     </li>
@@ -26,7 +26,7 @@
           svg-inline
           src="@/assets/icons/health.svg"
         />
-        <p>Здоровье</p>
+        <p>{{ $t('characters.details.health') }}</p>
       </div>
       <span class="text-danger">{{ character.stats.health }}</span>
     </li>
@@ -36,7 +36,7 @@
           svg-inline
           src="@/assets/icons/mana.svg"
         />
-        <p>Магия</p>
+        <p>{{ $t('characters.details.mana') }}</p>
       </div>
       <span class="text-primary">{{ character.stats.mana }}</span>
     </li>
@@ -46,7 +46,7 @@
           svg-inline
           src="@/assets/icons/stamina.svg"
         />
-        <p>Выносливость</p>
+        <p>{{ $t('characters.details.stamina') }}</p>
       </div>
       <span class="text-success">{{ character.stats.stamina }}</span>
     </li>
@@ -56,7 +56,7 @@
           svg-inline
           src="@/assets/icons/follower.svg"
         />
-        <p>Напарник</p>
+        <p>{{ $t('characters.details.follower') }}</p>
       </div>
       {{ $t(`booleans.${character.stats.followable}`) }}
     </li>
@@ -66,7 +66,7 @@
           svg-inline
           src="@/assets/icons/hireling.svg"
         />
-        <p>Наемник</p>
+        <p>{{ $t('characters.details.hireling') }}</p>
       </div>
       {{ $t(`booleans.${character.stats.hireable}`) }}
     </li>
@@ -76,7 +76,7 @@
           svg-inline
           src="@/assets/icons/marriage.svg"
         />
-        <p>Брак</p>
+        <p>{{ $t('characters.details.marriage') }}</p>
       </div>
       {{ $t(`booleans.${character.stats.marriable}`) }}
     </li>

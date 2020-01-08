@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <b-card
     class="mt-4 accordion"
     bg-variant="skyrim"
@@ -14,7 +14,7 @@
         v-b-toggle.accordion-characters
         variant="skyrim"
       >
-        {{ title }}
+        {{ props.title }}
       </b-button>
     </b-card-header>
     <b-collapse
@@ -26,7 +26,7 @@
       <b-card-body>
         <ul class="list-accordion">
           <li
-            v-for="item in data"
+            v-for="item in props.data"
             :key="item._id"
           >
             <b-link :to="item.link">{{ item.title }}</b-link>

@@ -6,7 +6,7 @@
           svg-inline
           src="@/assets/icons/sword.svg"
         />
-        <p>Базовый урон</p>
+        <p>{{ $t('weapons.details.damage') }}</p>
       </div>
       {{ weapon.stats.damage }}
     </li>
@@ -16,7 +16,7 @@
           svg-inline
           src="@/assets/icons/coin.svg"
         />
-        <p>Стоимость</p>
+        <p>{{ $t('apparel.details.cost') }}</p>
       </div>
       {{ weapon.stats.cost }}
     </li>
@@ -26,7 +26,7 @@
           svg-inline
           src="@/assets/icons/weight.svg"
         />
-        <p>Вес</p>
+        <p>{{ $t('apparel.details.weight') }}</p>
       </div>
       {{ weapon.stats.weight }}
     </li>
@@ -36,7 +36,7 @@
           svg-inline
           src="@/assets/icons/speed.svg"
         />
-        <p>Скорость атаки</p>
+        <p>{{ $t('weapons.details.speed') }}</p>
       </div>
       {{ weapon.stats.speed }}
     </li>
@@ -46,7 +46,7 @@
           svg-inline
           src="@/assets/icons/reach.svg"
         />
-        <p>Дистанция атаки</p>
+        <p>{{ $t('weapons.details.reach') }}</p>
       </div>
       {{ weapon.stats.reach }}
     </li>
@@ -56,7 +56,7 @@
           svg-inline
           src="@/assets/icons/anvil.svg"
         />
-        <p>Улучшаемое</p>
+        <p>{{ $t('apparel.details.temperable') }}</p>
       </div>
       {{ $t(`booleans.${weapon.stats.temperable}`) }}
     </li>

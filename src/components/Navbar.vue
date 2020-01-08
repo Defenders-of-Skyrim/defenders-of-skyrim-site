@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div class="navbar-container">
     <b-container>
       <b-row>
@@ -18,66 +18,66 @@
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav>
                 <b-nav-item-dropdown
-                  :text="$t('navbar.characters.index')"
+                  :text="parent.$t('navbar.characters.index')"
                   lazy
                   no-caret
                 >
                   <b-dropdown-group
                     id="characters"
-                    :header="$t('navbar.characters.subitems.header')"
+                    :header="parent.$t('navbar.characters.subitems.header')"
                   >
-                    <b-dropdown-item to="/about">
-                      {{ $t('navbar.characters.subitems.followers') }}
+                    <b-dropdown-item to="/characters/followers">
+                      {{ parent.$t('navbar.characters.subitems.followers') }}
                     </b-dropdown-item>
-                    <b-dropdown-item to="/about">
-                      {{ $t('navbar.characters.subitems.trainers') }}
+                    <b-dropdown-item to="/characters/trainers">
+                      {{ parent.$t('navbar.characters.subitems.trainers') }}
                     </b-dropdown-item>
-                    <b-dropdown-item to="/about">
-                      {{ $t('navbar.characters.subitems.traders') }}
+                    <b-dropdown-item to="/characters/traders">
+                      {{ parent.$t('navbar.characters.subitems.traders') }}
                     </b-dropdown-item>
-                    <b-dropdown-item to="/about">
-                      {{ $t('navbar.characters.subitems.pets') }}
+                    <b-dropdown-item to="/characters/pets">
+                      {{ parent.$t('navbar.characters.subitems.pets') }}
                     </b-dropdown-item>
-                    <b-dropdown-item to="/about">
-                      {{ $t('navbar.characters.subitems.other') }}
+                    <b-dropdown-item to="/characters/other">
+                      {{ parent.$t('navbar.characters.subitems.other') }}
                     </b-dropdown-item>
                   </b-dropdown-group>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown
                   class="columns"
-                  :text="$t('navbar.apparel.index')"
+                  :text="parent.$t('navbar.apparel.index')"
                   lazy
                   no-caret
                 >
                   <b-dropdown-group
                     id="apparel-weapons"
-                    :header="$t('navbar.apparel.subitems.headerWeapons')"
+                    :header="parent.$t('navbar.apparel.subitems.headerWeapons')"
                   >
                     <b-dropdown-item to="/weapons/onehanded">
-                      {{ $t('navbar.apparel.subitems.onehanded') }}
+                      {{ parent.$t('navbar.apparel.subitems.onehanded') }}
                     </b-dropdown-item>
                     <b-dropdown-item to="/weapons/twohanded">
-                      {{ $t('navbar.apparel.subitems.twohanded') }}
+                      {{ parent.$t('navbar.apparel.subitems.twohanded') }}
                     </b-dropdown-item>
                     <b-dropdown-item to="/weapons/ranged">
-                      {{ $t('navbar.apparel.subitems.ranged') }}
+                      {{ parent.$t('navbar.apparel.subitems.ranged') }}
                     </b-dropdown-item>
                     <b-dropdown-item to="/weapons/staves">
-                      {{ $t('navbar.apparel.subitems.staves') }}
+                      {{ parent.$t('navbar.apparel.subitems.staves') }}
                     </b-dropdown-item>
                   </b-dropdown-group>
                   <b-dropdown-group
                     id="apparel-armor"
-                    :header="$t('navbar.apparel.subitems.headerArmor')"
+                    :header="parent.$t('navbar.apparel.subitems.headerArmor')"
                   >
                     <b-dropdown-item to="/armor/light">
-                      {{ $t('navbar.apparel.subitems.lightArmor') }}
+                      {{ parent.$t('navbar.apparel.subitems.lightArmor') }}
                     </b-dropdown-item>
                     <b-dropdown-item to="/armor/heavy">
-                      {{ $t('navbar.apparel.subitems.heavyArmor') }}
+                      {{ parent.$t('navbar.apparel.subitems.heavyArmor') }}
                     </b-dropdown-item>
                     <b-dropdown-item to="/armor/clothes">
-                      {{ $t('navbar.apparel.subitems.clothes') }}
+                      {{ parent.$t('navbar.apparel.subitems.clothes') }}
                     </b-dropdown-item>
                   </b-dropdown-group>
                   <!--<b-dropdown-item to="/about">Артефакты</b-dropdown-item>
@@ -121,7 +121,9 @@
                     <b-dropdown-item to="/about">Задания Штаба Защитников Скайрима</b-dropdown-item>
                   </b-dropdown-group>
                 </b-nav-item-dropdown>-->
-                <b-nav-item to="/download">{{ $t('navbar.download') }}</b-nav-item>
+                <b-nav-item to="/download">
+                  {{ parent.$t('navbar.download') }}
+                </b-nav-item>
               </b-navbar-nav>
 
               <b-navbar-nav class="ml-auto">
@@ -145,7 +147,7 @@
                     alt="Поддержать проект"
                   />
                 </b-nav-item>
-                <language-selector />
+                <component :is="injections.components.LanguageSelector" />
               </b-navbar-nav>
             </b-collapse>
           </b-navbar>
@@ -161,8 +163,12 @@ import Component from 'vue-class-component';
 import LanguageSelector from '@/components/LanguageSelector.vue';
 
 @Component({
-  components: {
-    LanguageSelector,
+  inject: {
+    components: {
+      default: {
+        LanguageSelector,
+      },
+    },
   },
 })
 export default class Navbar extends Vue {}

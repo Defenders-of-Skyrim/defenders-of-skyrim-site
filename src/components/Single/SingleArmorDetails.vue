@@ -6,7 +6,7 @@
           svg-inline
           src="@/assets/icons/armor.svg"
         />
-        <p>Базовая защита</p>
+        <p>{{ $t('armor.details.resist') }}</p>
       </div>
       {{ armor.stats.resist }}
     </li>
@@ -16,7 +16,7 @@
           svg-inline
           src="@/assets/icons/coin.svg"
         />
-        <p>Стоимость</p>
+        <p>{{ $t('apparel.details.cost') }}</p>
       </div>
       {{ armor.stats.cost }}
     </li>
@@ -26,7 +26,7 @@
           svg-inline
           src="@/assets/icons/weight.svg"
         />
-        <p>Вес</p>
+        <p>{{ $t('apparel.details.weight') }}</p>
       </div>
       {{ armor.stats.weight }}
     </li>
@@ -36,7 +36,7 @@
           svg-inline
           src="@/assets/icons/anvil.svg"
         />
-        <p>Улучшаемое</p>
+        <p>{{ $t('apparel.details.temperable') }}</p>
       </div>
       {{ $t(`booleans.${armor.stats.temperable}`) }}
     </li>
@@ -46,10 +46,10 @@
           svg-inline
           src="@/assets/icons/anvil.svg"
         />
-        <p>Элемент набора</p>
+        <p>{{ $t('armor.details.set') }}</p>
       </div>
-      <span v-if="armor.stats.set === true && armor.stats.setSlug !== null">
-        {{ armor.stats.setSlug.display }}
+      <span v-if="armor.stats.set !== null">
+        {{ armor.stats.set.title }}
       </span>
       <span v-else>
         {{ $t('booleans.false') }}

@@ -13,7 +13,7 @@
             fill
           >
             <b-tab
-              title="Кинжалы"
+              :title="$t('weapons.subtypes.multiple.dagger')"
               v-if="$route.params.type === 'onehanded'"
               lazy
             >
@@ -27,7 +27,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Мечи"
+              :title="$t('weapons.subtypes.multiple.sword')"
               v-if="$route.params.type === 'onehanded'"
               lazy
             >
@@ -41,7 +41,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Топоры"
+              :title="$t('weapons.subtypes.multiple.waraxe')"
               v-if="$route.params.type === 'onehanded'"
               lazy
             >
@@ -55,7 +55,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Булавы"
+              :title="$t('weapons.subtypes.multiple.mace')"
               v-if="$route.params.type === 'onehanded'"
               lazy
             >
@@ -69,7 +69,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Клейморы"
+              :title="$t('weapons.subtypes.multiple.greatsword')"
               v-if="$route.params.type === 'twohanded'"
               lazy
             >
@@ -83,7 +83,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Секиры"
+              :title="$t('weapons.subtypes.multiple.battleaxe')"
               v-if="$route.params.type === 'twohanded'"
               lazy
             >
@@ -97,7 +97,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Молоты"
+              :title="$t('weapons.subtypes.multiple.warhammer')"
               v-if="$route.params.type === 'twohanded'"
               lazy
             >
@@ -111,7 +111,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Луки"
+              :title="$t('weapons.subtypes.multiple.bow')"
               v-if="$route.params.type === 'ranged'"
               lazy
             >
@@ -125,7 +125,7 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              title="Арбалеты"
+              :title="$t('weapons.subtypes.multiple.crossbow')"
               v-if="$route.params.type === 'ranged'"
               lazy
             >
@@ -193,6 +193,13 @@ import APIFetch from '@/plugins/api/APIFetch';
     (this as Weapons).weapons = weapons;
     (this as Weapons).type = to.params.type;
     next();
+  },
+  watch: {
+    '$i18n.locale': async function () {
+      const weapons = await APIFetch.getWeapons(this.$route.params.type);
+      (this as Weapons).weapons = weapons;
+      (this as Weapons).type = Object.freeze(this.$route.params.type);
+    },
   },
 })
 export default class Weapons extends Vue {

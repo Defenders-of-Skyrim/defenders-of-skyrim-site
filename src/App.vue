@@ -5,14 +5,16 @@
   }">
     <div class="inner" ref="inner">
       <navbar />
-      <transition
-        name="fade-in-up"
-        mode="out-in"
-      >
-        <keep-alive>
-          <router-view class="navbar-margin" />
-        </keep-alive>
-      </transition>
+      <div class="navbar-margin">
+        <transition
+          name="fade-in-up"
+          mode="out-in"
+        >
+          <keep-alive exclude="SingleWeapon">
+            <router-view />
+          </keep-alive>
+        </transition>
+      </div>
       <app-footer v-show="isLoading === false" />
       <loading
         :active="isLoading"

@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable no-prototype-builtins */
 import i18n from '@/i18n';
 import { backendURL } from './axiosInstances';
+import { ICharacter } from './interfaces';
 
 export function setLanguage(lang: string): void {
   localStorage.language = lang;
@@ -29,4 +31,19 @@ export function generateMetaDescription(html: string, multiple: boolean): string
     });
   }
   return (text.match(/.{0,300}\./gmu) as RegExpMatchArray)[0];
+}
+
+/**
+ * Returns character string with alias (if exists)
+ * @param character - character object
+ */
+export function getCharacterName(character: ICharacter | null): string {
+  if (character === null) {
+    return '';
+  }
+  let { title } = character!;
+  if (character!.alias !== '') {
+    title += ` (${character!.alias})`;
+  }
+  return title;
 }

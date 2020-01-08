@@ -10,8 +10,8 @@
       class="aspect-ratio_1-1"
     >
       <b-card-img-lazy
-        :src="props.weapon.thumbnail.path"
-        v-if="props.weapon.thumbnail !== ''"
+        :src="props.character.thumbnail.path"
+        v-if="props.character.thumbnail !== ''"
         top
       />
       <b-img
@@ -23,41 +23,41 @@
     </router-link>
 
     <b-card-body>
-      <b-card-title>{{ props.weapon.title }}</b-card-title>
+      <b-card-title>{{ props.character.title }}</b-card-title>
+      <p>
+        {{ parent.$t('characters.universe', {
+          class: props.character.stats.class,
+          universe: props.character.universe,
+        }) }}
+      </p>
       <b-table-simple
         dark
         small
       >
         <b-tbody>
           <b-tr class="d-flex align-items-center">
-            <b-td>
-              <div class="d-flex align-items-center mr-3">
+            <b-td v-if="props.character.stats.followable === true">
+              <div class="d-flex align-items-center mr-1">
                 <img
                   svg-inline
-                  class="mr-3"
-                  src="@/assets/icons/sword.svg"
+                  src="@/assets/icons/follower.svg"
                 />
-                {{ props.weapon.stats.damage }}
               </div>
             </b-td>
-            <b-td>
-              <div class="d-flex align-items-center mr-3">
+            <b-td v-if="props.character.stats.hireable === true">
+              <div class="d-flex align-items-center mr-1">
                 <img
                   svg-inline
-                  class="mr-3"
-                  src="@/assets/icons/coin.svg"
+                  src="@/assets/icons/hireling.svg"
                 />
-                {{ props.weapon.stats.cost }}
               </div>
             </b-td>
-            <b-td>
+            <b-td v-if="props.character.stats.marriable === true">
               <div class="d-flex align-items-center">
                 <img
                   svg-inline
-                  class="mr-3"
-                  src="@/assets/icons/weight.svg"
+                  src="@/assets/icons/marriage.svg"
                 />
-                {{ props.weapon.stats.weight }}
               </div>
             </b-td>
           </b-tr>
@@ -73,7 +73,7 @@ import Component from 'vue-class-component';
 
 @Component({
   props: {
-    weapon: {
+    character: {
       type: Object,
       required: true,
     },
@@ -83,5 +83,5 @@ import Component from 'vue-class-component';
     },
   },
 })
-export default class CardWeapon extends Vue {}
+export default class CardCharacter extends Vue {}
 </script>

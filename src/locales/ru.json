@@ -36,7 +36,14 @@
       "master": "Мастер"
     }
   },
+  "accordions": {
+    "characters": "Персонажи вселенной {universe}"
+  },
   "armor": {
+    "details": {
+      "resist": "Базовая защита",
+      "set": "Элемент набора"
+    },
     "types": {
       "light": "Легкая броня",
       "heavy": "Тяжелая броня",
@@ -61,7 +68,39 @@
       }
     }
   },
+  "apparel": {
+    "details": {
+      "cost": "Стоимость",
+      "weight": "Вес",
+      "temperable": "Улучшаемое"
+    }
+  },
+  "characters": {
+    "details": {
+      "race": "Раса",
+      "level": "Уровень",
+      "health": "Здоровье",
+      "mana": "Магия",
+      "stamina": "Выносливость",
+      "follower": "Напарник",
+      "hireling": "Наемник",
+      "marriage": "Брак"
+    },
+    "table": {
+      "trainer": "Учитель навыка",
+      "trader": "Торговец",
+      "otherServices": "Другие услуги",
+      "faction": "Фракция",
+      "location": "Локация"
+    },
+    "universe": "{class} из вселенной {universe}"
+  },
   "weapons": {
+    "details": {
+      "damage": "Базовый урон",
+      "speed": "Скорость атаки",
+      "reach": "Дистанция атаки"
+    },
     "types": {
       "onehanded": "Одноручное оружие",
       "twohanded": "Двуручное оружие",
@@ -80,6 +119,18 @@
         "bow": "Лук",
         "crossbow": "Арбалет",
         "staff": "Посох"
+      },
+      "multiple": {
+        "dagger": "Кинжалы",
+        "sword": "Мечи",
+        "greatsword": "Клейморы",
+        "waraxe": "Топоры",
+        "battleaxe": "Секиры",
+        "mace": "Булавы",
+        "warhammer": "Молоты",
+        "bow": "Луки",
+        "crossbow": "Арбалеты",
+        "staff": "Посохи"
       }
     }
   },

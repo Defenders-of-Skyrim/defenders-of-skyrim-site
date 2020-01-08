@@ -1,46 +1,46 @@
-<template>
+<template functional>
   <b-table-simple dark class="skyrim">
     <b-tbody>
       <b-tr>
         <b-td colspan="2" class="aspect-ratio_3-4">
           <b-img-lazy
-            :src="character.thumbnail.path"
-            v-if="character.thumbnail !== ''"
+            :src="props.character.thumbnail.path"
+            v-if="props.character.thumbnail !== ''"
           />
         </b-td>
       </b-tr>
       <b-tr>
-        <b-th>Учитель навыка</b-th>
-        <b-td v-if="character.stats.trainer !== ''">
-          {{ character.stats.trainer }} -
-          {{ $t(`skills.levels.${character.stats.trainerLevel}`) }}
+        <b-th>{{ parent.$t('characters.table.trainer') }}</b-th>
+        <b-td v-if="props.character.stats.trainer !== ''">
+          {{ props.character.stats.trainer }} -
+          {{ parent.$t(`skills.levels.${props.character.stats.trainerLevel}`) }}
         </b-td>
-        <b-td v-else>{{ $t('booleans.false') }}</b-td>
+        <b-td v-else>{{ parent.$t('booleans.false') }}</b-td>
       </b-tr>
       <b-tr>
-        <b-th>Торговец</b-th>
-        <b-td v-if="character.stats.trader !== ''">
-          {{ character.stats.trader }}
+        <b-th>{{ parent.$t('characters.table.trader') }}</b-th>
+        <b-td v-if="props.character.stats.trader !== ''">
+          {{ props.character.stats.trader }}
         </b-td>
-        <b-td v-else>{{ $t('booleans.false') }}</b-td>
+        <b-td v-else>{{ parent.$t('booleans.false') }}</b-td>
       </b-tr>
       <b-tr>
-        <b-th>Другие услуги</b-th>
-        <b-td v-if="character.stats.otherServices !== ''">
-          {{ character.stats.otherServices }}
+        <b-th>{{ parent.$t('characters.table.otherServices') }}</b-th>
+        <b-td v-if="props.character.stats.otherServices !== ''">
+          {{ props.character.stats.otherServices }}
         </b-td>
-        <b-td v-else>{{ $t('booleans.false') }}</b-td>
+        <b-td v-else>{{ parent.$t('booleans.false') }}</b-td>
       </b-tr>
       <b-tr>
-        <b-th>Фракция</b-th>
-        <b-td v-if="character.stats.faction !== ''">
-          {{ character.stats.faction }}
+        <b-th>{{ parent.$t('characters.table.faction') }}</b-th>
+        <b-td v-if="props.character.stats.faction !== ''">
+          {{ props.character.stats.faction }}
         </b-td>
-        <b-td v-else>{{ $t('booleans.false') }}</b-td>
+        <b-td v-else>{{ parent.$t('booleans.false') }}</b-td>
       </b-tr>
       <b-tr>
-        <b-th>Локация</b-th>
-        <b-td>{{ character.stats.location }}</b-td>
+        <b-th>{{ parent.$t('characters.table.location') }}</b-th>
+        <b-td>{{ props.character.stats.location }}</b-td>
       </b-tr>
     </b-tbody>
   </b-table-simple>

@@ -89,6 +89,7 @@ export interface IListAccordionData {
 }
 
 export interface IArmor {
+  _link?: string,
   _by: string,
   _created: number,
   _id: string,
@@ -98,17 +99,12 @@ export interface IArmor {
   description: string,
   slug: string,
   stats: {
-    character: string,
+    character: ICharacter | null,
     cost: string,
     enchantment: string,
     obtain: string,
     resist: string,
-    set: boolean,
-    setSlug: {
-      _id: string,
-      link: string,
-      display: string,
-    } | null,
+    set: ISet | null,
     temperable: boolean,
     weight: string,
   },
@@ -120,4 +116,15 @@ export interface IArmor {
 
 export interface IArmorData {
   [propName: string]: IArmor[],
+}
+
+export interface ISet {
+  _link: string,
+  _by: string,
+  _created: number,
+  _id: string,
+  _mby: string,
+  _modified: number,
+  title: string,
+  slug: string,
 }

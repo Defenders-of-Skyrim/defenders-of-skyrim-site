@@ -6,7 +6,10 @@
       tall
     >
       <p class="stroke">
-        {{ character.stats.class }} из вселенной {{ character.universe }}
+        {{ $t('characters.universe', {
+          class: character.stats.class,
+          universe: character.universe,
+        }) }}
       </p>
       <single-character-details :character="character" />
     </page-header>
@@ -28,7 +31,7 @@
             <b-card-body v-html="character.description" />
           </b-card>
           <list-accordion
-            :title="`Персонажи вселенной ${character.universe}`"
+            :title="$t('accordions.characters', { universe: character.universe })"
             :data="data"
           />
         </b-col>
@@ -57,7 +60,7 @@ import SingleCharacterDetails from '@/components/Single/SingleCharacterDetails.v
 import SingleCharacterTable from '@/components/Single/SingleCharacterTable.vue';
 import { ICharacter, IListAccordionData } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
-import * as functions from '@/plugins/api/functions';
+import { getCharacterName, generateMetaDescription } from '@/plugins/api/functions';
 
 @Component({
   components: {
@@ -87,7 +90,7 @@ import * as functions from '@/plugins/api/functions';
     const accordion = await APIFetch.getCharactersList(universe);
 
     next((vm: SingleCharacter) => {
-      vm.character = character;
+      vm.character = Object.freeze(character);
       vm.data = accordion;
     });
   },
@@ -97,9 +100,20 @@ import * as functions from '@/plugins/api/functions';
     const character = await APIFetch.getSingleCharacter(universe, slug);
     const accordion = await APIFetch.getCharactersList(universe);
 
-    (this as SingleCharacter).character = character;
+    (this as SingleCharacter).character = Object.freeze(character);
     (this as SingleCharacter).data = accordion;
     next();
+  },
+  watch: {
+    '$i18n.locale': async function () {
+      const { universe, slug } = this.$route.params;
+
+      const character = await APIFetch.getSingleCharacter(universe, slug);
+      const accordion = await APIFetch.getCharactersList(universe);
+
+      (this as SingleCharacter).character = Object.freeze(character);
+      (this as SingleCharacter).data = accordion;
+    },
   },
 })
 export default class SingleCharacter extends Vue {
@@ -129,7 +143,7 @@ export default class SingleCharacter extends Vue {
       trainerLevel: '',
     },
     thumbnail: '',
-    title: '',
+    title: 'lorem ipsum',
     universe: '',
     universe_slug: '',
   }
@@ -137,16 +151,12 @@ export default class SingleCharacter extends Vue {
   data: IListAccordionData[] = []
 
   get getCharacterName(): string {
-    let { title } = this.character;
-    if (this.character.alias !== '') {
-      title += ` (${this.character.alias})`;
-    }
-    return title;
+    return getCharacterName(this.character);
   }
 
   get description(): string {
     return this.character.description !== ''
-      ? functions.generateMetaDescription(this.character.description, true) : '';
+      ? generateMetaDescription(this.character.description, true) : '';
   }
 }
 </script>

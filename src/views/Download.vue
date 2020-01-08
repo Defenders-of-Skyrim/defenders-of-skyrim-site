@@ -87,6 +87,13 @@ import { IMod } from '@/plugins/api/interfaces';
     (this as Download).mods = Object.freeze(data.mods);
     next();
   },
+  watch: {
+    '$i18n.locale': async function () {
+      const data = await APIFetch.getDownloadPage();
+      (this as Download).logs = Object.freeze(data.logs);
+      (this as Download).mods = Object.freeze(data.mods);
+    },
+  },
 })
 export default class Download extends Vue {
   logs: any = {}

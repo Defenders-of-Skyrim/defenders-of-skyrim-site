@@ -66,7 +66,7 @@ import SingleWeaponDetails from '@/components/Single/SingleWeaponDetails.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import { IWeapon } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
-import * as functions from '@/plugins/api/functions';
+import { generateMetaDescription } from '@/plugins/api/functions';
 
 @Component({
   components: {
@@ -90,13 +90,19 @@ import * as functions from '@/plugins/api/functions';
   async beforeRouteEnter(to: any, from: any, next: any) {
     const weapon = await APIFetch.getSingleWeapon(to.params.slug);
     next((vm: SingleWeapon) => {
-      vm.weapon = weapon;
+      vm.weapon = Object.freeze(weapon);
     });
   },
   async beforeRouteUpdate(to: any, from: any, next: any) {
     const weapon = await APIFetch.getSingleWeapon(to.params.slug);
-    (this as SingleWeapon).weapon = weapon;
+    (this as SingleWeapon).weapon = Object.freeze(weapon);
     next();
+  },
+  watch: {
+    '$i18n.locale': async function () {
+      const weapon = await APIFetch.getSingleWeapon(this.$route.params.slug);
+      (this as SingleWeapon).weapon = weapon;
+    },
   },
 })
 export default class SingleWeapon extends Vue {
@@ -123,12 +129,12 @@ export default class SingleWeapon extends Vue {
     subtype: 'sword',
     thumbnail: '',
     title: '',
-    type: '',
+    type: 'onehanded',
   }
 
   get description(): string {
     return this.weapon.description !== ''
-      ? functions.generateMetaDescription(this.weapon.description, true) : '';
+      ? generateMetaDescription(this.weapon.description, true) : '';
   }
 }
 </script>

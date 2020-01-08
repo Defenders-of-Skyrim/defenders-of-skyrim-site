@@ -19,7 +19,8 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
-    'global-require': 'off'
+    'global-require': 'off',
+    'func-names': 'off'
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',

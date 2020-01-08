@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <b-card
     class="mb-4"
     bg-variant="skyrim"
@@ -6,12 +6,12 @@
     no-body
   >
     <router-link
-      :to="link"
+      :to="props.link"
       class="aspect-ratio_1-1"
     >
       <b-card-img-lazy
-        :src="armor.thumbnail.path"
-        v-if="armor.thumbnail !== ''"
+        :src="props.armor.thumbnail.path"
+        v-if="props.armor.thumbnail !== ''"
         top
       />
       <b-img
@@ -23,12 +23,12 @@
     </router-link>
 
     <b-card-body>
-      <b-card-title>{{ armor.title }}</b-card-title>
+      <b-card-title>{{ props.armor.title }}</b-card-title>
       <p
-        v-if="armor.stats.setSlug !== null"
+        v-if="props.armor.stats.set !== null"
         class="text-success"
       >
-        {{ armor.stats.setSlug.display }}
+        {{ props.armor.stats.set.display }}
       </p>
       <b-table-simple
         dark
@@ -43,7 +43,7 @@
                   class="mr-3"
                   src="@/assets/icons/armor.svg"
                 />
-                {{ armor.stats.resist }}
+                {{ props.armor.stats.resist }}
               </div>
             </b-td>
             <b-td>
@@ -53,7 +53,7 @@
                   class="mr-3"
                   src="@/assets/icons/coin.svg"
                 />
-                {{ armor.stats.cost }}
+                {{ props.armor.stats.cost }}
               </div>
             </b-td>
             <b-td>
@@ -63,7 +63,7 @@
                   class="mr-3"
                   src="@/assets/icons/weight.svg"
                 />
-                {{ armor.stats.weight }}
+                {{ props.armor.stats.weight }}
               </div>
             </b-td>
           </b-tr>

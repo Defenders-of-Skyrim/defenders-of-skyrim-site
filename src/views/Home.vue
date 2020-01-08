@@ -19,7 +19,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import PageHeader from '@/components/PageHeader.vue';
 import APIFetch from '@/plugins/api/APIFetch';
-import * as functions from '@/plugins/api/functions';
+import { generateMetaDescription } from '@/plugins/api/functions';
 
 @Component({
   components: {
@@ -50,7 +50,7 @@ export default class Home extends Vue {
 
   get description(): string {
     return this.content !== ''
-      ? functions.generateMetaDescription(this.content, false) : '';
+      ? generateMetaDescription(this.content, false) : '';
   }
 }
 </script>

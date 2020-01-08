@@ -127,15 +127,22 @@ import APIFetch from '@/plugins/api/APIFetch';
   async beforeRouteEnter(to: any, from: any, next: any) {
     const armor = await APIFetch.getArmor(to.params.type);
     next((vm: any) => {
-      vm.armor = armor;
-      vm.type = to.params.type;
+      vm.armor = Object.freeze(armor);
+      vm.type = Object.freeze(to.params.type);
     });
   },
   async beforeRouteUpdate(to: any, from: any, next: any) {
     const armor = await APIFetch.getArmor(to.params.type);
-    (this as Armors).armor = armor;
-    (this as Armors).type = to.params.type;
+    (this as Armors).armor = Object.freeze(armor);
+    (this as Armors).type = Object.freeze(to.params.type);
     next();
+  },
+  watch: {
+    '$i18n.locale': async function () {
+      const armor = await APIFetch.getArmor(this.$route.params.type);
+      (this as Armors).armor = armor;
+      (this as Armors).type = Object.freeze(this.$route.params.type);
+    },
   },
 })
 export default class Armors extends Vue {

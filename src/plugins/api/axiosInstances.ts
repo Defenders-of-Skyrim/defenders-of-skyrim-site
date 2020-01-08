@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const backendURL = 'http://localhost:10000';
+export const backendURL = 'https://defendersofskyrim.tk/backend';
 
 export default axios.create({
   baseURL: `${backendURL}/api/`,

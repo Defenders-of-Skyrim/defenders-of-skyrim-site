@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <footer class="footer">
     <b-container>
       <b-row>
@@ -15,7 +15,7 @@
             />
             <p>Глобальная модификация для Skyrim</p>
           </b-navbar-brand>
-          <language-selector />
+          <component :is="injections.components.LanguageSelector" />
           <p class="mb-0 mt-3">
             &copy; 2017-2020 Long-Sighted Films.
             Powered by Vue.js and Cockpit CMS
@@ -26,31 +26,31 @@
           lg="4"
           md="6"
         >
-          <h5>{{ $t('navbar.characters.index') }}</h5>
+          <h5>{{ parent.$t('navbar.characters.index') }}</h5>
           <ul class="footer__nav">
             <li>
               <b-link to="/about">
-                {{ $t('navbar.characters.subitems.followers') }}
+                {{ parent.$t('navbar.characters.subitems.followers') }}
               </b-link>
             </li>
             <li>
               <b-link to="/about">
-                {{ $t('navbar.characters.subitems.trainers') }}
+                {{ parent.$t('navbar.characters.subitems.trainers') }}
               </b-link>
             </li>
             <li>
               <b-link to="/about">
-                {{ $t('navbar.characters.subitems.traders') }}
+                {{ parent.$t('navbar.characters.subitems.traders') }}
               </b-link>
             </li>
             <li>
               <b-link to="/about">
-                {{ $t('navbar.characters.subitems.pets') }}
+                {{ parent.$t('navbar.characters.subitems.pets') }}
               </b-link>
             </li>
             <li>
               <b-link to="/about">
-                {{ $t('navbar.characters.subitems.other') }}
+                {{ parent.$t('navbar.characters.subitems.other') }}
               </b-link>
             </li>
           </ul>
@@ -60,26 +60,26 @@
           lg="3"
           md="5"
         >
-          <h5>{{ $t('navbar.apparel.subitems.headerWeapons') }}</h5>
+          <h5>{{ parent.$t('navbar.apparel.subitems.headerWeapons') }}</h5>
           <ul class="footer__nav">
             <li>
               <b-link to="/weapons/onehanded">
-                {{ $t('navbar.apparel.subitems.onehanded') }}
+                {{ parent.$t('navbar.apparel.subitems.onehanded') }}
               </b-link>
             </li>
             <li>
               <b-link to="/weapons/twohanded">
-                {{ $t('navbar.apparel.subitems.twohanded') }}
+                {{ parent.$t('navbar.apparel.subitems.twohanded') }}
               </b-link>
             </li>
             <li>
               <b-link to="/weapons/ranged">
-                {{ $t('navbar.apparel.subitems.ranged') }}
+                {{ parent.$t('navbar.apparel.subitems.ranged') }}
               </b-link>
             </li>
             <li>
               <b-link to="/weapons/staves">
-                {{ $t('navbar.apparel.subitems.staves') }}
+                {{ parent.$t('navbar.apparel.subitems.staves') }}
               </b-link>
             </li>
           </ul>
@@ -90,21 +90,21 @@
           lg="4"
           md="5"
         >
-          <h5>{{ $t('navbar.apparel.subitems.headerArmor') }}</h5>
+          <h5>{{ parent.$t('navbar.apparel.subitems.headerArmor') }}</h5>
           <ul class="footer__nav">
             <li>
               <b-link to="/armor/light">
-                {{ $t('navbar.apparel.subitems.lightArmor') }}
+                {{ parent.$t('navbar.apparel.subitems.lightArmor') }}
               </b-link>
             </li>
             <li>
               <b-link to="/armor/heavy">
-                {{ $t('navbar.apparel.subitems.heavyArmor') }}
+                {{ parent.$t('navbar.apparel.subitems.heavyArmor') }}
               </b-link>
             </li>
             <li>
               <b-link to="/armor/clothes">
-                {{ $t('navbar.apparel.subitems.clothes') }}
+                {{ parent.$t('navbar.apparel.subitems.clothes') }}
               </b-link>
             </li>
           </ul>
@@ -120,8 +120,12 @@ import Component from 'vue-class-component';
 import LanguageSelector from '@/components/LanguageSelector.vue';
 
 @Component({
-  components: {
-    LanguageSelector,
+  inject: {
+    components: {
+      default: {
+        LanguageSelector,
+      },
+    },
   },
 })
 export default class AppFooter extends Vue {}

@@ -3,6 +3,7 @@ const glob = require('glob-all');
 const path = require('path');
 
 module.exports = {
+  productionSourceMap: false,
   configureWebpack: {
     plugins: [
       new PurgecssPlugin({
@@ -11,6 +12,37 @@ module.exports = {
           path.join(__dirname, './**/*.vue'),
           path.join(__dirname, './src/**/*.js'),
         ]),
+        whitelist: [
+          'a',
+          'collapse',
+          'hr',
+          'show',
+          'td',
+          'th',
+          'tr',
+          'thead',
+          'tbody',
+          'list-unstyled',
+        ],
+        whitelistPatterns: [
+          /btn/,
+          /card/,
+          /^col/,
+          /dropdown/,
+          /^fade/,
+          /form/,
+          /^nav/,
+          /select/,
+          /skyrim/,
+          /table/,
+          /^text/,
+        ],
+        whitelistPatternsChildren: [
+          /btn/,
+          /card/,
+          /^nav/,
+          /skyrim/,
+        ],
       }),
     ],
   },
