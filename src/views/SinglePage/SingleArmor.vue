@@ -9,67 +9,36 @@
         {{ $t('armor.types.' + armor.type) }} -
         {{ $t(`armor.subtypes.singular.${armor.subtype}`) }}
       </p>
-      <single-armor-details :armor="armor" />
+      <single-armor-details
+        class="d-none d-md-flex"
+        :armor="armor"
+      />
     </page-header>
-    <b-container>
-      <b-row>
-        <b-col
-          xxh="17"
-          xl="16"
-          lg="14"
-          md="14"
-        >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-14 col-xl-16 col-xxh-17 order-1 order-md-0">
+          <single-armor-details
+            class="d-md-none"
+            :armor="armor"
+          />
           <b-card
+            class="mb-3"
             bg-variant="skyrim"
             text-variant="white"
             no-body
           >
             <b-card-body v-html="armor.description" />
           </b-card>
-        </b-col>
-        <b-col
-          xxh="7"
-          xl="8"
-          lg="10"
-          md="10"
-        >
-          <b-table-simple dark class="skyrim">
-            <b-tbody>
-              <b-tr>
-                <b-td colspan="2" class="aspect-ratio_1-1">
-                  <b-img-lazy
-                    :src="armor.thumbnail.path"
-                    v-if="armor.thumbnail !== ''"
-                  />
-                </b-td>
-              </b-tr>
-              <b-tr v-if="armor.stats.character !== null">
-                <b-th>Предназначено для персонажа</b-th>
-                <b-td>
-                  <b-link
-                    class="text-light"
-                    :to="getCharacterLink"
-                  >
-                    {{ getCharacterName }}
-                  </b-link>
-                </b-td>
-              </b-tr>
-              <b-tr>
-                <b-th>Зачарование</b-th>
-                <b-td v-if="armor.stats.enchantment !== ''">
-                  {{ armor.stats.enchantment }}
-                </b-td>
-                <b-td v-else>{{ $t('booleans.false') }}</b-td>
-              </b-tr>
-              <b-tr>
-                <b-th>Местоположение</b-th>
-                <b-td>{{ armor.stats.obtain }}</b-td>
-              </b-tr>
-            </b-tbody>
-          </b-table-simple>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+        <div class="col-md-10 col-xl-8 col-xxh-7 order-0 order-md-1">
+          <single-armor-table
+            :armor="armor"
+            :link="getCharacterLink"
+            :name="getCharacterName"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -77,6 +46,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import SingleArmorDetails from '@/components/Single/SingleArmorDetails.vue';
+import SingleArmorTable from '@/components/Single/SingleArmorTable.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import { IArmor, ICharacter } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
@@ -85,6 +55,7 @@ import { getCharacterName, generateMetaDescription } from '@/plugins/api/functio
 @Component({
   components: {
     SingleArmorDetails,
+    SingleArmorTable,
     PageHeader,
   },
   metaInfo() {
@@ -151,7 +122,10 @@ export default class SingleArmor extends Vue {
 
   get getCharacterLink(): string {
     const char = (this.armor.stats.character as ICharacter);
-    return `/characters/${char.universe_slug}/${char.slug}`;
+    if (char !== null) {
+      return `/characters/${char.universe_slug}/${char.slug}`;
+    }
+    return '';
   }
 
   get description(): string {

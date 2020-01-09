@@ -27,6 +27,11 @@
     },
     "download": "Download mod"
   },
+  "user": {
+    "language": "Language:",
+    "version": "Frontend version:",
+    "donate": "Support project"
+  },
   "skills": {
     "levels": {
       "novice": "Novice",

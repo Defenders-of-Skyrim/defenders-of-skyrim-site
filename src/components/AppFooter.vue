@@ -1,13 +1,8 @@
 <template functional>
   <footer class="footer">
-    <b-container>
-      <b-row>
-        <b-col
-          xxh="4"
-          xl="5"
-          lg="6"
-          md="8"
-        >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-lg-6 col-xl-5 col-xxh-4">
           <b-navbar-brand to="/">
             <img
               svg-inline
@@ -15,17 +10,12 @@
             />
             <p>Глобальная модификация для Skyrim</p>
           </b-navbar-brand>
-          <component :is="injections.components.LanguageSelector" />
-          <p class="mb-0 mt-3">
+          <p class="mt-3">
             &copy; 2017-2020 Long-Sighted Films.
             Powered by Vue.js and Cockpit CMS
           </p>
-        </b-col>
-        <b-col
-          hg="3"
-          lg="4"
-          md="6"
-        >
+        </div>
+        <div class="col-md-6 col-lg-4 col-hg-3">
           <h5>{{ parent.$t('navbar.characters.index') }}</h5>
           <ul class="footer__nav">
             <li>
@@ -54,12 +44,8 @@
               </b-link>
             </li>
           </ul>
-        </b-col>
-        <b-col
-          xh="2"
-          lg="3"
-          md="5"
-        >
+        </div>
+        <div class="col-md-5 col-lg-3 col-xh-2">
           <h5>{{ parent.$t('navbar.apparel.subitems.headerWeapons') }}</h5>
           <ul class="footer__nav">
             <li>
@@ -83,13 +69,8 @@
               </b-link>
             </li>
           </ul>
-        </b-col>
-        <b-col
-          hg="3"
-          xl="4"
-          lg="4"
-          md="5"
-        >
+        </div>
+        <div class="col-md-5 col-lg-4 col-hg-3">
           <h5>{{ parent.$t('navbar.apparel.subitems.headerArmor') }}</h5>
           <ul class="footer__nav">
             <li>
@@ -108,25 +89,16 @@
               </b-link>
             </li>
           </ul>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </footer>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import LanguageSelector from '@/components/LanguageSelector.vue';
 
-@Component({
-  inject: {
-    components: {
-      default: {
-        LanguageSelector,
-      },
-    },
-  },
-})
+@Component({})
 export default class AppFooter extends Vue {}
 </script>

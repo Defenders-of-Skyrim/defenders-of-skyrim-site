@@ -4,9 +4,9 @@
       :title="$t(`weapons.types.${type}`)"
       :image="require(`@/assets/images/backgrounds/${type}.jpg`)"
     />
-    <b-container>
-      <b-row>
-        <b-col cols="24">
+    <div class="container">
+      <div class="row">
+        <div class="col">
           <b-tabs
             v-if="$route.params.type !== 'staves'"
             content-class="mt-3"
@@ -150,9 +150,9 @@
               :link="`/weapons/${$route.params.type}/${weapon.subtype}/${weapon.slug}`"
             />
           </b-card-group>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

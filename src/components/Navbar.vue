@@ -1,8 +1,8 @@
 <template functional>
   <div class="navbar-container">
-    <b-container>
-      <b-row>
-        <b-col>
+    <div class="container">
+      <div class="row">
+        <div class="col">
           <b-navbar
             toggleable="lg"
             type="dark"
@@ -125,35 +125,46 @@
                   {{ parent.$t('navbar.download') }}
                 </b-nav-item>
               </b-navbar-nav>
-
-              <b-navbar-nav class="ml-auto">
-                <b-nav-item
-                  href="https://github.com/longsightedfilms/defenders-of-skyrim-site"
-                  class="icon"
-                >
-                  <img
-                    svg-inline
-                    src="@/assets/icons/github.svg"
-                    alt="Github"
-                  />
-                </b-nav-item>
-                <b-nav-item
-                  href="https://www.donationalerts.com/r/longsightedfilms"
-                  class="icon"
-                >
-                  <img
-                    svg-inline
-                    src="@/assets/icons/donate.svg"
-                    alt="Поддержать проект"
-                  />
-                </b-nav-item>
-                <component :is="injections.components.LanguageSelector" />
-              </b-navbar-nav>
             </b-collapse>
+            <b-navbar-nav class="nav-right">
+              <b-nav-item-dropdown
+                class="nav-user"
+                right
+                lazy
+                no-caret
+              >
+                <template v-slot:button-content>
+                  <div class="user-avatar">
+                    <img
+                      svg-inline
+                      src="@/assets/icons/cog.svg"
+                    >
+                  </div>
+                </template>
+                <li role="presentation">
+                  <p class="b-dropdown-text">
+                    <span>{{ parent.$t('user.language') }}</span>
+                    <component :is="injections.components.LanguageSelector" />
+                  </p>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li role="presentation">
+                  <p class="b-dropdown-text">
+                    {{ `${parent.$t('user.version')} ${props.version}` }}
+                  </p>
+                </li>
+                <b-dropdown-item href="https://github.com/longsightedfilms/defenders-of-skyrim-site">
+                  Github
+                </b-dropdown-item>
+                <b-dropdown-item href="https://www.donationalerts.com/r/longsightedfilms">
+                  {{ parent.$t('user.donate') }}
+                </b-dropdown-item>
+              </b-nav-item-dropdown>
+            </b-navbar-nav>
           </b-navbar>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -163,6 +174,13 @@ import Component from 'vue-class-component';
 import LanguageSelector from '@/components/LanguageSelector.vue';
 
 @Component({
+  props: {
+    version: {
+      type: String,
+      required: false,
+      default: '0',
+    },
+  },
   inject: {
     components: {
       default: {

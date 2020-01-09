@@ -1,6 +1,8 @@
+/* eslint-disable */
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require('glob-all');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   productionSourceMap: false,
@@ -17,24 +19,17 @@ module.exports = {
           'collapse',
           'hr',
           'show',
-          'td',
-          'th',
-          'tr',
-          'thead',
-          'tbody',
           'list-unstyled',
         ],
         whitelistPatterns: [
           /btn/,
           /card/,
-          /^col/,
           /dropdown/,
           /^fade/,
           /form/,
           /^nav/,
           /select/,
           /skyrim/,
-          /table/,
           /^text/,
         ],
         whitelistPatternsChildren: [
@@ -43,6 +38,11 @@ module.exports = {
           /^nav/,
           /skyrim/,
         ],
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          'PACKAGE_VERSION': JSON.stringify(require('./package.json')),
+        },
       }),
     ],
   },
@@ -100,6 +100,9 @@ module.exports = {
       fallbackLocale: 'ru',
       localeDir: 'locales',
       enableInSFC: true,
+    },
+    webpackBundleAnalyzer: {
+      openAnalyzer: false,
     },
   },
 };

@@ -4,7 +4,7 @@
     draggerThrottle: 16
   }">
     <div class="inner" ref="inner">
-      <navbar />
+      <navbar :version="appVersion" />
       <div class="navbar-margin">
         <transition
           name="fade-in-up"
@@ -18,7 +18,7 @@
       <app-footer v-show="isLoading === false" />
       <loading
         :active="isLoading"
-        color="#cccccc"
+        color="#fba54f"
         :height="128"
         :width="128"
         background-color="#000000"
@@ -30,7 +30,7 @@
 </template>
 
 <style lang="sass">
-@import './sass/main.sass'
+@import 'sass/main.sass'
 </style>
 
 <script lang="ts">
@@ -72,6 +72,10 @@ export default class App extends Vue {
 
   get isLoading(): boolean {
     return store.isLoading;
+  }
+
+  get appVersion(): string {
+    return (process.env.PACKAGE_VERSION as any).version;
   }
 }
 </script>

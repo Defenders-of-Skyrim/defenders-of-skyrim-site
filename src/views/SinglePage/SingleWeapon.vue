@@ -9,53 +9,32 @@
         {{ $t('weapons.types.' + $route.params.type) }} -
         {{ $t(`weapons.subtypes.singular.${weapon.subtype}`) }}
       </p>
-      <single-weapon-details :weapon="weapon" />
+      <single-weapon-details
+        class="d-none d-md-flex"
+        :weapon="weapon"
+      />
     </page-header>
-    <b-container>
-      <b-row>
-        <b-col
-          xxh="17"
-          xl="16"
-          lg="14"
-          md="14"
-        >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-14 col-xl-16 col-xxh-17 order-1 order-md-0">
+          <single-weapon-details
+            class="d-md-none"
+            :weapon="weapon"
+          />
           <b-card
+            class="mb-3"
             bg-variant="skyrim"
             text-variant="white"
             no-body
           >
             <b-card-body v-html="weapon.description" />
           </b-card>
-        </b-col>
-        <b-col
-          xxh="7"
-          xl="8"
-          lg="10"
-          md="10"
-        >
-          <b-table-simple dark class="skyrim">
-            <b-tbody>
-              <b-tr>
-                <b-td colspan="2" class="aspect-ratio_1-1">
-                  <b-img-lazy
-                    :src="weapon.thumbnail.path"
-                    v-if="weapon.thumbnail !== ''"
-                  />
-                </b-td>
-              </b-tr>
-              <b-tr>
-                <b-th>Зачарование</b-th>
-                <b-td>{{ weapon.stats.enchantment }}</b-td>
-              </b-tr>
-              <b-tr>
-                <b-th>Местоположение</b-th>
-                <b-td>{{ weapon.stats.obtain }}</b-td>
-              </b-tr>
-            </b-tbody>
-          </b-table-simple>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+        <div class="col-md-10 col-xl-8 col-xxh-7 order-0 order-md-1">
+          <single-weapon-table :weapon="weapon" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,6 +42,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import SingleWeaponDetails from '@/components/Single/SingleWeaponDetails.vue';
+import SingleWeaponTable from '@/components/Single/SingleWeaponTable.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import { IWeapon } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
@@ -71,6 +51,7 @@ import { generateMetaDescription } from '@/plugins/api/functions';
 @Component({
   components: {
     SingleWeaponDetails,
+    SingleWeaponTable,
     PageHeader,
   },
   metaInfo() {

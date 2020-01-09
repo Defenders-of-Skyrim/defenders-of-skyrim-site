@@ -4,24 +4,21 @@
       :title="$t('pages.download')"
       :image="require('@/assets/images/backgrounds/download_mod.jpg')"
     />
-    <b-container>
-      <b-row>
+    <div class="container">
+      <div class="row">
         <fragment v-if="mods.length !== 0">
-          <b-col
-            hg="6"
-            lg="8"
-            md="12"
+          <div class="col-md-12 col-lg-8 col-hg-6"
             v-for="mod in mods"
             :key="mod._id"
           >
             <card-mod :mod="mod" />
-          </b-col>
+          </div>
         </fragment>
-        <b-col cols="24">
+        <div class="col-24">
           <h2>{{ $t('changelog') }}</h2>
           <div class="my-4">
-            <h3 class="d-block mb-4">
-              {{ $t('mods.dos')}}
+            <h3 class="heading-secondary heading-greek">
+              <span>{{ $t('mods.dos')}}</span>
             </h3>
             <card-changelog
               v-for="log in logs.main"
@@ -31,8 +28,8 @@
             />
           </div>
           <div class="my-4">
-            <h3 class="d-block mb-4">
-              {{ $t('mods.dosArmory') }}
+            <h3 class="heading-secondary heading-greek">
+              <span>{{ $t('mods.dosArmory') }}</span>
             </h3>
             <card-changelog
               v-for="log in logs.armory"
@@ -41,9 +38,9 @@
               :description="log.description"
             />
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template functional>
   <b-card
-    class="mt-4 accordion"
+    class="mb-3 accordion"
     bg-variant="skyrim"
     text-variant="white"
     no-body

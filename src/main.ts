@@ -8,6 +8,7 @@ import {
   BCardTitle,
   BDropdownGroup,
   BDropdownItem,
+  BDropdownText,
   BFormSelect,
   BLink,
   BNav,
@@ -18,14 +19,8 @@ import {
   BNavbarNav,
   BNavbarBrand,
   BNavbarToggle,
-  BTableSimple,
-  BTbody,
-  BTr,
-  BTd,
-  BTh,
   CollapsePlugin,
   ImagePlugin,
-  LayoutPlugin,
   TabsPlugin,
 } from 'bootstrap-vue';
 import VueMeta from 'vue-meta';
@@ -52,6 +47,7 @@ Vue.component('b-link', BLink);
 
 Vue.component('b-dropdown-group', BDropdownGroup);
 Vue.component('b-dropdown-item', BDropdownItem);
+Vue.component('b-dropdown-text', BDropdownText);
 
 Vue.component('b-nav', BNav);
 Vue.component('b-nav-item', BNavItem);
@@ -63,16 +59,9 @@ Vue.component('b-navbar-nav', BNavbarNav);
 Vue.component('b-navbar-brand', BNavbarBrand);
 Vue.component('b-navbar-toggle', BNavbarToggle);
 
-Vue.component('b-table-simple', BTableSimple);
-Vue.component('b-tbody', BTbody);
-Vue.component('b-tr', BTr);
-Vue.component('b-td', BTd);
-Vue.component('b-th', BTh);
-
-Vue.use(LayoutPlugin, {
+Vue.use(CollapsePlugin, {
   breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', 'hg', 'xh', 'xxh'],
 });
-Vue.use(CollapsePlugin);
 Vue.use(ImagePlugin);
 Vue.use(TabsPlugin);
 Vue.use(VueMeta, {

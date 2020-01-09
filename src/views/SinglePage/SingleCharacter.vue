@@ -11,19 +11,20 @@
           universe: character.universe,
         }) }}
       </p>
-      <single-character-details :character="character" />
+      <single-character-details
+        class="d-none d-md-flex"
+        :character="character"
+      />
     </page-header>
-    <b-container>
-      <b-row>
-        <b-col
-          xxh="18"
-          xh="17"
-          hg="16"
-          xl="16"
-          lg="16"
-          md="14"
-        >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-14 col-lg-16 col-xh-17 col-xxh-18 order-1 order-md-0">
+          <single-character-details
+            class="d-md-none"
+            :character="character"
+          />
           <b-card
+            class="mb-3"
             bg-variant="skyrim"
             text-variant="white"
             no-body
@@ -34,19 +35,12 @@
             :title="$t('accordions.characters', { universe: character.universe })"
             :data="data"
           />
-        </b-col>
-        <b-col
-          xxh="6"
-          xh="7"
-          hg="8"
-          xl="8"
-          lg="8"
-          md="10"
-        >
+        </div>
+        <div class="col-md-10 col-lg-8 col-xh-7 col-xxh-6 order-0 order-md-1">
           <single-character-table :character="character" />
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

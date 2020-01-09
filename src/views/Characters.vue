@@ -4,9 +4,9 @@
       :title="$t(`navbar.characters.subitems.${type}`)"
       image="require(`@/assets/images/backgrounds/characters/${type}.jpg`)"
     />
-    <b-container>
-      <b-row>
-        <b-col cols="24">
+    <div class="container">
+      <div class="row">
+        <div class="col">
           <b-card-group deck>
             <card-character
               v-for="character in characters"
@@ -15,9 +15,9 @@
               :link="`/characters/${character.universe_slug}/${character.slug}`"
             />
           </b-card-group>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

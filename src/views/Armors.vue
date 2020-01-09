@@ -4,9 +4,9 @@
       :title="$t(`armor.types.${type}`)"
       image="require(`@/assets/images/backgrounds/${type}.jpg`)"
     />
-    <b-container>
-      <b-row>
-        <b-col cols="24">
+    <div class="container">
+      <div class="row">
+        <div class="col">
           <b-tabs
             v-if="$route.params.type !== 'staves'"
             content-class="mt-3"
@@ -93,9 +93,9 @@
               </b-card-group>
             </b-tab>
           </b-tabs>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

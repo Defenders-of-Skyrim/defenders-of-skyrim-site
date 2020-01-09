@@ -30,39 +30,36 @@
           universe: props.character.universe,
         }) }}
       </p>
-      <b-table-simple
-        dark
-        small
-      >
-        <b-tbody>
-          <b-tr class="d-flex align-items-center">
-            <b-td v-if="props.character.stats.followable === true">
+      <table class="table table-dark table-sm">
+        <tbody>
+          <tr class="d-flex align-items-center">
+            <td v-if="props.character.stats.followable === true">
               <div class="d-flex align-items-center mr-1">
                 <img
                   svg-inline
                   src="@/assets/icons/follower.svg"
                 />
               </div>
-            </b-td>
-            <b-td v-if="props.character.stats.hireable === true">
+            </td>
+            <td v-if="props.character.stats.hireable === true">
               <div class="d-flex align-items-center mr-1">
                 <img
                   svg-inline
                   src="@/assets/icons/hireling.svg"
                 />
               </div>
-            </b-td>
-            <b-td v-if="props.character.stats.marriable === true">
+            </td>
+            <td v-if="props.character.stats.marriable === true">
               <div class="d-flex align-items-center">
                 <img
                   svg-inline
                   src="@/assets/icons/marriage.svg"
                 />
               </div>
-            </b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </b-card-body>
   </b-card>
 </template>

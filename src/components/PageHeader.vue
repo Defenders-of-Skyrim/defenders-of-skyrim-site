@@ -3,14 +3,14 @@
     :class="getHeaderClass"
     :style="{ backgroundImage: 'url(' + image + ')' }"
   >
-    <b-container class="page-header__content">
-      <b-row>
-        <b-col>
+    <div class="container page-header__content">
+      <div class="row">
+        <div class="col">
           <h1>{{ title }}</h1>
           <slot />
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

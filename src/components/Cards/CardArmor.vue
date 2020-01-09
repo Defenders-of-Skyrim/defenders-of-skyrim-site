@@ -30,13 +30,10 @@
       >
         {{ props.armor.stats.set.display }}
       </p>
-      <b-table-simple
-        dark
-        small
-      >
-        <b-tbody>
-          <b-tr class="d-flex align-items-center">
-            <b-td>
+      <table class="table table-dark table-sm">
+        <tbody>
+          <tr class="d-flex align-items-center">
+            <td>
               <div class="d-flex align-items-center mr-3">
                 <img
                   svg-inline
@@ -45,8 +42,8 @@
                 />
                 {{ props.armor.stats.resist }}
               </div>
-            </b-td>
-            <b-td>
+            </td>
+            <td>
               <div class="d-flex align-items-center mr-3">
                 <img
                   svg-inline
@@ -55,8 +52,8 @@
                 />
                 {{ props.armor.stats.cost }}
               </div>
-            </b-td>
-            <b-td>
+            </td>
+            <td>
               <div class="d-flex align-items-center">
                 <img
                   svg-inline
@@ -65,10 +62,10 @@
                 />
                 {{ props.armor.stats.weight }}
               </div>
-            </b-td>
-          </b-tr>
-        </b-tbody>
-      </b-table-simple>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </b-card-body>
   </b-card>
 </template>

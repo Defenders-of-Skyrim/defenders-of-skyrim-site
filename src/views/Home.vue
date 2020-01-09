@@ -4,13 +4,13 @@
       title=""
       image="https://picsum.photos/1920/1080"
     />
-    <b-container>
-      <b-row>
-        <b-col>
+    <div class="container">
+      <div class="row">
+        <div class="col">
           <div v-html="content"></div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
