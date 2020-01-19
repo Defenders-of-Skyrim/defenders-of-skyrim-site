@@ -1,0 +1,46 @@
+.breadcrumbs
+  display: flex
+  flex-wrap: wrap
+  background-color: rgba(0,0,0,0.8)
+  border: 2px solid #cccccc
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+  margin-bottom: 1.5rem
+  &-container
+    background-color: $white
+    clip-path: polygon(calc(100% - 1rem) 0%, 100% 50%, calc(100% - 1rem) 100%, 0% 100%, 1rem 50%, 0% 0%)
+    margin-left: -1rem
+    a
+      background-color: #222222
+      display: flex
+      align-items: center
+      padding: 1rem 2rem
+      margin: 0 2px 0 0
+      color: $white
+      font-family: $heading, serif
+      font-size: 1rem
+      clip-path: polygon(calc(100% - 1rem) 0%, 100% 50%, calc(100% - 1rem) 100%, 0% 100%, 1rem 50%, 0% 0%)
+      transition: all 0.3s ease
+      height: 100%
+      svg
+        display: block
+        width: 2rem
+        height: 2rem
+        object-fit: contain
+        path
+          fill: $white
+      &.disabled
+        pointer-events: none
+        background-color: #333333
+        color: $gray-400
+    &:first-child
+      clip-path: polygon(0% 0%, calc(100% - 1rem) 0%, 100% 50%, calc(100% - 1rem) 100%, 0% 100%)
+      margin: 0
+      a
+        padding: 1rem 2rem 1rem 1rem
+        clip-path: polygon(0% 0%, calc(100% - 1rem) 0%, 100% 50%, calc(100% - 1rem) 100%, 0% 100%)
+    &:hover
+      a
+        background-color: #444444
+        text-decoration: none
+        &.disabled
+          background-color: #333333

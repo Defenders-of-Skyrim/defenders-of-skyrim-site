@@ -18,6 +18,14 @@ import Vue from 'vue';
 
 export const store = Vue.observable({
   isLoading: false,
+  user: {
+    email: 'johncena@google.com',
+    group: 'tester',
+    patronStatus: false,
+    totalDonations: 0,
+    showAds: false,
+    showMatureContent: false,
+  },
 });
 
 export const mutations = {

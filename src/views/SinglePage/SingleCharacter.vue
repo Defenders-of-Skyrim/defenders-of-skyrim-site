@@ -18,6 +18,9 @@
     </page-header>
     <div class="container">
       <div class="row">
+        <div class="col-24">
+          <breadcrumbs :items="breadcrumb"/>
+        </div>
         <div class="col-md-14 col-lg-16 col-xh-17 col-xxh-18 order-1 order-md-0">
           <single-character-details
             class="d-md-none"
@@ -52,12 +55,14 @@ import PageHeader from '@/components/PageHeader.vue';
 import ListAccordion from '@/components/ListAccordion.vue';
 import SingleCharacterDetails from '@/components/Single/SingleCharacterDetails.vue';
 import SingleCharacterTable from '@/components/Single/SingleCharacterTable.vue';
+import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import { ICharacter, IListAccordionData } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
 import { getCharacterName, generateMetaDescription } from '@/plugins/api/functions';
 
 @Component({
   components: {
+    Breadcrumbs,
     ListAccordion,
     PageHeader,
     SingleCharacterDetails,
@@ -151,6 +156,26 @@ export default class SingleCharacter extends Vue {
   get description(): string {
     return this.character.description !== ''
       ? generateMetaDescription(this.character.description, true) : '';
+  }
+
+  get breadcrumb(): any[] {
+    return [
+      {
+        title: this.$t('navbar.characters.index'),
+        link: '/characters',
+        active: true,
+      },
+      {
+        title: this.character.universe,
+        link: this.character.universe_slug,
+        active: true,
+      },
+      {
+        title: this.character.title,
+        link: this.character.slug,
+        active: true,
+      },
+    ];
   }
 }
 </script>

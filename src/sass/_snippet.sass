@@ -1,0 +1,24 @@
+.snippet-border
+  content: ''
+  display: block
+  width: 1rem
+  height: calc(100% + 4px)
+  position: absolute
+  left: -2px
+  top: -2px
+.snippet
+  background-color: $black
+  border: 2px solid $white
+  padding: 1rem
+  margin-bottom: 1rem
+  position: relative
+  &-warning, &-info
+    padding-left: 2rem
+  &-warning
+    &:before
+      @extend .snippet-border
+      background-color: $orange
+  &-info
+    &:before
+      @extend  .snippet-border
+      background-color: $primary

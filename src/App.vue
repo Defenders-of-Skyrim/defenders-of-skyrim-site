@@ -4,7 +4,7 @@
     draggerThrottle: 16
   }">
     <div class="inner" ref="inner">
-      <navbar :version="appVersion" />
+      <navbar />
       <div class="navbar-margin">
         <transition
           name="fade-in-up"
@@ -72,10 +72,6 @@ export default class App extends Vue {
 
   get isLoading(): boolean {
     return store.isLoading;
-  }
-
-  get appVersion(): string {
-    return (process.env.PACKAGE_VERSION as any).version;
   }
 }
 </script>

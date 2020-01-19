@@ -4,11 +4,13 @@ import {
   BCard,
   BCardBody,
   BCardGroup,
+  BCardHeader,
   BCardImgLazy,
   BCardTitle,
   BDropdownGroup,
   BDropdownItem,
   BDropdownText,
+  BFormCheckbox,
   BFormSelect,
   BLink,
   BNav,
@@ -21,6 +23,7 @@ import {
   BNavbarToggle,
   CollapsePlugin,
   ImagePlugin,
+  ModalPlugin,
   TabsPlugin,
 } from 'bootstrap-vue';
 import VueMeta from 'vue-meta';
@@ -38,10 +41,12 @@ Vue.component('b-button', BButton);
 
 Vue.component('b-card', BCard);
 Vue.component('b-card-body', BCardBody);
+Vue.component('b-card-header', BCardHeader);
 Vue.component('b-card-group', BCardGroup);
 Vue.component('b-card-img-lazy', BCardImgLazy);
 Vue.component('b-card-title', BCardTitle);
 
+Vue.component('b-form-checkbox', BFormCheckbox);
 Vue.component('b-form-select', BFormSelect);
 Vue.component('b-link', BLink);
 
@@ -63,6 +68,7 @@ Vue.use(CollapsePlugin, {
   breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', 'hg', 'xh', 'xxh'],
 });
 Vue.use(ImagePlugin);
+Vue.use(ModalPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VueMeta, {
   refreshOnceOnNavigation: false,

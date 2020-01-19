@@ -1,0 +1,19 @@
+.custom-control
+  &.custom-switch
+    padding-left: 3.5rem
+    .custom-control
+      &-label
+        &:before
+          height: 1.5rem
+          border-radius: 1rem
+          width: 3.4rem
+          left: -3.5rem
+        &:after
+          left: calc(-3.5rem + 2px)
+          width: calc(1.5rem - 4px)
+          height: calc(1.5rem - 4px)
+          border-radius: 50%
+      &-input
+        &:checked ~ .custom-control-label
+          &:after
+            transform: translateX(1.85rem)

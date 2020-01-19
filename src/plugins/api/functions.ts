@@ -10,6 +10,9 @@ export function setLanguage(lang: string): void {
 }
 
 export function getAbsoluteImageURL(path: string) {
+  if (path.indexOf('backend') !== -1) {
+    return `${backendURL}/${path.substring(9)}`;
+  }
   if (path.indexOf('storage') !== -1) {
     return `${backendURL}/${path}`;
   }
