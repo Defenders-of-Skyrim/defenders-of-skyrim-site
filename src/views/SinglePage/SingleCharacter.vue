@@ -51,20 +51,16 @@
 /* eslint-disable no-underscore-dangle */
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import PageHeader from '@/components/PageHeader.vue';
 import ListAccordion from '@/components/ListAccordion.vue';
 import SingleCharacterDetails from '@/components/Single/SingleCharacterDetails.vue';
 import SingleCharacterTable from '@/components/Single/SingleCharacterTable.vue';
-import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import { ICharacter, IListAccordionData } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
 import { getCharacterName, generateMetaDescription } from '@/plugins/api/functions';
 
 @Component({
   components: {
-    Breadcrumbs,
     ListAccordion,
-    PageHeader,
     SingleCharacterDetails,
     SingleCharacterTable,
   },
@@ -161,14 +157,9 @@ export default class SingleCharacter extends Vue {
   get breadcrumb(): any[] {
     return [
       {
-        title: this.$t('navbar.characters.index'),
-        link: '/characters',
-        active: true,
-      },
-      {
-        title: this.character.universe,
-        link: this.character.universe_slug,
-        active: true,
+        title: `${this.$t('navbar.characters.index')} - ${this.character.universe}`,
+        link: `/characters/${this.character.universe_slug}`,
+        active: false,
       },
       {
         title: this.character.title,

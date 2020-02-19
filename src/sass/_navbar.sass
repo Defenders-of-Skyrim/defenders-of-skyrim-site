@@ -58,9 +58,7 @@
           border: 2px solid #cccccc
           box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
           color: $light
-      &.nav-right
-        //margin-left: auto
-      .nav-user
+      .nav-icon
         .nav-link
           position: static
           display: flex
@@ -69,10 +67,9 @@
           height: 100%
           background: none
           clip-path: none
-          padding: 0 1rem !important
+          padding: 0 0.5rem
           margin: 0
-          .user-avatar
-            //background-color: $gray-500
+          .icon
             border-radius: 50%
             img, svg
               display: block
@@ -80,10 +77,11 @@
               height: 40px
               border-radius: 50%
             svg
-              filter: invert(1)
-              //padding: 4px
+              path
+                fill: $white
           &:before, &:after
             display: none
+      .nav-user
         .dropdown
           &-menu
             min-width: 400px

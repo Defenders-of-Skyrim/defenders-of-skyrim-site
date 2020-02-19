@@ -1,12 +1,12 @@
 <template>
   <div
     :class="getHeaderClass"
-    :style="{ backgroundImage: 'url(' + image + ')' }"
+    :style="getBackgroundImage"
   >
     <div class="container page-header__content">
       <div class="row">
         <div class="col">
-          <h1>{{ title }}</h1>
+          <h1 v-if="title !== ''">{{ title }}</h1>
           <slot />
         </div>
       </div>
@@ -29,7 +29,7 @@ import Component from 'vue-class-component';
     },
     title: {
       type: String,
-      required: true,
+      required: false,
       default: '',
     },
     tall: {
@@ -48,6 +48,12 @@ export default class PageHeader extends Vue {
     }
 
     return header;
+  }
+
+  get getBackgroundImage(): any {
+    return this.$props.image !== ''
+      ? { backgroundImage: `url(${this.$props.image})` }
+      : { backgroundImage: 'radial-gradient(circle, #eeaeca 0%, #94bbe9 100%)' };
   }
 }
 </script>

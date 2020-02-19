@@ -4,6 +4,7 @@
       "index": "Characters",
       "subitems": {
         "header": "Character types",
+        "headerUniverse": "Characters from universe",
         "followers": "Followers",
         "trainers": "Trainers",
         "traders": "Traders",
@@ -153,5 +154,10 @@
     "dos": "Defenders of Skyrim",
     "dosArmory": "Defenders of Skyrim - Armory"
   },
-  "changelog": "Changelog"
+  "changelog": "Changelog",
+  "universes": {
+    "dota": "DOTA",
+    "league-of-legends": "League of Legends",
+    "overwatch": "Overwatch"
+  }
 }

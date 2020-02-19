@@ -48,7 +48,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import CardMod from '@/components/Cards/CardMod.vue';
-import PageHeader from '@/components/PageHeader.vue';
 import CardChangelog from '@/components/Cards/CardChangelog.vue';
 import APIFetch from '@/plugins/api/APIFetch';
 import { IMod } from '@/plugins/api/interfaces';
@@ -56,7 +55,6 @@ import { IMod } from '@/plugins/api/interfaces';
 @Component({
   components: {
     CardMod,
-    PageHeader,
     CardChangelog,
   },
   metaInfo() {

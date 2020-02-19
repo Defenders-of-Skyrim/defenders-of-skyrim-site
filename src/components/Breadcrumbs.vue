@@ -1,24 +1,48 @@
 <template functional>
-  <nav class="breadcrumbs">
-    <div class="breadcrumbs-container">
-      <b-link to="/">
+  <nav
+    class="breadcrumbs"
+    itemscope
+    itemtype="https://schema.org/BreadcrumbList"
+  >
+    <div
+      class="breadcrumbs-container"
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+    >
+      <b-link
+        itemprop="item"
+        to="/"
+      >
         <img
           svg-inline
           src="@/assets/icons/home.svg"
         >
       </b-link>
+      <meta
+        itemprop="position"
+        content="1"
+      />
     </div>
     <div
       class="breadcrumbs-container"
-      v-for="item in props.items"
-      :key="item.index"
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+      v-for="(item, index) in props.items"
+      :key="index"
     >
       <b-link
+        itemprop="item"
         :to="item.link"
         :disabled="item.active"
       >
-        {{ item.title }}
+        <span itemprop="name">{{ item.title }}</span>
       </b-link>
+      <meta
+        itemprop="position"
+        :content="index + 2"
+      />
     </div>
   </nav>
 </template>

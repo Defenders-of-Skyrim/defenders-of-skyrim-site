@@ -18,6 +18,7 @@
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav>
                 <b-nav-item-dropdown
+                  class="columns"
                   :text="parent.$t('navbar.characters.index')"
                   lazy
                   no-caret
@@ -42,7 +43,23 @@
                       {{ parent.$t('navbar.characters.subitems.other') }}
                     </b-dropdown-item>
                   </b-dropdown-group>
+
+                  <b-dropdown-group
+                    id="characters-universes"
+                    :header="parent.$t('navbar.characters.subitems.headerUniverse')"
+                  >
+                    <b-dropdown-item to="/characters/dota">
+                      {{ parent.$t('universes.dota') }}
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/characters/league-of-legends">
+                      {{ parent.$t('universes.league-of-legends') }}
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/characters/overwatch">
+                      {{ parent.$t('universes.overwatch') }}
+                    </b-dropdown-item>
+                  </b-dropdown-group>
                 </b-nav-item-dropdown>
+
                 <b-nav-item-dropdown
                   class="columns"
                   :text="parent.$t('navbar.apparel.index')"

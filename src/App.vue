@@ -10,9 +10,7 @@
           name="fade-in-up"
           mode="out-in"
         >
-          <keep-alive exclude="SingleWeapon">
-            <router-view />
-          </keep-alive>
+          <router-view />
         </transition>
       </div>
       <app-footer v-show="isLoading === false" />

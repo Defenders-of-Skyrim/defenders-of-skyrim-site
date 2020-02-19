@@ -12,7 +12,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
   },
   {
-    path: '/characters/:type',
+    path: '/characters/:characterType',
     name: 'characters_list',
     component: () => import(/* webpackChunkName: "characters_list" */ '@/views/Characters.vue'),
   },
@@ -45,6 +45,15 @@ const routes = [
     path: '/download',
     name: 'download',
     component: () => import(/* webpackChunkName: "download" */ '@/views/Download.vue'),
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
+  },
+  {
+    path: '*',
+    redirect: '/404',
   },
 ];
 

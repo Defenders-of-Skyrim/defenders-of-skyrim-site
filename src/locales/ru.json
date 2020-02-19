@@ -4,6 +4,7 @@
       "index": "Персонажи",
       "subitems": {
         "header": "Типы персонажей",
+        "headerUniverse": "Персонажи из вселенной",
         "followers": "Напарники",
         "trainers": "Учителя навыков",
         "traders": "Торговцы",
@@ -153,5 +154,10 @@
     "dos": "Защитники Скайрима",
     "dosArmory": "Защитники Скайрима - Оружейная"
   },
-  "changelog": "Список изменений"
+  "changelog": "Список изменений",
+  "universes": {
+    "dota": "DOTA",
+    "league-of-legends": "League of Legends",
+    "overwatch": "Overwatch"
+  }
 }

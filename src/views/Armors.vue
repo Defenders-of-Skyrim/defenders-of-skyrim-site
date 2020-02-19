@@ -103,14 +103,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import CardArmor from '@/components/Cards/CardArmor.vue';
-import PageHeader from '@/components/PageHeader.vue';
 import { IArmorData, IArmor } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
 
 @Component({
   components: {
     CardArmor,
-    PageHeader,
   },
   metaInfo() {
     return {

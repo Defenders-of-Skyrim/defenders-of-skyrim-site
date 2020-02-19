@@ -1,7 +1,6 @@
 <template>
   <div>
     <page-header
-      title=""
       image="https://picsum.photos/1920/1080"
     />
     <div class="container">
@@ -17,14 +16,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import PageHeader from '@/components/PageHeader.vue';
 import APIFetch from '@/plugins/api/APIFetch';
 import { generateMetaDescription } from '@/plugins/api/functions';
+import { ICharacter } from '@/plugins/api/interfaces';
 
 @Component({
-  components: {
-    PageHeader,
-  },
   metaInfo() {
     return {
       meta: [

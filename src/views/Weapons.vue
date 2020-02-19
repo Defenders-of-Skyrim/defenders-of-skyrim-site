@@ -160,14 +160,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import CardWeapon from '@/components/Cards/CardWeapon.vue';
-import PageHeader from '@/components/PageHeader.vue';
 import { IWeaponData, IWeapon } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
 
 @Component({
   components: {
     CardWeapon,
-    PageHeader,
   },
   metaInfo() {
     return {

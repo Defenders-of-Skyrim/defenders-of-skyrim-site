@@ -31,6 +31,9 @@
               img, svg
                 width: 30px
                 height: 30px
+          &.nav-icon
+            .nav-link
+              padding: 0 0.5rem
     &-brand
       img, svg
         width: 300px
@@ -48,6 +51,10 @@
       .card
         &.bg-skyrim
           flex: 0 1 calc(25% - 15px)
+      &.deck-characters
+        .card
+          &.bg-skyrim
+            flex: 0 1 calc(20% - 15px)
 @media (min-width: 1200px) and (max-width: 1599px)
   body
     font-size: 1rem

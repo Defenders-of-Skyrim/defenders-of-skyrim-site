@@ -29,6 +29,7 @@ import {
 import VueMeta from 'vue-meta';
 import Fragment from 'vue-fragment';
 import Vuebar from 'vuebar';
+import CustomComponents from '@/plugins/api';
 import router from './router';
 // import store from './store';
 import i18n from './i18n';
@@ -75,6 +76,8 @@ Vue.use(VueMeta, {
 });
 Vue.use(Vuebar);
 Vue.use(Fragment.Plugin);
+
+Vue.use(CustomComponents);
 
 new Vue({
   router,

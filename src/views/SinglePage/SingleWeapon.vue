@@ -16,6 +16,9 @@
     </page-header>
     <div class="container">
       <div class="row">
+        <div class="col-24">
+          <breadcrumbs :items="breadcrumb"/>
+        </div>
         <div class="col-md-14 col-xl-16 col-xxh-17 order-1 order-md-0">
           <single-weapon-details
             class="d-md-none"
@@ -43,7 +46,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import SingleWeaponDetails from '@/components/Single/SingleWeaponDetails.vue';
 import SingleWeaponTable from '@/components/Single/SingleWeaponTable.vue';
-import PageHeader from '@/components/PageHeader.vue';
 import { IWeapon } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
 import { generateMetaDescription } from '@/plugins/api/functions';
@@ -52,7 +54,6 @@ import { generateMetaDescription } from '@/plugins/api/functions';
   components: {
     SingleWeaponDetails,
     SingleWeaponTable,
-    PageHeader,
   },
   metaInfo() {
     return {
@@ -116,6 +117,21 @@ export default class SingleWeapon extends Vue {
   get description(): string {
     return this.weapon.description !== ''
       ? generateMetaDescription(this.weapon.description, true) : '';
+  }
+
+  get breadcrumb(): any[] {
+    return [
+      {
+        title: `${this.$t('navbar.apparel.subitems.headerWeapon')} - ${this.$t(`weapon.types.${this.weapon.type}`)}`,
+        link: `/weapons/${this.weapon.type}`,
+        active: false,
+      },
+      {
+        title: this.weapon.title,
+        link: this.weapon.slug,
+        active: true,
+      },
+    ];
   }
 }
 </script>

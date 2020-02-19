@@ -11,6 +11,7 @@ import {
   ICharacter,
 } from './interfaces';
 import { getAbsoluteImageURL } from './functions';
+import { characterMetaTypes } from './constants';
 
 export default class APIFetch {
   static getChangelog() {
@@ -76,6 +77,7 @@ export default class APIFetch {
         filter: { type },
         sort: { title: 1 },
         lang: i18n.locale,
+        previewToken: '9c4b45782de3b8c48cd19439687cee',
       },
     })
       .then((response: AxiosResponse) => {
@@ -132,6 +134,7 @@ export default class APIFetch {
         filter: { type },
         sort: { title: 1 },
         lang: i18n.locale,
+        previewToken: '9c4b45782de3b8c48cd19439687cee',
       },
     })
       .then((response: AxiosResponse) => {
@@ -159,15 +162,53 @@ export default class APIFetch {
       });
   }
 
-  static getCharacters(type: string) {
+  /**
+   * Returns array of characters
+   * @param {String} slug character type or character universe (slug)
+   * @returns {ICharacter[]} filtered characters array
+   */
+  static getCharacters(slug?: string): Promise<ICharacter[]> {
+    let data;
+    if (slug !== undefined) {
+      const type = characterMetaTypes.indexOf(slug) !== -1 ? slug : null;
+      const universe = characterMetaTypes.indexOf(slug) === -1 ? slug : null;
+      data = {
+        filter: {
+          ...(type ? { metaType: type } : ''),
+          ...(universe ? { universe_slug: universe } : ''),
+        },
+        lang: i18n.locale,
+        sort: { title: 1 },
+        previewToken: '9c4b45782de3b8c48cd19439687cee',
+      };
+    } else {
+      data = {
+        lang: i18n.locale,
+        sort: { title: 1 },
+        previewToken: '9c4b45782de3b8c48cd19439687cee',
+      };
+    }
+
     return authInstance({
       method: 'post',
       url: '/collections/get/characters',
-      data: {
-        filter: { metaType: type },
-        lang: i18n.locale,
-      },
-    }).then((response: AxiosResponse) => response.data.entries);
+      data,
+    }).then((response: AxiosResponse) => {
+      const elements = response.data.entries;
+      elements.forEach(async (element: ICharacter, index: number) => {
+        if (element.thumbnail !== '') {
+          const { path } = (element.thumbnail as any);
+          (element.thumbnail as any).path = getAbsoluteImageURL(path);
+        }
+        if (element.background !== '') {
+          const { path } = (element.background as any);
+          (element.background as any).path = getAbsoluteImageURL(path);
+        }
+        elements[index] = element;
+      });
+      return elements.sort((a: ICharacter, b: ICharacter) => a.title
+        .localeCompare(b.title, ['ru', 'en'], { sensitivity: 'accent' }));
+    });
   }
 
   static getSingleWeapon(slug: string) {

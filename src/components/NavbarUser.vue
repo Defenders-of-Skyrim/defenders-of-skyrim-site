@@ -1,12 +1,12 @@
 <template>
   <b-nav-item-dropdown
-    class="nav-user"
+    class="nav-icon nav-user"
     right
     lazy
     no-caret
   >
     <template v-slot:button-content>
-      <div class="user-avatar">
+      <div class="icon">
         <img
           svg-inline
           src="@/assets/icons/cog.svg"

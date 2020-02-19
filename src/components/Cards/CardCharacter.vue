@@ -1,13 +1,14 @@
 <template functional>
   <b-card
     class="mb-4"
+    :class="{'card-draft': props.character.status === 'Draft'}"
     bg-variant="skyrim"
     text-variant="white"
     no-body
   >
     <router-link
       :to="props.link"
-      class="aspect-ratio_1-1"
+      class="aspect-ratio_3-4"
     >
       <b-card-img-lazy
         :src="props.character.thumbnail.path"

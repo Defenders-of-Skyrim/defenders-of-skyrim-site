@@ -16,6 +16,9 @@
     </page-header>
     <div class="container">
       <div class="row">
+        <div class="col-24">
+          <breadcrumbs :items="breadcrumb"/>
+        </div>
         <div class="col-md-14 col-xl-16 col-xxh-17 order-1 order-md-0">
           <single-armor-details
             class="d-md-none"
@@ -47,7 +50,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import SingleArmorDetails from '@/components/Single/SingleArmorDetails.vue';
 import SingleArmorTable from '@/components/Single/SingleArmorTable.vue';
-import PageHeader from '@/components/PageHeader.vue';
 import { IArmor, ICharacter } from '@/plugins/api/interfaces';
 import APIFetch from '@/plugins/api/APIFetch';
 import { getCharacterName, generateMetaDescription } from '@/plugins/api/functions';
@@ -56,7 +58,6 @@ import { getCharacterName, generateMetaDescription } from '@/plugins/api/functio
   components: {
     SingleArmorDetails,
     SingleArmorTable,
-    PageHeader,
   },
   metaInfo() {
     return {
@@ -131,6 +132,21 @@ export default class SingleArmor extends Vue {
   get description(): string {
     return this.armor.description !== ''
       ? generateMetaDescription(this.armor.description, true) : '';
+  }
+
+  get breadcrumb(): any[] {
+    return [
+      {
+        title: `${this.$t('navbar.apparel.subitems.headerArmor')} - ${this.$t(`armor.types.${this.armor.type}`)}`,
+        link: `/armor/${this.armor.type}`,
+        active: false,
+      },
+      {
+        title: this.armor.title,
+        link: this.armor.slug,
+        active: true,
+      },
+    ];
   }
 }
 </script>
