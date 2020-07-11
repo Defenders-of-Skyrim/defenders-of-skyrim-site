@@ -6,8 +6,11 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    '@vue/airbnb',
-    '@vue/typescript',
+    '@nuxtjs/eslint-config-typescript',
+    '@vue/airbnb'
+  ],
+  plugins: [
+    'vue'
   ],
   rules: {
     'import/no-useless-path-segments': 'off',
@@ -21,8 +24,5 @@ module.exports = {
     'class-methods-use-this': 'off',
     'global-require': 'off',
     'func-names': 'off'
-  },
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-  },
+  }
 };
