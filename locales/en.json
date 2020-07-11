@@ -1,5 +1,8 @@
 {
   "navbar": {
+    "logo": {
+      "subtitle": "Total conversion for Skyrim"
+    },
     "characters": {
       "index": "Characters",
       "subitems": {

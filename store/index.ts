@@ -1,4 +1,5 @@
-export function state () {
+/* eslint-disable import/prefer-default-export */
+export function state() {
   return {
     user: {
       email: 'johncena@google.com',
@@ -8,5 +9,5 @@ export function state () {
       showAds: false,
       showMatureContent: false,
     },
-  }
-};
+  };
+}

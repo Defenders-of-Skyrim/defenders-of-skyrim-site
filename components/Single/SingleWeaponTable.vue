@@ -7,8 +7,8 @@
           class="aspect-ratio_1-1"
         >
           <b-img-lazy
-            :src="weapon.thumbnail.path"
             v-if="weapon.thumbnail !== ''"
+            :src="weapon.thumbnail.path"
           />
         </td>
       </tr>
@@ -17,7 +17,9 @@
         <td v-if="weapon.stats.enchantment !== ''">
           {{ weapon.stats.enchantment }}
         </td>
-        <td v-else>{{ $t('booleans.false') }}</td>
+        <td v-else>
+          {{ $t('booleans.false') }}
+        </td>
       </tr>
       <tr>
         <th>Местоположение</th>

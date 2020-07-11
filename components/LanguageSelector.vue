@@ -19,7 +19,7 @@ export default class LanguageSelector extends Vue {
   ]
 
   onChange(value: string): void {
-    this.$router.push(this.switchLocalePath(value))
+    this.$router.push(this.switchLocalePath(value));
   }
 }
 </script>

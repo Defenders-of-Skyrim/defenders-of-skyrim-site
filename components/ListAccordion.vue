@@ -10,8 +10,8 @@
       role="tab"
     >
       <b-button
-        block
         v-b-toggle.accordion-characters
+        block
         variant="skyrim"
       >
         {{ title }}
@@ -29,7 +29,9 @@
             v-for="item in data"
             :key="item._id"
           >
-            <b-link :to="localePath(item.link)">{{ item.title }}</b-link>
+            <b-link :to="localePath(item.link)">
+              {{ item.title }}
+            </b-link>
           </li>
         </ul>
       </b-card-body>

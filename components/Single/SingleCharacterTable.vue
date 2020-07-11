@@ -7,8 +7,8 @@
           class="aspect-ratio_3-4"
         >
           <b-img-lazy
-            :src="props.character.thumbnail.path"
             v-if="props.character.thumbnail !== ''"
+            :src="props.character.thumbnail.path"
           />
         </td>
       </tr>
@@ -18,28 +18,36 @@
           {{ props.character.stats.trainer }} -
           {{ parent.$t(`skills.levels.${props.character.stats.trainerLevel}`) }}
         </td>
-        <td v-else>{{ parent.$t('booleans.false') }}</td>
+        <td v-else>
+          {{ parent.$t('booleans.false') }}
+        </td>
       </tr>
       <tr>
         <th>{{ parent.$t('characters.table.trader') }}</th>
         <td v-if="props.character.stats.trader !== ''">
           {{ props.character.stats.trader }}
         </td>
-        <td v-else>{{ parent.$t('booleans.false') }}</td>
+        <td v-else>
+          {{ parent.$t('booleans.false') }}
+        </td>
       </tr>
       <tr>
         <th>{{ parent.$t('characters.table.otherServices') }}</th>
         <td v-if="props.character.stats.otherServices !== ''">
           {{ props.character.stats.otherServices }}
         </td>
-        <td v-else>{{ parent.$t('booleans.false') }}</td>
+        <td v-else>
+          {{ parent.$t('booleans.false') }}
+        </td>
       </tr>
       <tr>
         <th>{{ parent.$t('characters.table.faction') }}</th>
         <td v-if="props.character.stats.faction !== ''">
           {{ props.character.stats.faction }}
         </td>
-        <td v-else>{{ parent.$t('booleans.false') }}</td>
+        <td v-else>
+          {{ parent.$t('booleans.false') }}
+        </td>
       </tr>
       <tr>
         <th>{{ parent.$t('characters.table.location') }}</th>

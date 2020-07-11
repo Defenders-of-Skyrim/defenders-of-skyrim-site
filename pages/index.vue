@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div v-html="content"></div>
+          <div v-html="content" />
         </div>
       </div>
     </div>
@@ -13,7 +13,6 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import APIFetch from '@/plugins/api/APIFetch';
 import { generateMetaDescription } from '@/functions';
 
 @Component({
@@ -40,9 +39,9 @@ export default class Home extends Vue {
   }
 
   async asyncData({ app }: { app: any }): Promise<any> {
-    const content = await app.$getPage('Главная страница')
+    const content = await app.$getPage('Главная страница');
     return {
-      content: content,
+      content,
     };
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import Vue from 'vue';
 
 declare module 'vue/types/vue' {
@@ -69,6 +70,7 @@ type ICharacter = {
   background: string | Object,
   description: string,
   slug: string,
+  display?: any,
   stats: {
     class: string,
     followable: boolean,

@@ -11,15 +11,15 @@
       class="aspect-ratio_3-4"
     >
       <b-card-img-lazy
-        :src="character.thumbnail.path"
         v-if="character.thumbnail !== ''"
+        :src="character.thumbnail.path"
         top
       />
       <b-img
+        v-else
         class="card-img img-fluid"
         blank-color="#333333"
         blank
-        v-else
       />
     </nuxt-link>
 

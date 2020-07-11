@@ -2,14 +2,14 @@
   <b-button
     variant="scroll"
     :class="{ show: visible }"
-    @click="scrollTo"
     aria-label="Scroll to top"
+    @click="scrollTo"
   >
     <img
       svg-inline
       src="@/assets/images/list_item.svg"
       aria-hidden="true"
-    />
+    >
   </b-button>
 </template>
 
@@ -37,7 +37,6 @@ export default class ScrollTo extends Vue {
   }
 
   checkVisibility(element: any): void {
-    console.log(element.scrollTop)
     this.visible = element.scrollTop > this.$props.distance;
   }
 

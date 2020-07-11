@@ -27,15 +27,15 @@
       <meta
         itemprop="position"
         content="1"
-      />
+      >
     </div>
     <div
+      v-for="(item, index) in items"
+      :key="index"
       class="breadcrumbs-container"
       itemprop="itemListElement"
       itemscope
       itemtype="https://schema.org/ListItem"
-      v-for="(item, index) in items"
-      :key="index"
     >
       <b-link
         itemprop="item"
@@ -47,7 +47,7 @@
       <meta
         itemprop="position"
         :content="index + 2"
-      />
+      >
     </div>
   </nav>
 </template>

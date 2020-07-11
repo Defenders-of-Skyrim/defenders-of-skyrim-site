@@ -6,7 +6,7 @@
       tall
     >
       <p>
-        {{ $t('armor.types.' + armor.type) }} -
+        {{ $t(`armor.types.${armor.type}`) }} -
         {{ $t(`armor.subtypes.singular.${armor.subtype}`) }}
       </p>
       <single-armor-details
@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-24">
-          <breadcrumbs :items="breadcrumb"/>
+          <breadcrumbs :items="breadcrumb" />
         </div>
         <div class="col-md-14 col-xl-16 col-xxh-17 order-1 order-md-0">
           <single-armor-details
@@ -50,6 +50,10 @@ import { Vue, Component } from 'nuxt-property-decorator';
 import SingleArmorDetails from '@/components/Single/SingleArmorDetails.vue';
 import SingleArmorTable from '@/components/Single/SingleArmorTable.vue';
 import { getCharacterName, generateMetaDescription } from '@/functions';
+import type {
+  IArmor,
+  ICharacter,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -130,9 +134,9 @@ export default class SingleArmor extends Vue {
   }
 
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
-    const armor = await app.$getSingleArmor(params.slug)
+    const armor = await app.$getSingleArmor(params.slug);
     return {
-      armor: armor,
+      armor,
     };
   }
 }

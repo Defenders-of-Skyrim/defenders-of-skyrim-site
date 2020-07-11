@@ -7,15 +7,15 @@
   >
     <div class="aspect-ratio_16-9">
       <b-card-img-lazy
-        :src="props.mod.thumbnail.path"
         v-if="props.mod.thumbnail !== ''"
+        :src="props.mod.thumbnail.path"
         top
       />
       <b-img
+        v-else
         class="card-img img-fluid"
         blank-color="#333333"
         blank
-        v-else
       />
     </div>
 

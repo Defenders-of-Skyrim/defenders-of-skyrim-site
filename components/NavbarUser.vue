@@ -11,9 +11,9 @@
           <img
             svg-inline
             src="@/assets/icons/cog.svg"
-          />
+          >
           <template slot="placeholder">
-            <img src="@/assets/icons/cog.svg" />
+            <img src="@/assets/icons/cog.svg">
           </template>
         </client-only>
       </div>
@@ -62,7 +62,7 @@
         switch
       />
     </p>-->
-    <div class="dropdown-divider"></div>
+    <div class="dropdown-divider" />
     <li role="presentation">
       <p class="b-dropdown-text">
         {{ `${$t('user.version')} ${version}` }}

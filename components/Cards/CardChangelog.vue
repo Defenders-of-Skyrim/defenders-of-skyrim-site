@@ -5,9 +5,11 @@
     text-variant="white"
   >
     <template v-slot:header>
-      <h4 class="mb-0">Версия {{ props.version }}</h4>
+      <h4 class="mb-0">
+        Версия {{ props.version }}
+      </h4>
     </template>
-    <div v-html="props.description"></div>
+    <div v-html="props.description" />
   </b-card>
 </template>
 

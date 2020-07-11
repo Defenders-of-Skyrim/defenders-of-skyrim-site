@@ -7,12 +7,15 @@
           class="aspect-ratio_1-1"
         >
           <b-img-lazy
-            :src="armor.thumbnail.path"
             v-if="armor.thumbnail !== ''"
+            :src="armor.thumbnail.path"
           />
         </td>
       </tr>
-      <tr v-if="armor.stats.character.display !== undefined && armor.stats.character.display !== null">
+      <tr
+        v-if="armor.stats.character.display !== undefined
+          && armor.stats.character.display !== null"
+      >
         <th>Предназначено для персонажа</th>
         <td>
           <b-link
@@ -28,7 +31,9 @@
         <td v-if="armor.stats.enchantment !== ''">
           {{ armor.stats.enchantment }}
         </td>
-        <td v-else>{{ $t('booleans.false') }}</td>
+        <td v-else>
+          {{ $t('booleans.false') }}
+        </td>
       </tr>
       <tr>
         <th>Местоположение</th>

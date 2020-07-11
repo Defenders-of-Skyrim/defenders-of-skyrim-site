@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-24">
-          <breadcrumbs :items="breadcrumb"/>
+          <breadcrumbs :items="breadcrumb" />
         </div>
         <div class="col-md-14 col-xl-16 col-xxh-17 order-1 order-md-0">
           <single-weapon-details
@@ -46,6 +46,9 @@ import { Vue, Component } from 'nuxt-property-decorator';
 import SingleWeaponDetails from '@/components/Single/SingleWeaponDetails.vue';
 import SingleWeaponTable from '@/components/Single/SingleWeaponTable.vue';
 import { generateMetaDescription } from '@/functions';
+import type {
+  IWeapon,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -117,7 +120,7 @@ export default class SingleWeapon extends Vue {
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
     const weapon = await app.$getSingleWeapon(params.slug);
     return {
-      weapon: weapon,
+      weapon,
     };
   }
 }

@@ -13,7 +13,7 @@
                 <img src="@/assets/images/logo.svg">
               </template>
             </client-only>
-            <p>Глобальная модификация для Skyrim</p>
+            <p>{{ $t('navbar.logo.subtitle') }}</p>
           </b-navbar-brand>
           <p class="mt-3">
             &copy; 2017-2020 Long-Sighted Films.
@@ -50,7 +50,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-md-5 col-lg-3 col-xh-2">
+        <div class="col-md-5 col-lg-3 col-hg-3">
           <h5>{{ $t('navbar.apparel.subitems.headerWeapons') }}</h5>
           <ul class="footer__nav">
             <li>

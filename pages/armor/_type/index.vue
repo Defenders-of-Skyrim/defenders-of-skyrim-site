@@ -101,6 +101,9 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
 import CardArmor from '@/components/Cards/CardArmor.vue';
+import type {
+  IArmorData,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -125,9 +128,9 @@ export default class Armors extends Vue {
   type = 'light';
 
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
-    const armor = await app.$getArmor(params.type)
+    const armor = await app.$getArmor(params.type);
     return {
-      armor: armor,
+      armor,
       type: params.type,
     };
   }

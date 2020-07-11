@@ -38,6 +38,9 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import CardCharacter from '@/components/Cards/CardCharacter.vue';
 import { characterMetaTypes } from '@/functions/constants';
+import type {
+  ICharacter,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -82,9 +85,9 @@ export default class Characters extends Vue {
   }
 
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
-    const characters = await app.$getCharacters(params.characterType)
+    const characters = await app.$getCharacters(params.characterType);
     return {
-      characters: characters,
+      characters,
       type: params.characterType,
     };
   }

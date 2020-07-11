@@ -13,8 +13,8 @@
             fill
           >
             <b-tab
-              :title="$t('weapons.subtypes.multiple.dagger')"
               v-if="$route.params.type === 'onehanded'"
+              :title="$t('weapons.subtypes.multiple.dagger')"
               lazy
             >
               <b-card-group deck>
@@ -27,8 +27,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.sword')"
               v-if="$route.params.type === 'onehanded'"
+              :title="$t('weapons.subtypes.multiple.sword')"
               lazy
             >
               <b-card-group deck>
@@ -41,8 +41,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.waraxe')"
               v-if="$route.params.type === 'onehanded'"
+              :title="$t('weapons.subtypes.multiple.waraxe')"
               lazy
             >
               <b-card-group deck>
@@ -55,8 +55,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.mace')"
               v-if="$route.params.type === 'onehanded'"
+              :title="$t('weapons.subtypes.multiple.mace')"
               lazy
             >
               <b-card-group deck>
@@ -69,8 +69,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.greatsword')"
               v-if="$route.params.type === 'twohanded'"
+              :title="$t('weapons.subtypes.multiple.greatsword')"
               lazy
             >
               <b-card-group deck>
@@ -83,8 +83,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.battleaxe')"
               v-if="$route.params.type === 'twohanded'"
+              :title="$t('weapons.subtypes.multiple.battleaxe')"
               lazy
             >
               <b-card-group deck>
@@ -97,8 +97,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.warhammer')"
               v-if="$route.params.type === 'twohanded'"
+              :title="$t('weapons.subtypes.multiple.warhammer')"
               lazy
             >
               <b-card-group deck>
@@ -111,8 +111,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.bow')"
               v-if="$route.params.type === 'ranged'"
+              :title="$t('weapons.subtypes.multiple.bow')"
               lazy
             >
               <b-card-group deck>
@@ -125,8 +125,8 @@
               </b-card-group>
             </b-tab>
             <b-tab
-              :title="$t('weapons.subtypes.multiple.crossbow')"
               v-if="$route.params.type === 'ranged'"
+              :title="$t('weapons.subtypes.multiple.crossbow')"
               lazy
             >
               <b-card-group deck>
@@ -140,8 +140,8 @@
             </b-tab>
           </b-tabs>
           <b-card-group
-            deck
             v-else
+            deck
           >
             <card-weapon
               v-for="weapon in weapons"
@@ -159,6 +159,10 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
 import CardWeapon from '@/components/Cards/CardWeapon.vue';
+import type {
+  IWeapon,
+  IWeaponData,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -183,9 +187,9 @@ export default class Weapons extends Vue {
   type = 'onehanded';
 
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
-    const weapons = await app.$getWeapons(params.type)
+    const weapons = await app.$getWeapons(params.type);
     return {
-      weapons: weapons,
+      weapons,
       type: params.type,
     };
   }

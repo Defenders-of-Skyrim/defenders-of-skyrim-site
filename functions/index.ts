@@ -1,13 +1,16 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-prototype-builtins */
-import { backendURL } from '@/plugins/axios';
 import { parse } from 'node-html-parser';
+import { backendURL } from '@/plugins/axios';
+import type {
+  ICharacter,
+} from '@/types/types';
 
 export function getAbsoluteImageURL(path: string) {
-  if (path.indexOf('backend') !== -1) {
+  if (path.includes('backend')) {
     return `${backendURL}/${path.substring(9)}`;
   }
-  if (path.indexOf('storage') !== -1) {
+  if (path.includes('storage')) {
     return `${backendURL}/${path}`;
   }
   return path;
@@ -23,16 +26,15 @@ export function generateMetaDescription(html: string, multiple: boolean): string
   const tags = root.querySelectorAll('p');
 
   if (tags.length !== 0) {
-    let text = tags[0].text;
+    let { text } = tags[0];
     if (multiple === true) {
       tags.forEach((tag: any) => {
         text += ` ${tag.text}`;
       });
     }
     return (text.match(/.{0,300}\./gmu) as RegExpMatchArray)[0];
-  } else {
-    return '';
   }
+  return '';
 }
 
 /**

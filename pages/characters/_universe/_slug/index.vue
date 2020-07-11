@@ -19,7 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="col-24">
-          <breadcrumbs :items="breadcrumb"/>
+          <breadcrumbs :items="breadcrumb" />
         </div>
         <div class="col-md-14 col-lg-16 col-xh-17 col-xxh-18 order-1 order-md-0">
           <single-character-details
@@ -54,6 +54,10 @@ import ListAccordion from '@/components/ListAccordion.vue';
 import SingleCharacterDetails from '@/components/Single/SingleCharacterDetails.vue';
 import SingleCharacterTable from '@/components/Single/SingleCharacterTable.vue';
 import { getCharacterName, generateMetaDescription } from '@/functions';
+import type {
+  ICharacter,
+  IListAccordionData,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -61,7 +65,7 @@ import { getCharacterName, generateMetaDescription } from '@/functions';
     SingleCharacterDetails,
     SingleCharacterTable,
   },
-  metaInfo() {
+  head() {
     return {
       title: (this as SingleCharacter).getCharacterName,
       meta: [
@@ -138,7 +142,7 @@ export default class SingleCharacter extends Vue {
     const character = await app.$getSingleCharacter(params.universe, params.slug);
     const accordion = await app.$getCharactersList(params.universe);
     return {
-      character: character,
+      character,
       data: accordion,
     };
   }

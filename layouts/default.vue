@@ -1,8 +1,8 @@
 <template>
-  <div class="app" ref="inner">
+  <div ref="inner" class="app">
     <navbar />
     <div class="navbar-margin">
-      <nuxt/>
+      <nuxt />
     </div>
     <app-footer />
     <!--<client-only>

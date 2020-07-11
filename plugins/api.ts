@@ -1,29 +1,31 @@
 import { backendURL } from './axios';
 import { getAbsoluteImageURL } from '@/functions';
 import { characterMetaTypes } from '@/functions/constants';
-import {
+import type {
   IArmor,
   IArmorData,
   ICharacter,
   IChangelog,
   IListAccordionData,
   IWeapon,
-  IWeaponData
-} from '~/types/api';
+  IWeaponData,
+} from '@/types/types';
 
-export default function (context: any , inject: Function) {
+export default function (context: any, inject: Function) {
   const apiGetChangelog = async (): Promise<any> => {
-    return await context.app.$axios.post(`${backendURL}/api/collections/get/changelog`, {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/changelog`, {
       sort: { _created: -1 },
       lang: context.app.i18n.locale,
     });
+    return response;
   };
 
   const apiGetMods = async (): Promise<any> => {
-    return await context.app.$axios.get(`${backendURL}/api/collections/get/mods`, {
+    const response = await context.app.$axios.get(`${backendURL}/api/collections/get/mods`, {
       lang: context.app.i18n.locale,
     });
-  }
+    return response;
+  };
 
   const apiGetPage = async (name: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/pages`, {
@@ -33,7 +35,7 @@ export default function (context: any , inject: Function) {
       lang: context.app.i18n.locale,
     });
     return response.data.entries[0].text;
-  }
+  };
 
   const apiGetDownloads = async (): Promise<any> => {
     const data: any = {
@@ -54,7 +56,7 @@ export default function (context: any , inject: Function) {
     });
     data.mods = mods.data.entries;
     return data;
-  }
+  };
 
   const apiGetWeapons = async (type: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/weapons`, {
@@ -62,7 +64,7 @@ export default function (context: any , inject: Function) {
       sort: { title: 1 },
       lang: context.app.i18n.locale,
       previewToken: '9c4b45782de3b8c48cd19439687cee',
-    })
+    });
 
     const elements: IWeapon[] = response.data.entries;
     const data: IWeaponData = {
@@ -106,7 +108,7 @@ export default function (context: any , inject: Function) {
         return (elements as IWeapon[]);
       }
     }
-  }
+  };
 
   const apiGetArmor = async (type: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/armor`, {
@@ -114,7 +116,7 @@ export default function (context: any , inject: Function) {
       sort: { title: 1 },
       lang: context.app.i18n.locale,
       previewToken: '9c4b45782de3b8c48cd19439687cee',
-    })
+    });
 
     const elements: IArmor[] = response.data.entries;
     const data: IArmorData = {
@@ -137,13 +139,13 @@ export default function (context: any , inject: Function) {
       data[element.subtype].push(element);
     });
     return data;
-  }
+  };
 
   const apiGetCharacters = async (slug?: string): Promise<ICharacter[]> => {
     let data;
     if (slug !== undefined) {
-      const type = characterMetaTypes.indexOf(slug) !== -1 ? slug : null;
-      const universe = characterMetaTypes.indexOf(slug) === -1 ? slug : null;
+      const type = characterMetaTypes.includes(slug) ? slug : null;
+      const universe = !characterMetaTypes.includes(slug) ? slug : null;
       data = {
         filter: {
           ...(type ? { metaType: type } : ''),
@@ -151,18 +153,18 @@ export default function (context: any , inject: Function) {
         },
         lang: context.app.i18n.locale,
         sort: { title: 1 },
-        previewToken: '9c4b45782de3b8c48cd19439687cee',
+        // previewToken: '9c4b45782de3b8c48cd19439687cee',
       };
     } else {
       data = {
         lang: context.app.i18n.locale,
         sort: { title: 1 },
-        previewToken: '9c4b45782de3b8c48cd19439687cee',
+        // previewToken: '9c4b45782de3b8c48cd19439687cee',
       };
     }
 
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/characters`, {
-      data
+      ...data,
     });
 
     const elements = response.data.entries;
@@ -179,7 +181,7 @@ export default function (context: any , inject: Function) {
     });
     return elements.sort((a: ICharacter, b: ICharacter) => a.title
       .localeCompare(b.title, ['ru', 'en'], { sensitivity: 'accent' }));
-  }
+  };
 
   const apiGetSingleWeapon = async (slug: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/weapons`, {
@@ -188,9 +190,9 @@ export default function (context: any , inject: Function) {
       },
       lang: context.app.i18n.locale,
       previewToken: '9c4b45782de3b8c48cd19439687cee',
-    })
+    });
     return response.data.entries[0];
-  }
+  };
 
   const apiGetSingleCharacter = async (universe: string, slug: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/characters`, {
@@ -200,9 +202,9 @@ export default function (context: any , inject: Function) {
       },
       lang: context.app.i18n.locale,
       previewToken: '9c4b45782de3b8c48cd19439687cee',
-    })
+    });
     return response.data.entries[0];
-  }
+  };
 
   const apiGetSingleArmor = async (slug: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/armor`, {
@@ -210,7 +212,7 @@ export default function (context: any , inject: Function) {
       lang: context.app.i18n.locale,
       populate: 1,
       previewToken: '9c4b45782de3b8c48cd19439687cee',
-    })
+    });
 
     const armor = response.data.entries[0];
     if (armor.thumbnail !== '') {
@@ -222,7 +224,7 @@ export default function (context: any , inject: Function) {
       (armor.background as any).path = getAbsoluteImageURL(path);
     }
     return armor;
-  }
+  };
 
   const apiGetCharactersList = async (universe: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/characters`, {
@@ -235,7 +237,7 @@ export default function (context: any , inject: Function) {
         slug: 1,
       },
       lang: context.app.i18n.locale,
-    })
+    });
 
     const { entries } = response.data;
     const data: IListAccordionData[] = [];
@@ -249,7 +251,7 @@ export default function (context: any , inject: Function) {
       data.push(entry);
     });
     return data;
-  }
+  };
 
   inject('getChangelog', apiGetChangelog);
   inject('getMods', apiGetMods);

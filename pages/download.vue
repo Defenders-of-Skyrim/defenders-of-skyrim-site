@@ -7,9 +7,10 @@
     <div class="container">
       <div class="row">
         <fragment v-if="mods.length !== 0">
-          <div class="col-md-12 col-lg-8 col-hg-6"
+          <div
             v-for="mod in mods"
             :key="mod._id"
+            class="col-md-12 col-lg-8 col-hg-6"
           >
             <card-mod :mod="mod" />
           </div>
@@ -18,7 +19,7 @@
           <h2>{{ $t('changelog') }}</h2>
           <div class="my-4">
             <h3 class="heading-secondary heading-greek">
-              <span>{{ $t('mods.dos')}}</span>
+              <span>{{ $t('mods.dos') }}</span>
             </h3>
             <card-changelog
               v-for="log in logs.main"
@@ -48,6 +49,9 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import CardMod from '@/components/Cards/CardMod.vue';
 import CardChangelog from '@/components/Cards/CardChangelog.vue';
+import type {
+  IMod,
+} from '@/types/types';
 
 @Component({
   components: {
@@ -73,7 +77,7 @@ export default class Download extends Vue {
   mods: IMod[] = []
 
   async asyncData({ app }: { app: any }): Promise<any> {
-    const data = await app.$getDownloads()
+    const data = await app.$getDownloads();
     return {
       logs: data.logs,
       mods: data.mods,

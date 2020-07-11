@@ -1,5 +1,8 @@
 {
   "navbar": {
+    "logo": {
+      "subtitle": "Глобальная модификация для Skyrim"
+    },
     "characters": {
       "index": "Персонажи",
       "subitems": {

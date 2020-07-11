@@ -6,7 +6,9 @@
     <div class="container page-header__content">
       <div class="row">
         <div class="col">
-          <h1 v-if="title !== ''">{{ title }}</h1>
+          <h1 v-if="title !== ''">
+            {{ title }}
+          </h1>
           <slot />
         </div>
       </div>

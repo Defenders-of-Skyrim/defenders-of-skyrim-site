@@ -17,9 +17,9 @@
                   <img src="@/assets/images/logo.svg">
                 </template>
               </client-only>
-              <p>Глобальная модификация для Skyrim</p>
+              <p>{{ $t('navbar.logo.subtitle') }}</p>
             </b-navbar-brand>
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-navbar-toggle target="nav-collapse" />
             <b-collapse id="nav-collapse" is-nav>
               <b-navbar-nav>
                 <b-nav-item-dropdown
