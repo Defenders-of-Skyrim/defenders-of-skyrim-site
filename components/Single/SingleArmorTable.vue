@@ -8,7 +8,7 @@
         >
           <b-img-lazy
             v-if="armor.thumbnail !== ''"
-            :src="armor.thumbnail.path"
+            :src="$getAbsoluteImageURL(armor.thumbnail.path)"
           />
         </td>
       </tr>

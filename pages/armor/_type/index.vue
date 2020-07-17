@@ -7,91 +7,40 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <b-tabs
-            content-class="mt-3"
-            fill
+          <b-card-group
+            class="card-deck-narrow"
+            deck
           >
-            <b-tab
-              :title="$t('armor.subtypes.multiple.helmet')"
-              lazy
-            >
-              <b-card-group deck>
-                <card-armor
-                  v-for="helmet in armor.helmet"
-                  :key="helmet._id"
-                  :armor="helmet"
-                  :link="`/armor/${$route.params.type}/${helmet.subtype}/${helmet.slug}`"
-                />
-              </b-card-group>
-            </b-tab>
-            <b-tab
-              :title="$t('armor.subtypes.multiple.cuirass')"
-              lazy
-            >
-              <b-card-group deck>
-                <card-armor
-                  v-for="cuirass in armor.cuirass"
-                  :key="cuirass._id"
-                  :armor="cuirass"
-                  :link="`/armor/${$route.params.type}/${cuirass.subtype}/${cuirass.slug}`"
-                />
-              </b-card-group>
-            </b-tab>
-            <b-tab
-              :title="$t('armor.subtypes.multiple.gauntlet')"
-              lazy
-            >
-              <b-card-group deck>
-                <card-armor
-                  v-for="gauntlet in armor.gauntlet"
-                  :key="gauntlet._id"
-                  :armor="gauntlet"
-                  :link="`/armor/${$route.params.type}/${gauntlet.subtype}/${gauntlet.slug}`"
-                />
-              </b-card-group>
-            </b-tab>
-            <b-tab
-              :title="$t('armor.subtypes.multiple.boots')"
-              lazy
-            >
-              <b-card-group deck>
-                <card-armor
-                  v-for="boots in armor.boots"
-                  :key="boots._id"
-                  :armor="boots"
-                  :link="`/armor/${$route.params.type}/${boots.subtype}/${boots.slug}`"
-                />
-              </b-card-group>
-            </b-tab>
-            <b-tab
-              v-if="$route.params.type !== 'clothes'"
-              :title="$t('armor.subtypes.multiple.shield')"
-              lazy
-            >
-              <b-card-group deck>
-                <card-armor
-                  v-for="shield in armor.shield"
-                  :key="shield._id"
-                  :armor="shield"
-                  :link="`/armor/${$route.params.type}/${shield.subtype}/${shield.slug}`"
-                />
-              </b-card-group>
-            </b-tab>
-            <b-tab
-              v-if="$route.params.type === 'clothes'"
-              :title="$t('armor.subtypes.multiple.cloak')"
-              lazy
-            >
-              <b-card-group deck>
-                <card-armor
-                  v-for="cloak in armor.cloak"
-                  :key="cloak._id"
-                  :armor="cloak"
-                  :link="`/armor/${$route.params.type}/${cloak.subtype}/${cloak.slug}`"
-                />
-              </b-card-group>
-            </b-tab>
-          </b-tabs>
+            <card-armor
+              v-for="armor in armors"
+              :key="armor._id"
+              :armor="armor"
+              :link="`/armor/${$route.params.type}/${armor.subtype}/${armor.slug}`"
+            />
+          </b-card-group>
+        </div>
+        <div class="col-24 col-xl-6 col-lg-8 col-md-10">
+          <div class="card bg-skyrim text-white">
+            <div class="card-body">
+              <h4 class="card-title">
+                Filters
+              </h4>
+              <label for="subtype">Item type</label>
+              <b-form-select
+                id="subtype"
+                :value="subtype"
+                :options="subtypeOptions"
+                @change="selectSubtype"
+              />
+              <label for="set">Item set</label>
+              <b-form-select
+                id="set"
+                :value="set"
+                :options="setsOptions"
+                @change="selectItemSet"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -102,7 +51,7 @@
 import { Vue, Component } from 'nuxt-property-decorator';
 import CardArmor from '@/components/Cards/CardArmor.vue';
 import type {
-  IArmorData,
+  IArmor,
 } from '@/types/types';
 
 @Component({
@@ -123,16 +72,53 @@ import type {
   },
 })
 export default class Armors extends Vue {
-  armor: IArmorData = {}
+  armors: IArmor[] = [];
+
+  subtype = 'all';
+
+  subtypeOptions: object[] = [
+    { value: 'all', text: 'all' },
+    { value: 'helmet', text: 'Шлем/головной убор' },
+    { value: 'cuirass', text: 'Кираса/нагрудник' },
+    { value: 'gauntlet', text: 'Наручи/перчатки' },
+    { value: 'boots', text: 'Ботинки' },
+    { value: 'shield', text: 'Щит' },
+    { value: 'cloak', text: 'Плащ' },
+  ]
+
+  setsOptions: object[] = [
+    { value: 'none', text: 'none' },
+  ]
+
+  set = 'none';
 
   type = 'light';
 
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
-    const armor = await app.$getArmor(params.type);
+    const armors = await app.$getArmor(params.type);
+    const itemSets = await app.$getItemSets();
     return {
-      armor,
+      armors,
+      setsOptions: itemSets,
       type: params.type,
     };
+  }
+
+  async selectSubtype(value: string): Promise<void> {
+    this.subtype = value;
+    await this.updateItems();
+  }
+
+  async selectItemSet(value: string): Promise<void> {
+    this.set = value;
+    await this.updateItems();
+  }
+
+  async updateItems(): Promise<void> {
+    const subtype = this.subtype !== 'all' ? this.subtype : undefined;
+    const set = this.set !== 'none' ? this.set : undefined;
+    const armors = await (this as any).$getArmor(this.type, subtype, set);
+    this.armors = armors;
   }
 }
 </script>

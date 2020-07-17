@@ -3,7 +3,6 @@ import { getAbsoluteImageURL } from '@/functions';
 import { characterMetaTypes } from '@/functions/constants';
 import type {
   IArmor,
-  IArmorData,
   ICharacter,
   IChangelog,
   IListAccordionData,
@@ -127,26 +126,25 @@ export default function (context: any, inject: Function) {
     }
   };
 
-  const apiGetArmor = async (type: string): Promise<any> => {
+  const apiGetArmor = async (type: string, subtype?: string, set?: string): Promise<any> => {
+    const filter: any = {
+      type,
+    };
+    if (subtype !== undefined) {
+      filter.subtype = subtype;
+    }
+    if (set !== undefined) {
+      filter['stats.set.display'] = set;
+    }
+
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/armor`, {
-      filter: { type },
+      filter,
       sort: { title: 1 },
       lang: context.app.i18n.locale,
     });
 
     const elements: IArmor[] = response.data.entries;
-    const data: IArmorData = {
-      helmet: [],
-      cuirass: [],
-      gauntlet: [],
-      boots: [],
-      shield: [],
-      cloak: [],
-    };
-    elements.forEach(async (element: IArmor) => {
-      data[element.subtype].push(element);
-    });
-    return data;
+    return elements;
   };
 
   const apiGetCharacters = async (slug?: string): Promise<ICharacter[]> => {
@@ -237,6 +235,26 @@ export default function (context: any, inject: Function) {
     return data;
   };
 
+  const apiGetItemSets = async (): Promise<any> => {
+    const response = (await context.app.$axios.post(`${backendURL}/api/collections/get/sets`, {
+      lang: context.app.i18n.locale,
+    })).data.entries;
+
+    const items: any[] = [
+      { value: 'none', text: 'none' },
+    ];
+
+    if (response.length > 0) {
+      response.forEach((element: any) => {
+        items.push({
+          value: element.title, text: element.title,
+        });
+      });
+    }
+
+    return items;
+  };
+
   inject('getChangelog', apiGetChangelog);
   inject('getMods', apiGetMods);
   inject('getPage', apiGetPage);
@@ -248,6 +266,7 @@ export default function (context: any, inject: Function) {
   inject('getSingleCharacter', apiGetSingleCharacter);
   inject('getSingleArmor', apiGetSingleArmor);
   inject('getCharactersList', apiGetCharactersList);
+  inject('getItemSets', apiGetItemSets);
 
   inject('getAbsoluteImageURL', getAbsoluteImageURL);
 }
