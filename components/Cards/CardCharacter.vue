@@ -12,7 +12,7 @@
     >
       <b-card-img-lazy
         v-if="character.thumbnail !== ''"
-        :src="character.thumbnail.path"
+        :src="$getAbsoluteImageURL(character.thumbnail.path)"
         top
       />
       <b-img

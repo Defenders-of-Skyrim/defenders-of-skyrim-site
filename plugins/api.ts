@@ -21,7 +21,7 @@ export default function (context: any, inject: Function) {
   };
 
   const apiGetMods = async (): Promise<any> => {
-    const response = await context.app.$axios.get(`${backendURL}/api/collections/get/mods`, {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/mods`, {
       lang: context.app.i18n.locale,
     });
     return response;
@@ -41,6 +41,8 @@ export default function (context: any, inject: Function) {
     const data: any = {
       logs: {
         armory: [],
+        artifacts: [],
+        wardrobe: [],
         main: [],
       },
       mods: [],
@@ -48,10 +50,26 @@ export default function (context: any, inject: Function) {
     const logs = await apiGetChangelog();
     const mods = await apiGetMods();
     logs.data.entries.forEach((element : IChangelog) => {
-      if (element.mod_name === 'Defenders of Skyrim - Оружейная') {
-        data.logs.armory.push(element);
-      } else if (element.mod_name === 'Defenders of Skyrim') {
-        data.logs.main.push(element);
+      switch (element.mod_name) {
+        case 'Defenders of Skyrim - Оружейная': {
+          data.logs.armory.push(element);
+          break;
+        }
+        case 'Defenders of Skyrim - Артефакты': {
+          data.logs.artifacts.push(element);
+          break;
+        }
+        case 'Defenders of Skyrim - Гардероб': {
+          data.logs.wardrobe.push(element);
+          break;
+        }
+        case 'Defenders of Skyrim': {
+          data.logs.main.push(element);
+          break;
+        }
+        default: {
+          break;
+        }
       }
     });
     data.mods = mods.data.entries;
@@ -63,7 +81,6 @@ export default function (context: any, inject: Function) {
       filter: { type },
       sort: { title: 1 },
       lang: context.app.i18n.locale,
-      previewToken: '9c4b45782de3b8c48cd19439687cee',
     });
 
     const elements: IWeapon[] = response.data.entries;
@@ -115,7 +132,6 @@ export default function (context: any, inject: Function) {
       filter: { type },
       sort: { title: 1 },
       lang: context.app.i18n.locale,
-      previewToken: '9c4b45782de3b8c48cd19439687cee',
     });
 
     const elements: IArmor[] = response.data.entries;
@@ -128,14 +144,6 @@ export default function (context: any, inject: Function) {
       cloak: [],
     };
     elements.forEach(async (element: IArmor) => {
-      if (element.thumbnail !== '') {
-        const { path } = (element.thumbnail as any);
-        (element.thumbnail as any).path = getAbsoluteImageURL(path);
-      }
-      if (element.background !== '') {
-        const { path } = (element.background as any);
-        (element.background as any).path = getAbsoluteImageURL(path);
-      }
       data[element.subtype].push(element);
     });
     return data;
@@ -153,13 +161,11 @@ export default function (context: any, inject: Function) {
         },
         lang: context.app.i18n.locale,
         sort: { title: 1 },
-        // previewToken: '9c4b45782de3b8c48cd19439687cee',
       };
     } else {
       data = {
         lang: context.app.i18n.locale,
         sort: { title: 1 },
-        // previewToken: '9c4b45782de3b8c48cd19439687cee',
       };
     }
 
@@ -168,17 +174,6 @@ export default function (context: any, inject: Function) {
     });
 
     const elements = response.data.entries;
-    elements.forEach(async (element: ICharacter, index: number) => {
-      if (element.thumbnail !== '') {
-        const { path } = (element.thumbnail as any);
-        (element.thumbnail as any).path = getAbsoluteImageURL(path);
-      }
-      if (element.background !== '') {
-        const { path } = (element.background as any);
-        (element.background as any).path = getAbsoluteImageURL(path);
-      }
-      elements[index] = element;
-    });
     return elements.sort((a: ICharacter, b: ICharacter) => a.title
       .localeCompare(b.title, ['ru', 'en'], { sensitivity: 'accent' }));
   };
@@ -189,7 +184,6 @@ export default function (context: any, inject: Function) {
         slug,
       },
       lang: context.app.i18n.locale,
-      previewToken: '9c4b45782de3b8c48cd19439687cee',
     });
     return response.data.entries[0];
   };
@@ -201,7 +195,6 @@ export default function (context: any, inject: Function) {
         universe_slug: universe,
       },
       lang: context.app.i18n.locale,
-      previewToken: '9c4b45782de3b8c48cd19439687cee',
     });
     return response.data.entries[0];
   };
@@ -211,18 +204,9 @@ export default function (context: any, inject: Function) {
       filter: { slug },
       lang: context.app.i18n.locale,
       populate: 1,
-      previewToken: '9c4b45782de3b8c48cd19439687cee',
     });
 
     const armor = response.data.entries[0];
-    if (armor.thumbnail !== '') {
-      const { path } = (armor.thumbnail as any);
-      (armor.thumbnail as any).path = getAbsoluteImageURL(path);
-    }
-    if (armor.background !== '') {
-      const { path } = (armor.background as any);
-      (armor.background as any).path = getAbsoluteImageURL(path);
-    }
     return armor;
   };
 
@@ -264,4 +248,6 @@ export default function (context: any, inject: Function) {
   inject('getSingleCharacter', apiGetSingleCharacter);
   inject('getSingleArmor', apiGetSingleArmor);
   inject('getCharactersList', apiGetCharactersList);
+
+  inject('getAbsoluteImageURL', getAbsoluteImageURL);
 }

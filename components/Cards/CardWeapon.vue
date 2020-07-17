@@ -11,7 +11,7 @@
     >
       <b-card-img-lazy
         v-if="weapon.thumbnail !== ''"
-        :src="weapon.thumbnail.path"
+        :src="$getAbsoluteImageURL(weapon.thumbnail.path)"
         top
       />
       <b-img

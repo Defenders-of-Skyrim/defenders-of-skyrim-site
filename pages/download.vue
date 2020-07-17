@@ -6,34 +6,25 @@
     />
     <div class="container">
       <div class="row">
-        <fragment v-if="mods.length !== 0">
-          <div
-            v-for="mod in mods"
-            :key="mod._id"
-            class="col-md-12 col-lg-8 col-hg-6"
-          >
-            <card-mod :mod="mod" />
-          </div>
-        </fragment>
+        <div
+          v-for="mod in mods"
+          :key="mod._id"
+          class="col-md-12 col-lg-8 col-hg-6"
+        >
+          <card-mod :mod="mod" />
+        </div>
         <div class="col-24">
           <h2>{{ $t('changelog') }}</h2>
-          <div class="my-4">
+          <div
+            v-for="(logsArray, title, index) in logs"
+            :key="`${title}-${index}`"
+            class="my-4"
+          >
             <h3 class="heading-secondary heading-greek">
-              <span>{{ $t('mods.dos') }}</span>
+              <span>{{ $t(`mods.${title}`) }}</span>
             </h3>
             <card-changelog
-              v-for="log in logs.main"
-              :key="log._id"
-              :version="log.version"
-              :description="log.description"
-            />
-          </div>
-          <div class="my-4">
-            <h3 class="heading-secondary heading-greek">
-              <span>{{ $t('mods.dosArmory') }}</span>
-            </h3>
-            <card-changelog
-              v-for="log in logs.armory"
+              v-for="log in logsArray"
               :key="log._id"
               :version="log.version"
               :description="log.description"

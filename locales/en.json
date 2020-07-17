@@ -154,8 +154,10 @@
     "download": "Download mod (version {version})"
   },
   "mods": {
-    "dos": "Defenders of Skyrim",
-    "dosArmory": "Defenders of Skyrim - Armory"
+    "main": "Defenders of Skyrim",
+    "armory": "Defenders of Skyrim - Armory",
+    "artifacts": "Defenders of Skyrim - Artifacts",
+    "wardrobe": "Defenders of Skyrim - Wardrobe"
   },
   "changelog": "Changelog",
   "universes": {

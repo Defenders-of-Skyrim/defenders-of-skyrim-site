@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <b-card
     class="mb-4 equal"
     bg-variant="skyrim"
@@ -7,8 +7,8 @@
   >
     <div class="aspect-ratio_16-9">
       <b-card-img-lazy
-        v-if="props.mod.thumbnail !== ''"
-        :src="props.mod.thumbnail.path"
+        v-if="mod.thumbnail !== ''"
+        :src="$getAbsoluteImageURL(mod.thumbnail.path)"
         top
       />
       <b-img
@@ -20,14 +20,14 @@
     </div>
 
     <b-card-body>
-      <b-card-title>{{ props.mod.title }}</b-card-title>
+      <b-card-title>{{ mod.title }}</b-card-title>
       <b-button
-        :href="props.mod.link"
-        :disabled="props.mod.link === ''"
+        :href="mod.link"
+        :disabled="mod.link === ''"
         variant="skyrim"
         block
       >
-        {{ parent.$t('buttons.download', { version: props.mod.version }) }}
+        {{ $t('buttons.download', { version: mod.version }) }}
       </b-button>
     </b-card-body>
   </b-card>

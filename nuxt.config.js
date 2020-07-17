@@ -93,6 +93,7 @@ module.exports = {
       ],
       lazy: true,
       langDir: 'locales/',
+      vueI18nLoader: true,
       seo: true,
     }],
   ],
