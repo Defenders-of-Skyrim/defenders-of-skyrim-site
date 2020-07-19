@@ -2,11 +2,11 @@
   <div>
     <page-header
       :title="$t(`armor.types.${type}`)"
-      image="require(`@/assets/images/backgrounds/${type}.jpg`)"
+      image="require(`@/assets/images/backgrounds/armors/${type}.jpg`)"
     />
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col order-1 order-lg-0">
           <b-card-group
             class="card-deck-narrow"
             deck
@@ -19,20 +19,20 @@
             />
           </b-card-group>
         </div>
-        <div class="col-24 col-xl-6 col-lg-8 col-md-10">
-          <div class="card bg-skyrim text-white">
+        <div class="col-24 col-xl-6 col-lg-8 order-0 order-lg-1">
+          <div class="card bg-skyrim text-white mb-4">
             <div class="card-body">
               <h4 class="card-title">
-                Filters
+                {{ $t('filters.title') }}
               </h4>
-              <label for="subtype">Item type</label>
+              <label for="subtype">{{ $t('filters.itemType') }}</label>
               <b-form-select
                 id="subtype"
                 :value="subtype"
                 :options="subtypeOptions"
                 @change="selectSubtype"
               />
-              <label for="set">Item set</label>
+              <label for="set">{{ $t('filters.itemSet') }}</label>
               <b-form-select
                 id="set"
                 :value="set"
@@ -77,17 +77,17 @@ export default class Armors extends Vue {
   subtype = 'all';
 
   subtypeOptions: object[] = [
-    { value: 'all', text: 'all' },
-    { value: 'helmet', text: 'Шлем/головной убор' },
-    { value: 'cuirass', text: 'Кираса/нагрудник' },
-    { value: 'gauntlet', text: 'Наручи/перчатки' },
-    { value: 'boots', text: 'Ботинки' },
-    { value: 'shield', text: 'Щит' },
-    { value: 'cloak', text: 'Плащ' },
+    { value: 'all', text: this.$root.$t('options.all') },
+    { value: 'helmet', text: this.$root.$t('armor.subtypes.singular.helmet') },
+    { value: 'cuirass', text: this.$root.$t('armor.subtypes.singular.cuirass') },
+    { value: 'gauntlet', text: this.$root.$t('armor.subtypes.singular.gauntlet') },
+    { value: 'boots', text: this.$root.$t('armor.subtypes.singular.boots') },
+    { value: 'shield', text: this.$root.$t('armor.subtypes.singular.shield') },
+    { value: 'cloak', text: this.$root.$t('armor.subtypes.singular.cloak') },
   ]
 
   setsOptions: object[] = [
-    { value: 'none', text: 'none' },
+    { value: 'none', text: this.$root.$t('options.none') },
   ]
 
   set = 'none';

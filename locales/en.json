@@ -160,6 +160,15 @@
     "wardrobe": "Defenders of Skyrim - Wardrobe"
   },
   "changelog": "Changelog",
+  "options": {
+    "all": "All",
+    "none": "None"
+  },
+  "filters": {
+    "title": "Filters",
+    "itemType": "Item type",
+    "itemSet": "Item set"
+  },
   "universes": {
     "dota": "DOTA",
     "league-of-legends": "League of Legends",

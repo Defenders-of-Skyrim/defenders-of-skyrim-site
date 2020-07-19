@@ -160,6 +160,15 @@
     "wardrobe": "Защитники Скайрима - Гардероб"
   },
   "changelog": "Список изменений",
+  "options": {
+    "all": "Любой",
+    "none": "Любые наборы"
+  },
+  "filters": {
+    "title": "Фильтры",
+    "itemType": "Тип",
+    "itemSet": "Сет"
+  },
   "universes": {
     "dota": "DOTA",
     "league-of-legends": "League of Legends",

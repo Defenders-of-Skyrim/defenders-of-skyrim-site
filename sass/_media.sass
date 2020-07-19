@@ -6,6 +6,12 @@
           .nav-link
             font-size: 1.25rem
             padding: 1rem 2rem
+  .card
+    &-deck
+      &-narrow
+        .card
+          &.bg-skyrim
+            flex: 0 1 calc(25% - 15px) !important
 @media (min-width: 1600px)
   body
     font-size: 1.25rem
@@ -93,6 +99,16 @@
         font-size: 2.5rem
         &:first-letter
           font-size: 3.5rem
+  .card
+    &-deck
+      &-narrow
+        .card
+          &.bg-skyrim
+            .table
+              tbody
+                tr
+                  align-items: flex-start !important
+                  flex-direction: column
 @media (min-width: 992px) and (max-width: 1199px)
   body
     font-size: 1rem
@@ -125,6 +141,15 @@
       .card
         &.bg-skyrim
           flex: 0 1 calc(33.3333% - 15px)
+      &-narrow
+        .card
+          &.bg-skyrim
+            flex: 0 1 calc(50% - 15px) !important
+            .table
+              tbody
+                tr
+                  align-items: flex-start !important
+                  flex-direction: column
   .page-header
     &__content
       h1
@@ -159,6 +184,12 @@
               img, svg
                 width: 32px
                 height: 32px
+  .card
+    &-deck
+      &-narrow
+        .card
+          &.bg-skyrim
+            flex: 0 1 calc(50% - 15px) !important
 @media (max-width: 767px)
   h1
     font-size: 2rem
@@ -191,6 +222,11 @@
               width: 1.5rem
               height: 1.5rem
               flex: 0 0 1.5rem
+    &-deck
+      &-narrow
+        .card
+          &.bg-skyrim
+            flex: 0 1 calc(100% - 15px) !important
   .navbar
     &-dark
       .navbar-brand

@@ -241,7 +241,7 @@ export default function (context: any, inject: Function) {
     })).data.entries;
 
     const items: any[] = [
-      { value: 'none', text: 'none' },
+      { value: 'none', text: context.app.i18n.t('options.none') },
     ];
 
     if (response.length > 0) {
