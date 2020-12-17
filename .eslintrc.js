@@ -7,10 +7,10 @@ module.exports = {
   extends: [
     'plugin:vue/essential',
     '@nuxtjs/eslint-config-typescript',
-    'eslint-config-airbnb-base'
+    'eslint-config-airbnb-base',
   ],
   plugins: [
-    'vue'
+    'vue',
   ],
   rules: {
     'import/no-useless-path-segments': 'off',
@@ -25,6 +25,6 @@ module.exports = {
     'global-require': 'off',
     'func-names': 'off',
     'import/no-extraneous-dependencies': 'off',
-    'vue/no-v-html': 'off'
-  }
+    'vue/no-v-html': 'off',
+  },
 };

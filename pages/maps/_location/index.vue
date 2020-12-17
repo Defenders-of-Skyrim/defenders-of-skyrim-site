@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <div style="height: 90vh">
+          <div style="height: 600px">
             <client-only>
               <l-map
                 :zoom="mapConfig.zoom"
@@ -35,7 +35,6 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import { CRS } from 'leaflet';
 
 @Component({
   head() {
@@ -62,23 +61,24 @@ export default class SingleLocationMap extends Vue {
   }
 
   mapConfig = {
-    url: 'https://maps-static.defendersofskyrim.com/headquarters/{z}/{y}/{x}.jpg',
-    crs: CRS.Simple,
+    url: `https://maps-static.defendersofskyrim.com/${this.currentMap.slug}/{z}/{y}/{x}.jpg`,
     zoom: 1,
     maxZoom: 6,
     minZoom: 1,
   }
 
-  mounted(): void {
-    console.log(this.$route.params.location);
-    console.log(this.currentMap.slug);
-  }
-
   async asyncData({ app, params }: { app: any, params: any }): Promise<any> {
     const currentMap = await app.$getSingleLocationMap(params.location);
-    console.log(currentMap);
+    const mapConfig = {
+      url: `https://maps-static.defendersofskyrim.com/${currentMap.slug}/{z}/{y}/{x}.jpg`,
+      zoom: 1,
+      maxZoom: 6,
+      minZoom: 1,
+    };
+
     return {
       currentMap,
+      mapConfig,
     };
   }
 }
