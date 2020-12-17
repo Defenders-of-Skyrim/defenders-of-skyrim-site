@@ -1,4 +1,4 @@
 # select image
-FROM node:10
+FROM node:12
 # set working directory
 WORKDIR /srv/frontend

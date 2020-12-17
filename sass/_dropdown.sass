@@ -1,0 +1,46 @@
+.dropdown
+  &-menu
+    border-radius: 0
+    background-color: rgba(0,0,0,0.8)
+    border: 2px solid #cccccc
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+    color: $light
+  &-item
+    color: rgba(255,255,255,0.5)
+    font-family: $sans, serif
+    &:hover
+      color: rgba(255,255,255,0.75)
+      background: none
+    &.active
+      background: none
+      &:hover
+        color: $white
+  &-header
+    color: $brandColor
+    font-family: $heading, serif
+  &.columns
+    .dropdown
+      &-menu
+        &.show
+          display: flex
+.b-dropdown-text
+  display: flex
+  width: 100%
+  align-items: center
+  justify-content: space-between
+  span
+    flex: 0 0 auto
+  li.form-inline
+    margin-left: 0 !important
+    flex: 0 0 auto
+  form.form-inline
+    width: 100%
+    .custom-select
+      width: 100%
+
+.custom-select
+  background: rgba(0,0,0,0.8) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23ffffff' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
+  border-radius: 0
+  border: 2px solid #cccccc
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+  color: $light

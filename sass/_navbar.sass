@@ -1,0 +1,148 @@
+.navbar
+  &-container
+    position: fixed
+    width: 100%
+    top: 0
+    left: 0
+    z-index: 1030
+    background-color: rgba(0,0,0,0.5)
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
+    backdrop-filter: blur(6px)
+  &-dark
+    padding: 0
+    .navbar-nav
+      .nav-item
+        .nav-link
+          position: relative
+          font-size: 1rem
+          padding: 1rem 2rem
+          background-color: #222222
+          font-family: $heading, serif
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
+          clip-path: polygon(1rem 0%, 100% 0%, calc(100% - 1rem) 100%, 0% 100%)
+          margin-left: -1.1rem
+          &:before, &:after
+            content: ''
+            position: absolute
+            width: 2px
+            height: 4rem
+            top: -0.2rem
+            background-color: #aaaaaa
+            transform: rotate(16deg)
+          &:before
+            left: 7px
+          &:after
+            right: 7.5px
+          &.active
+            background-color: #000000
+            z-index: 1
+            &:before, &:after
+              background-color: #ffffff
+          &:first-child
+            .nav-link
+              margin-left: 0
+        &.icon
+          .nav-link
+            padding: 1rem 1.25rem
+            img, svg
+              display: block
+              width: 26px
+              height: 26px
+              object-fit: cover
+              object-position: 50%
+              filter: invert(1)
+      .nav-icon
+        .nav-link
+          position: static
+          display: flex
+          align-items: center
+          justify-content: center
+          height: 100%
+          background: none
+          clip-path: none
+          padding: 0 0.5rem
+          margin: 0
+          .icon
+            border-radius: 50%
+            img, svg
+              display: block
+              width: 40px
+              height: 40px
+              border-radius: 50%
+            svg
+              path
+                fill: $white
+          &:before, &:after
+            display: none
+      .nav-user
+        .dropdown
+          &-menu
+            min-width: 400px
+            width: 100%
+          &-item
+            color: $white
+            &:hover
+              background-color: transparentize($brandColor, 0.5)
+    .navbar-toggler
+      padding: 0.25rem
+      color: $white
+      border-color: #cccccc
+      border-radius: 0
+      &-icon
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+  &-margin
+    margin-top: 56px
+    flex: 1 0 auto
+    min-height: 100vh
+  &-brand
+    margin-right: 1.5rem
+    img, svg
+      display: block
+      width: 200px
+      height: 20px
+      object-fit: contain
+      &:focus
+        outline: 0
+    p
+      margin: 0 0 -0.25rem 0
+      font-size: 0.54rem
+      letter-spacing: 1px
+      text-transform: uppercase
+      text-align: center
+      width: 200px
+.nav-tabs
+  background-color: rgba(0,0,0,0.8)
+  border: 2px solid #cccccc
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+  .nav-item
+    .nav-link
+      display: flex
+      align-items: center
+      justify-content: center
+      color: $white
+      text-decoration: none
+      border: none
+      border-radius: 0
+      font-family: $heading, serif
+      font-size: 1.5rem
+      &:before, &:after
+        content: ''
+        display: inline-block
+        background: $listItem no-repeat center center / contain
+        width: 2rem
+        height: 2rem
+        flex: 0 0 2rem
+        opacity: 0
+      &:before
+        transform: rotate(180deg)
+        margin-right: 0.5rem
+      &:after
+        margin-left: 0.5rem
+      &.active, &:hover
+        background: none
+        border: none
+        color: $white
+        &:before, &:after
+          opacity: 1
+      &:focus
+        outline: 0

@@ -6,8 +6,11 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    '@vue/airbnb',
-    '@vue/typescript',
+    '@nuxtjs/eslint-config-typescript',
+    'eslint-config-airbnb-base'
+  ],
+  plugins: [
+    'vue'
   ],
   rules: {
     'import/no-useless-path-segments': 'off',
@@ -20,9 +23,8 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
     'global-require': 'off',
-    'func-names': 'off'
-  },
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-  },
+    'func-names': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'vue/no-v-html': 'off'
+  }
 };
