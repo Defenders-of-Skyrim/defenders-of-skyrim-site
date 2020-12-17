@@ -29,7 +29,14 @@
         "clothes": "Одежда"
       }
     },
-    "download": "Скачать мод"
+    "maps": {
+      "index": "Карты",
+      "subitems": {
+        "headquarters": "Штаб Защитников Скайрима"
+      }
+    },
+    "download": "Скачать мод",
+    "diary": "Дневник разработки"
   },
   "user": {
     "language": "Язык:",

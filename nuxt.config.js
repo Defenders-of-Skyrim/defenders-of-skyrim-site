@@ -6,7 +6,6 @@ module.exports = {
     port: 3000,
     host: '0.0.0.0',
   },
-  mode: 'universal',
   watchers: {
     webpack: {
       ignored: [/\.nuxt\//, /node_modules/],
@@ -65,6 +64,7 @@ module.exports = {
     },
   },
   plugins: [
+    { src: '~/plugins/persistedState.ts' },
     { src: '~/plugins/components.ts' },
     { src: '~/plugins/axios.ts' },
     { src: '~/plugins/api.ts' },
@@ -76,6 +76,7 @@ module.exports = {
     'nuxt-purgecss',
     '@nuxtjs/axios',
     ['bootstrap-vue/nuxt'],
+    ['nuxt-leaflet'],
     ['nuxt-i18n', {
       defaultLocale: 'en',
       detectBrowserLanguage: false,

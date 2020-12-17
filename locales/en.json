@@ -29,7 +29,14 @@
         "clothes": "Clothes"
       }
     },
-    "download": "Download mod"
+    "maps": {
+      "index": "Maps",
+      "subitems": {
+        "headquarters": "Defenders of Skyrim Headquarters"
+      }
+    },
+    "download": "Download mod",
+    "diary": "Dev diary"
   },
   "user": {
     "language": "Language:",

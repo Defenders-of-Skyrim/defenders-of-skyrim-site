@@ -1,4 +1,3 @@
-import { backendURL } from './axios';
 import { getAbsoluteImageURL } from '@/functions';
 import { characterMetaTypes } from '@/functions/constants';
 import type {
@@ -9,6 +8,7 @@ import type {
   IWeapon,
   IWeaponData,
 } from '@/types/types';
+import { backendURL } from './axios';
 
 export default function (context: any, inject: Function) {
   const apiGetChangelog = async (): Promise<any> => {
@@ -24,6 +24,13 @@ export default function (context: any, inject: Function) {
       lang: context.app.i18n.locale,
     });
     return response;
+  };
+
+  const apiGetBlogPosts = async (): Promise<any> => {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/blog`, {
+      lang: context.app.i18n.locale,
+    });
+    return response.data.entries;
   };
 
   const apiGetPage = async (name: string): Promise<any> => {
@@ -255,6 +262,27 @@ export default function (context: any, inject: Function) {
     return items;
   };
 
+  const apiGetSingleLocationMap = async (slug: string): Promise<any> => {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/maps`, {
+      filter: { slug },
+      lang: context.app.i18n.locale,
+      populate: 1,
+    });
+
+    const location = response.data.entries[0];
+    return location;
+  };
+
+  const apiGetSingleBlogPost = async (slug: string): Promise<any> => {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/blog`, {
+      filter: { slug },
+      lang: context.app.i18n.locale,
+    });
+
+    const post = response.data.entries[0];
+    return post;
+  };
+
   inject('getChangelog', apiGetChangelog);
   inject('getMods', apiGetMods);
   inject('getPage', apiGetPage);
@@ -267,6 +295,9 @@ export default function (context: any, inject: Function) {
   inject('getSingleArmor', apiGetSingleArmor);
   inject('getCharactersList', apiGetCharactersList);
   inject('getItemSets', apiGetItemSets);
+  inject('getSingleLocationMap', apiGetSingleLocationMap);
+  inject('getBlogPosts', apiGetBlogPosts);
+  inject('getSingleBlogPost', apiGetSingleBlogPost);
 
   inject('getAbsoluteImageURL', getAbsoluteImageURL);
 }

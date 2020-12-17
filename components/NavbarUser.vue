@@ -53,15 +53,15 @@
         disabled
         switch
       />
-    </p>
+    </p>-->
     <p class="b-dropdown-text">
       <span>18+ контент:</span>
       <b-form-checkbox
-        v-model="user.showMatureContent"
-        disabled
+        :value="$store.state.user.showMatureContent"
         switch
+        @change="onMatureSwitch"
       />
-    </p>-->
+    </p>
     <div class="dropdown-divider" />
     <li role="presentation">
       <p class="b-dropdown-text">
@@ -89,5 +89,9 @@ import LanguageSelector from '@/components/LanguageSelector.vue';
 })
 export default class NavbarUser extends Vue {
   version = process.env.PACKAGE_VERSION
+
+  onMatureSwitch(event: any): void {
+    this.$store.commit('setMatureContentVisibility', event);
+  }
 }
 </script>

@@ -143,8 +143,22 @@
                     <b-dropdown-item to="/about">Задания Штаба Защитников Скайрима</b-dropdown-item>
                   </b-dropdown-group>
                 </b-nav-item-dropdown>-->
+                <b-nav-item-dropdown
+                  :text="$t('navbar.maps.index')"
+                  lazy
+                  no-caret
+                >
+                  <b-dropdown-group id="locations">
+                    <b-dropdown-item to="/maps/headquarters">
+                      {{ $t('navbar.maps.subitems.headquarters') }}
+                    </b-dropdown-item>
+                  </b-dropdown-group>
+                </b-nav-item-dropdown>
                 <b-nav-item :to="localePath('/download')">
                   {{ $t('navbar.download') }}
+                </b-nav-item>
+                <b-nav-item :to="localePath('/diary')">
+                  {{ $t('navbar.diary') }}
                 </b-nav-item>
               </b-navbar-nav>
             </b-collapse>
