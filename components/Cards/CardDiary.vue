@@ -7,7 +7,7 @@
   >
     <nuxt-link
       :to="localePath(`/diary/${post.slug}`)"
-      class="aspect-ratio_1-1"
+      class="aspect-ratio_16-9"
     >
       <b-card-img-lazy
         v-if="post.thumbnail !== ''"

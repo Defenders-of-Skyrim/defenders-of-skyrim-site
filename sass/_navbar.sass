@@ -5,9 +5,8 @@
     top: 0
     left: 0
     z-index: 1030
-    background-color: rgba(0,0,0,0.5)
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
-    backdrop-filter: blur(6px)
+    background: url('~assets/images/rocks-tile.jpg') repeat, rgba(0,0,0,0.5)
+    background-size: 512px
   &-dark
     padding: 0
     .navbar-nav
@@ -17,7 +16,7 @@
           font-size: 1rem
           padding: 1rem 2rem
           font-family: $heading, serif
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
+          background-color: rgba(0,0,0,0.1)
           clip-path: polygon(1rem 0%, 100% 0%, calc(100% - 1rem) 100%, 0% 100%)
           margin-left: -1.1rem
           &:before, &:after

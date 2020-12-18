@@ -42,7 +42,7 @@ body.theme--imperial
       .navbar-nav
         .nav-item
           .nav-link
-            background-color: #222222
+            background-color: rgba(0,0,0,0.4)
             &:before, &:after
               background-color: $imperialColor
             &.active
@@ -120,3 +120,11 @@ body.theme--imperial
       box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
       th, td
         border-top: 2px solid $imperialColor
+  .btn
+    &-skyrim
+      color: $white
+      border: 1px solid $imperialColor
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.8)
+      &:hover
+        color: $white
+        background-color: #222222

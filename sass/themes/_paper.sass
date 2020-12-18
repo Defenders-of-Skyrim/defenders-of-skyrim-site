@@ -1,10 +1,153 @@
 $backgroundPaper: #111111
 $brandColor: #fba54f
+$paperColor: #862d29
 
-$paperTexture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='650' height='500'%3E%3Cfilter id='roughpaper' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' result='noise' numOctaves='5' /%3E%3CfeDiffuseLighting in='noise' lighting-color='white' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect x='0' y='0' width='100%25' height='100%25' filter='url(%23roughpaper)' fill='none'%3E%3C/svg%3E%0A");
+$paperTexture: url("~assets/images/paper-tile.jpg");
   
 body.theme--paper
   background: $paperTexture
-  color: $light
+  color: $dark
   h1,h2,h3,h4,h5,h6
-    color: $light
+    color: $dark
+  .dropdown
+    &-menu
+      background: $paperTexture
+      border: 2px solid $paperColor
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+      color: $dark
+    &-item
+      color: transparentize($dark, 0.35)
+      &:hover
+        color: transparentize($dark, 0.15)
+      &.active
+        &:hover
+          color: $dark
+    &-header
+      color: $paperColor
+    &-divider
+      border-top-color: $paperColor
+  .custom-select
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px, $paperTexture;
+    border: 2px solid $paperColor
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+    color: $dark
+  .page-header
+    &:before
+      background: linear-gradient(to bottom, rgba(0,0,0,0), #d9be9f)
+    &__details
+      background: $paperTexture
+      border: 2px solid $skyrimColor
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+    &__content
+      h1
+        filter: none
+        &:first-letter
+          color: $paperColor
+  .navbar
+    &-dark
+      .navbar-nav
+        .nav-item
+          .nav-link
+            background-color: rgba(0,0,0,0.4)
+            &:before, &:after
+              background-color: $paperColor
+            &.active
+              background-color: #000000
+        .nav-icon
+          .nav-link
+            background: none
+        .nav-user
+          .dropdown-item
+            color: $dark
+      .navbar-toggler
+        color: $white
+        border-color: $paperColor
+  .nav-tabs, .breadcrumbs, .img-thumbnail, .b-tooltip, .form-control
+    background-color: rgba(0,0,0,0.8)
+    border: 2px solid $paperColor
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+  .breadcrumbs
+    background: $paperTexture
+    &-container
+      background-color: $paperColor
+      a
+        background: $paperTexture
+        background-color: #222222
+        color: $dark
+        svg
+          path
+            fill: $dark
+        &.disabled
+          background-color: #333333
+          color: lighten($dark, 10%)
+      &:hover
+        a
+          background-color: #444444
+          &.disabled
+            background-color: #333333
+  .blockquote
+    background-color: $gray-800
+    border: 2px solid $gray-600
+    &-footer
+      color: $dark
+  .footer
+    h5
+      color: $brandColor
+  .card
+    &.bg-skyrim
+      background: $paperTexture
+      border: 2px solid $paperColor
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+      .card-header
+        background-color: $paperColor
+        border-bottom: 2px solid $paperColor
+        border-radius: 0
+        h4
+          color: $light
+      .card-body
+        color: $dark
+        ul
+          li
+            &:before
+              filter: invert(1)
+          &.list-accordion
+            li
+              a
+                color: $dark
+              &:before
+                background: $white
+        .table
+          tbody
+            tr
+              td
+                img, svg
+                  filter: invert(1)
+    &.accordion
+      .card-header
+        .btn-skyrim
+          border: none
+          &:focus
+            outline: 0
+  .snippet
+    background-color: $black
+    border: 2px solid $paperColor
+  .table
+    &.skyrim
+      background: $paperTexture
+      border: 2px solid $paperColor
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
+      th, td
+        border-top: 2px solid $paperColor
+  .btn
+    &-skyrim
+      color: $dark
+      border: 1px solid $paperColor
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.8)
+      &:hover
+        color: $light
+        background-color: $paperColor
+  .heading
+    &-greek
+      background: none
+      span
+        background: none
