@@ -33,6 +33,14 @@ export default function (context: any, inject: Function) {
     return response.data.entries;
   };
 
+  const apiGetBooks = async (category: string): Promise<any> => {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/books`, {
+      filter: { category },
+      lang: context.app.i18n.locale,
+    });
+    return response.data.entries;
+  };
+
   const apiGetPage = async (name: string): Promise<any> => {
     const response = await context.app.$axios.post(`${backendURL}/api/collections/get/pages`, {
       filter: {
@@ -283,6 +291,16 @@ export default function (context: any, inject: Function) {
     return post;
   };
 
+  const apiGetSingleBook = async (category: string, slug: string): Promise<any> => {
+    const response = await context.app.$axios.post(`${backendURL}/api/collections/get/books`, {
+      filter: { category, slug },
+      lang: context.app.i18n.locale,
+    });
+
+    const book = response.data.entries[0];
+    return book;
+  };
+
   inject('getChangelog', apiGetChangelog);
   inject('getMods', apiGetMods);
   inject('getPage', apiGetPage);
@@ -298,6 +316,8 @@ export default function (context: any, inject: Function) {
   inject('getSingleLocationMap', apiGetSingleLocationMap);
   inject('getBlogPosts', apiGetBlogPosts);
   inject('getSingleBlogPost', apiGetSingleBlogPost);
+  inject('getBooks', apiGetBooks);
+  inject('getSingleBook', apiGetSingleBook);
 
   inject('getAbsoluteImageURL', getAbsoluteImageURL);
 }

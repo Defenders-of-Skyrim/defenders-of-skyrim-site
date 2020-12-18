@@ -69,9 +69,9 @@ export default class Characters extends Vue {
   get pageTitle(): string {
     const { characterType } = this.$route.params;
     if (!characterMetaTypes.includes(characterType)) {
-      return `Персонажи вселенной ${this.$t(`universes.${characterType}`)}`;
+      return this.$t('accordions.characters', { universe: this.$t(`universes.${characterType}`) }).toString();
     }
-    return this.$t(`navbar.characters.subitems.${this.type}`) as string;
+    return this.$t(`navbar.characters.subitems.${this.type}`).toString();
   }
 
   get filteredCharacters() {

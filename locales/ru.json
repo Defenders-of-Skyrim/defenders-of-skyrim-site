@@ -41,7 +41,9 @@
   "user": {
     "language": "Язык:",
     "version": "Версия фронтенда:",
-    "donate": "Поддержать проект"
+    "donate": "Поддержать проект",
+    "matureContent": "Контент для взрослых:",
+    "theme": "Тема"
   },
   "skills": {
     "levels": {
@@ -180,5 +182,13 @@
     "dota": "DOTA",
     "league-of-legends": "League of Legends",
     "overwatch": "Overwatch"
+  },
+  "books": {
+    "header": "Книги",
+    "subitem": "Серии книг",
+    "title": "Книги из серии '{serie}'",
+    "biographic": "Биографичные",
+    "not-lusty-argonian-maid": "Не похотливая аргонианская дева",
+    "gallery": "Галерея изображений"
   }
 }

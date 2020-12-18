@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 dist
+test
+backend
 .nuxt
 
 # local env files

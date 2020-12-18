@@ -41,7 +41,9 @@
   "user": {
     "language": "Language:",
     "version": "Frontend version:",
-    "donate": "Support project"
+    "donate": "Support project",
+    "matureContent": "Mature content:",
+    "theme": "Theme"
   },
   "skills": {
     "levels": {
@@ -180,5 +182,13 @@
     "dota": "DOTA",
     "league-of-legends": "League of Legends",
     "overwatch": "Overwatch"
+  },
+  "books": {
+    "header": "Books",
+    "subitem": "Book series",
+    "title": "Books from '{serie}' series",
+    "biographic": "Biographic",
+    "not-lusty-argonian-maid": "Not lusty argonian maid",
+    "gallery": "Image gallery"
   }
 }

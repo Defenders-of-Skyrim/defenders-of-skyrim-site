@@ -16,7 +16,6 @@
           position: relative
           font-size: 1rem
           padding: 1rem 2rem
-          background-color: #222222
           font-family: $heading, serif
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%235c5c5c' fill-opacity='0.8' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E")
           clip-path: polygon(1rem 0%, 100% 0%, calc(100% - 1rem) 100%, 0% 100%)
@@ -27,14 +26,12 @@
             width: 2px
             height: 4rem
             top: -0.2rem
-            background-color: #aaaaaa
             transform: rotate(16deg)
           &:before
             left: 7px
           &:after
             right: 7.5px
           &.active
-            background-color: #000000
             z-index: 1
             &:before, &:after
               background-color: #ffffff
@@ -85,8 +82,6 @@
               background-color: transparentize($brandColor, 0.5)
     .navbar-toggler
       padding: 0.25rem
-      color: $white
-      border-color: #cccccc
       border-radius: 0
       &-icon
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
@@ -111,9 +106,6 @@
       text-align: center
       width: 200px
 .nav-tabs
-  background-color: rgba(0,0,0,0.8)
-  border: 2px solid #cccccc
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.8)
   .nav-item
     .nav-link
       display: flex

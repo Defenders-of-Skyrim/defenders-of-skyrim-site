@@ -6,3 +6,4 @@ declare module '*.vue' {
 
 declare module 'vuebar'
 declare module 'vue-fragment'
+declare module 'vue-cool-lightbox'

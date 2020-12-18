@@ -4,6 +4,9 @@
     <div class="container">
       <div class="row">
         <div class="col">
+          <div v-if="$store.state.user.showMatureContent">
+            <p>Hidden content</p>
+          </div>
           <div v-html="content" />
         </div>
       </div>

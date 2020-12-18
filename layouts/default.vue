@@ -27,6 +27,13 @@ import ScrollTo from '@/components/ScrollTo.vue';
     AppFooter,
     ScrollTo,
   },
+  head() {
+    return {
+      bodyAttrs: {
+        class: `theme--${this.$store.state.user.theme}`,
+      },
+    };
+  },
 })
 export default class DefaultLayout extends Vue {}
 </script>

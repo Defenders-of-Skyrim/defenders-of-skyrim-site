@@ -64,7 +64,6 @@ module.exports = {
     },
   },
   plugins: [
-    { src: '~/plugins/persistedState.ts' },
     { src: '~/plugins/components.ts' },
     { src: '~/plugins/axios.ts' },
     { src: '~/plugins/api.ts' },
@@ -75,6 +74,7 @@ module.exports = {
   modules: [
     'nuxt-purgecss',
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
     ['bootstrap-vue/nuxt'],
     ['nuxt-leaflet'],
     ['nuxt-i18n', {
@@ -165,7 +165,9 @@ module.exports = {
       /^img-/,
       /leaflet/,
       /^mb-/,
+      /^px-/,
       /^custom-/,
+      /^cool-lightbox/,
     ],
     whitelistPatternsChildren: [
       /btn/,
@@ -176,7 +178,9 @@ module.exports = {
       /^img-/,
       /leaflet/,
       /^mb-/,
+      /^px-/,
       /^custom-/,
+      /^cool-lightbox/,
     ],
   },
   typescript: {

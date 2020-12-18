@@ -46,6 +46,10 @@
       <span>{{ $t('user.language') }}</span>
       <LanguageSelector />
     </p>
+    <p class="b-dropdown-text">
+      <span>{{ $t('user.theme') }}</span>
+      <ThemeSelector />
+    </p>
     <!--<p class="b-dropdown-text">
       <span>Реклама:</span>
       <b-form-checkbox
@@ -55,9 +59,9 @@
       />
     </p>-->
     <p class="b-dropdown-text">
-      <span>18+ контент:</span>
+      <span>{{ $t('user.matureContent') }}</span>
       <b-form-checkbox
-        :value="$store.state.user.showMatureContent"
+        v-model="showMatureContent"
         switch
         @change="onMatureSwitch"
       />
@@ -68,7 +72,7 @@
         {{ `${$t('user.version')} ${version}` }}
       </p>
     </li>
-    <b-dropdown-item href="https://github.com/longsightedfilms/defenders-of-skyrim-site">
+    <b-dropdown-item href="https://github.com/Defenders-of-Skyrim/frontend">
       Github
     </b-dropdown-item>
     <b-dropdown-item href="https://www.donationalerts.com/r/longsightedfilms">
@@ -81,17 +85,34 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import LanguageSelector from '@/components/LanguageSelector.vue';
+import ThemeSelector from '@/components/ThemeSelector.vue';
 
 @Component({
   components: {
     LanguageSelector,
+    ThemeSelector,
   },
 })
 export default class NavbarUser extends Vue {
   version = process.env.PACKAGE_VERSION
 
-  onMatureSwitch(event: any): void {
-    this.$store.commit('setMatureContentVisibility', event);
+  showMatureContent = false;
+
+  mounted(): void {
+    this.showMatureContent = this.$store.state.user.showMatureContent;
+  }
+
+  onMatureSwitch(): void {
+    const value = !this.$store.state.user.showMatureContent;
+
+    this.$store.commit('setMatureContentVisibility', value);
+    this.$cookies.set('matureContent', value, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30,
+      httpOnly: false,
+      sameSite: 'strict',
+      secure: false,
+    });
   }
 }
 </script>

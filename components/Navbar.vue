@@ -144,6 +144,23 @@
                   </b-dropdown-group>
                 </b-nav-item-dropdown>-->
                 <b-nav-item-dropdown
+                  :text="$t('books.header')"
+                  lazy
+                  no-caret
+                >
+                  <b-dropdown-group id="quests" :header="$t('books.subitem')">
+                    <b-dropdown-item to="/books/biographic">
+                      {{ $t('books.biographic') }}
+                    </b-dropdown-item>
+                    <b-dropdown-item
+                      v-if="$store.state.user.showMatureContent"
+                      to="/books/not-lusty-argonian-maid"
+                    >
+                      {{ $t('books.not-lusty-argonian-maid') }}
+                    </b-dropdown-item>
+                  </b-dropdown-group>
+                </b-nav-item-dropdown>
+                <b-nav-item-dropdown
                   :text="$t('navbar.maps.index')"
                   lazy
                   no-caret

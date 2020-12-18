@@ -1,0 +1,10 @@
+$backgroundPaper: #111111
+$brandColor: #fba54f
+
+$paperTexture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='650' height='500'%3E%3Cfilter id='roughpaper' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' result='noise' numOctaves='5' /%3E%3CfeDiffuseLighting in='noise' lighting-color='white' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect x='0' y='0' width='100%25' height='100%25' filter='url(%23roughpaper)' fill='none'%3E%3C/svg%3E%0A");
+  
+body.theme--paper
+  background: $paperTexture
+  color: $light
+  h1,h2,h3,h4,h5,h6
+    color: $light
